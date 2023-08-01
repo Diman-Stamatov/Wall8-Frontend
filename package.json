@@ -1,0 +1,46 @@
+{
+  "name": "virtual-wallet",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.0.5",
+    "@material-tailwind/react": "2.0.6",
+    "@nivo/bar": "^0.83.0",
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.1",
+    "credit-card-type": "^9.1.0",
+    "formik": "^2.4.2",
+    "jwt-decode": "^3.1.2",
+    "luhn": "^2.4.1",
+    "payment": "^2.4.6",
+    "react": "^18.2.0",
+    "react-credit-cards-2": "^1.0.1",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
+    "react-loader-spinner": "^5.3.4",
+    "react-router-dom": "^6.14.2",
+    "victory": "^36.6.11",
+    "yup": "^1.2.0"
+  },
+  "devDependencies": {
+    "@iconify/react": "^4.1.1",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.5"
+  }
+}
