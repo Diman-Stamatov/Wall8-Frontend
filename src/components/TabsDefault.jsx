@@ -20,10 +20,10 @@ export function TabsDefault() {
   }, [authContext.user.data.balance]);
 
   const transactions = [
-    { date: "25/08", name: "tusanko", amount: 100, type: "incoming" },
-    { date: "12/12", name: "petar", amount: 50, type: "incoming" },
-    { date: "11/09", name: "diman4o", amount: 80, type: "outgoing" },
-    { date: "24/12", name: "k0seb0s3", amount: 20, type: "outgoing" },
+    { id: "1", date: "25/08", name: "tusanko", amount: 100, type: "incoming" },
+    { id: "2", date: "12/12", name: "petar", amount: 50, type: "incoming" },
+    { id: "3", date: "11/09", name: "diman4o", amount: 80, type: "outgoing" },
+    { id: "4", date: "24/12", name: "k0seb0s3", amount: 20, type: "outgoing" },
   ];
 
   const data = [

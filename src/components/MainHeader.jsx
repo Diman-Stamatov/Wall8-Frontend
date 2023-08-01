@@ -1,8 +1,5 @@
-import { useState } from "react";
-import { AiOutlineLogout } from "react-icons/ai";
-import { HiOutlineUserCircle } from "react-icons/hi";
-import { TabsDefault } from "./TabsDefault";
 import { useContext } from "react";
+import { ConfirmDialog } from "./dialogs/ConfirmDialog";
 import AuthContext from "../context/AuthContext";
 
 const MainHeader = () => {
@@ -27,13 +24,14 @@ const MainHeader = () => {
           className="w-1/2 px-3 py-2 rounded border-separate focus:outline-none focus:ring-2 focus:ring-gray-700 focus:border-transparent"
         />
       </div>
-      <div className="flex items-center">
-        <button
-          onClick={handleLogout}
-          className="p-2 bg-red-500 text-white rounded"
-        >
-          Logout <AiOutlineLogout className="inline" />
-        </button>
+      <div className="flex items-center justify-end">
+        <ConfirmDialog
+          buttonName="Logout"
+          title="Confirm Logout"
+          message="Are you sure you want to logout?"
+          onConfirm={handleLogout}
+          onCancel={() => console.log("logout cancelled")}
+        />
       </div>
     </header>
   );

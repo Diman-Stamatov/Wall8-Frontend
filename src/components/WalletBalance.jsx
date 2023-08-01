@@ -1,5 +1,4 @@
 import { FaWallet } from "react-icons/fa";
-import React, { useContext, useState } from "react";
 
 function WalletBalance({ balance }) {
   return (

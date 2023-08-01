@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -155,3 +155,4 @@ h1 {
 .auth-btn:hover {
   background-color: #0056b3;
 }
+
