@@ -6,12 +6,9 @@ import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const { loginUser } = useAuth();
-  console.log("useAuth:", useAuth());
-  console.log("loginUser:", loginUser);
-  const navigate = useNavigate();
 
   const handleLogin = async (values, { setSubmitting }) => {
-    console.log("values:", values);
+    console.log("login values:", values);
     await loginUser(values);
     setSubmitting(false);
   };

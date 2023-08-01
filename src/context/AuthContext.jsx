@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { data } from "autoprefixer";
 
 const AuthContext = createContext();
 
@@ -21,6 +22,11 @@ export const AuthProvider = ({ children }) => {
       const cookie = document.cookie
         .split("; ")
         .find((row) => row.startsWith("Cookie_JWT"));
+
+      if (cookie === undefined) {
+        setLoading(false);
+        return;
+      }
 
       const token = cookie.split("=")[1];
 
@@ -42,9 +48,6 @@ export const AuthProvider = ({ children }) => {
 
       accountDetails["profile"] = profile;
       setUser(profile);
-      console.log(accountDetails);
-      navigate("/main");
-      console.log("navigated to main");
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +75,7 @@ export const AuthProvider = ({ children }) => {
       );
 
       setUser(accountDetails);
-      navigate("/main");
+      navigate("/");
     } catch (error) {
       console.log("login error: ", error);
     }
@@ -90,7 +93,7 @@ export const AuthProvider = ({ children }) => {
       document.cookie = "Cookie_JWT=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
       navigate("/login");
     } catch (error) {
-      console.log(error);
+      console.log("Logout error:", error);
     }
   };
 
