@@ -6,10 +6,10 @@ import {
   TabPanel,
 } from "@material-tailwind/react";
 import WalletBalance from "./WalletBalance";
-import TransactionList from "./TransactionList";
 import AddFundsButton from "./AddFundsButton";
 import { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
+import FilterableTransactionTable from "./transfertable/FilterableTransactionTable";
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
@@ -19,11 +19,11 @@ export function TabsDefault() {
     setBalance(authContext.user.data.balance);
   }, [authContext.user.data.balance]);
 
-  const transfers = [
-    { date: "25/08", description: "tusanko", amount: 100, isIncoming: true },
-    { date: "12/12", description: "petar", amount: 50, isIncoming: false },
-    { date: "11/09", description: "diman4o", amount: 80, isIncoming: true },
-    { date: "24/12", description: "k0seb0s3", amount: 20, isIncoming: false },
+  const transactions = [
+    { date: "25/08", name: "tusanko", amount: 100, type: "incoming" },
+    { date: "12/12", name: "petar", amount: 50, type: "incoming" },
+    { date: "11/09", name: "diman4o", amount: 80, type: "outgoing" },
+    { date: "24/12", name: "k0seb0s3", amount: 20, type: "outgoing" },
   ];
 
   const data = [
@@ -37,7 +37,7 @@ export function TabsDefault() {
             <AddFundsButton balance={balance} setBalance={setBalance} />
           </div>
           <div className="md:w-2/3 p-5">
-            <TransactionList transactions={transfers} />
+            <FilterableTransactionTable transactions={transactions} />
           </div>
         </div>
       ),
@@ -46,6 +46,7 @@ export function TabsDefault() {
       label: "Cards",
       value: "tab2",
       desc: "Tab 2 content",
+      component: <div>Tab 2 content</div>,
     },
   ];
 

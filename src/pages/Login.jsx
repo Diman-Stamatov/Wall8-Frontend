@@ -26,7 +26,7 @@ const Login = () => {
     >
       {({ isSubmitting }) => (
         <div className="flex items-center justify-center h-screen">
-          <div className=" shadow-lg w-96">
+          <div className=" rounded-md shadow-lg w-96 px-6 py-2 bg-gradient-to-br from-black to-gray-900">
             <h1 className="text-3xl font-bold mb-6 text-white">Login</h1>
             <Form>
               <div className="mb-5">
@@ -63,7 +63,7 @@ const Login = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-2 px-4 text-center bg-blue-600 rounded-md text-white text-sm hover:bg-blue-500 focus:outline-none"
+                  className="auth-btn bg-gradient-to-l from-transparent to-gray-500 text-white font-bold py-2 px-4 rounded"
                 >
                   Login
                 </button>
