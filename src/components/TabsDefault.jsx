@@ -9,7 +9,7 @@ import WalletBalance from "./WalletBalance";
 import AddFundsButton from "./AddFundsButton";
 import { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
-import FilterableTransactionTable from "./transfertable/FilterableTransactionTable";
+import FilterableTransactionTable from "./transfers/transfertable/FilterableTransactionTable";
 import TransferTab from "./transfers/TransferTab";
 
 export function TabsDefault() {
@@ -25,6 +25,7 @@ export function TabsDefault() {
     { id: "2", date: "12/12", name: "petar", amount: 50, type: "incoming" },
     { id: "3", date: "11/09", name: "diman4o", amount: 80, type: "outgoing" },
     { id: "4", date: "24/12", name: "k0seb0s3", amount: 20, type: "outgoing" },
+    { id: "5", date: "24/12", name: "Rado", amount: 2000, type: "outgoing" },
   ];
 
   const data = [

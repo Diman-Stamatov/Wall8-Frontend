@@ -1,5 +1,5 @@
 import React from "react";
-import FilterableTransactionTable from "../transfertable/FilterableTransactionTable";
+import FilterableTransactionTable from "./transfertable/FilterableTransactionTable";
 import { Button } from "@mui/material";
 import TransferStatCard from "../transfers/TransferStatCard";
 

@@ -1,24 +1,35 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
-import axios from "axios";
 import RegisterForm from "../components/authentication/RegisterForm";
 import VerifyEmail from "../components/authentication/VerifyMessage";
+import axios from "axios";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = async (values, { setSubmitting, resetForm }) => {
+    console.log("register values:", values);
     try {
       setSubmitting(true);
-
-      console.log("Registered", values);
-      resetForm();
-      setIsRegistered(true);
+      setIsLoading(true);
+      const response = await axios.post(
+        "http://localhost:5120/api/virtual-wallet/auth/register",
+        {
+          username: values.username,
+          email: values.email,
+          phoneNumber: values.phone,
+          password: values.password,
+        }
+      );
+      console.log("register response: ", response);
       setEmail(values.email);
+      setIsRegistered(true);
+      resetForm();
     } catch (error) {
       setSubmitting(false);
-      console.log(error);
+      console.log("register error: ", error);
     }
   };
 
@@ -36,10 +47,13 @@ const Register = () => {
   return (
     <>
       {!isRegistered ? (
-        <RegisterForm
-          validationSchema={validationSchema}
-          handleRegister={handleRegister}
-        />
+        <div className="auth-background ">
+          <RegisterForm
+            validationSchema={validationSchema}
+            handleRegister={handleRegister}
+            isLoading={isLoading}
+          />
+        </div>
       ) : (
         <VerifyEmail email={email} />
       )}

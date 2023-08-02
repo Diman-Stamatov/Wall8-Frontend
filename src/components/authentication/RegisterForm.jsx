@@ -4,9 +4,9 @@ import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
-function RegisterForm({ validationSchema, handleRegister }) {
+function RegisterForm({ isLoading, validationSchema, handleRegister }) {
   return (
-    <Formik 
+    <Formik
       initialValues={{
         username: "",
         email: "",
@@ -18,8 +18,8 @@ function RegisterForm({ validationSchema, handleRegister }) {
       onSubmit={handleRegister}
     >
       {({ isSubmitting }) => (
-        <div className="flex items-center justify-center h-screen">
-          <div className="border border-gray-700  rounded-md shadow-lg w-96 px-6 py-2 bg-gradient-to-br from-black to-gray-900">
+        <div className="flex items-center justify-center h-screen ">
+          <div className="border border-gray-700  rounded-md shadow-lg w-96 px-6 py-2 bg-gradient-to-br from-black to-gray-900 z-10">
             <h1 className="text-3xl font-bold mb-6 text-white font-roboto">
               Sign up
             </h1>
@@ -58,11 +58,7 @@ function RegisterForm({ validationSchema, handleRegister }) {
                 <label className="block text-sm font-medium text-gray-700">
                   Phone
                 </label>
-                <Field
-                  name="phone"
-                  type="tel"
-                  className="p-1 rounded w-full"
-                />
+                <Field name="phone" type="tel" className="p-1 rounded w-full" />
                 <ErrorMessage
                   name="phone"
                   component="div"
@@ -102,7 +98,7 @@ function RegisterForm({ validationSchema, handleRegister }) {
               <div className="pt-2">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isLoading}
                   className="auth-btn bg-gradient-to-l from-transparent to-gray-500 text-white font-bold py-2 px-4 rounded"
                 >
                   {isSubmitting ? (

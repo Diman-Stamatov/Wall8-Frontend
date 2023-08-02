@@ -231,3 +231,34 @@ h1 {
   background-image: url("src/assets/tab-header-bg.jpg");
   background-size: cover;
 }
+
+.auth-background {
+  background-image: url("src/assets/auth-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  z-index: 0;
+}
+
+.auth-background::before {
+  content: "";
+  background-image: url("src/assets/auth-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  z-index: 0;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
