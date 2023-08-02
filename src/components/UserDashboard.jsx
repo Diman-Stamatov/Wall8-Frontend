@@ -15,35 +15,35 @@ export const UserDashboard = () => {
         <MainHeader username={username} setUsername={setUsername} />
         <TabsDefault />
       </div>
-      <main className="p-10 flex justify-around">
-        <button className="p-5 m-2 bg-green-500 text-white rounded-lg flex flex-col items-center">
-          <BsPlusCircle className="text-6xl" />
-          <span>Add Funds</span>
+      {/* <main classname="p-10 flex justify-around">
+        <button classname="p-5 m-2 bg-green-500 text-white rounded-lg flex flex-col items-center">
+          <bspluscircle classname="text-6xl" />
+          <span>add funds</span>
         </button>
         <button
-          onClick={() => setShowModal(true)}
-          className="p-5 m-2 bg-blue-500 text-white rounded-lg flex flex-col items-center"
+          onclick={() => setshowmodal(true)}
+          classname="p-5 m-2 bg-blue-500 text-white rounded-lg flex flex-col items-center"
         >
-          <BsCreditCard className="text-6xl" />
-          <span>Add Card</span>
+          <bscreditcard classname="text-6xl" />
+          <span>add card</span>
         </button>
-        {showModal && (
-          <div className="modal">
-            <div className="backdrop" onClick={() => setShowModal(false)}>
+        {showmodal && (
+          <div classname="modal">
+            <div classname="backdrop" onclick={() => setshowmodal(false)}>
               <div
-                className="modal-content"
-                onClick={(e) => e.stopPropagation()}
+                classname="modal-content"
+                onclick={(e) => e.stoppropagation()}
               >
-                {<CreditCardAdd />}
+                {<creditcardadd />}
               </div>
             </div>
           </div>
         )}
-        <button className="p-5 m-2 bg-yellow-500 text-white rounded-lg flex flex-col items-center">
-          <BsArrowUpRight className="text-6xl" />
-          <span>Transfer</span>
+        <button classname="p-5 m-2 bg-yellow-500 text-white rounded-lg flex flex-col items-center">
+          <bsarrowupright classname="text-6xl" />
+          <span>transfer</span>
         </button>
-      </main>
+      </main> */}
     </div>
   );
 };

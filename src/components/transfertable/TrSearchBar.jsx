@@ -9,14 +9,15 @@ const TrSearchBar = ({
   onOutgoingOnlyChange,
 }) => {
   return (
-    <form className="container max-h-screen mx-auto p-6 bg-transparent outline-none outline-zinc-700 rounded-xl shadow-md space-y-4">
-      <div className="flex flex-row justify-start max-w-md">
+    <form className="container max-h-screen mx-auto p-6 bg-slate-500 drop-shadow-md rounded-md space-y-4">
+      <div className="focus-within:shadow-lg flex flex-row justify-start max-w-md">
         <input
-          className="w-full px-4 py-2 bg-transparent outline-none outline-zinc-700 rounded-xl shadow-md"
+          className="transfer-input w-full px-4 py-2 bg-slate-400 rounded-xl shadow-md focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-transparent"
           type="text"
           placeholder="Search..."
           value={filterText}
           onChange={(e) => onFilterTextChange(e.target.value)}
+          style={{ transition: "all .15s ease" }}
         />
       </div>
       <div className="flex flex-row justify-start max-w-md">

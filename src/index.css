@@ -12,6 +12,8 @@
   color: rgba(255, 255, 255, 0.87);
   background-color: rgba(16, 16, 16, 1);
 
+  overflow: hidden;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -156,3 +158,76 @@ h1 {
   background-color: #0056b3;
 }
 
+.stat-card {
+  width: 100%;
+  max-width: 350px;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  padding-bottom: 10px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+  border: black;
+  outline: none;
+  border-style: outset;
+}
+
+.stat-card::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.transfer-tab-bg {
+  background-image: url("src/assets/transfers-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  top: 0px;
+  left: 0px;
+  position: relative;
+}
+
+.transfer-tab-bg::before {
+  content: "";
+  background-image: url("src/assets/transfers-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  z-index: 0;
+}
+
+.transfer-input {
+  color: aliceblue;
+  font-weight: 300;
+}
+
+.transfer-input::placeholder {
+  color: aliceblue;
+  font-weight: 400;
+}
+
+.tab-header-container {
+  border-radius: 0.5rem;
+  border-style: outset;
+  background-color: transparent;
+  border: none;
+  color: aliceblue;
+  font-weight: 500;
+  font-size: 20px;
+  outline: 1px solid whitesmoke;
+}
+
+.header-background {
+  background-image: url("src/assets/tab-header-bg.jpg");
+  background-size: cover;
+}

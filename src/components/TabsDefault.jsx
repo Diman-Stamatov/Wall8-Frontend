@@ -10,6 +10,7 @@ import AddFundsButton from "./AddFundsButton";
 import { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import FilterableTransactionTable from "./transfertable/FilterableTransactionTable";
+import TransferTab from "./transfers/TransferTab";
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
@@ -43,19 +44,19 @@ export function TabsDefault() {
       ),
     },
     {
-      label: "Cards",
+      label: "Transfers",
       value: "tab2",
       desc: "Tab 2 content",
-      component: <div>Tab 2 content</div>,
+      component: <TransferTab transactions={transactions} />,
     },
   ];
 
   return (
-    <Tabs value="tab1">
-      <TabsHeader>
+    <Tabs value="tab1" className="bg-teal-700 ">
+      <TabsHeader className="tab-header-container header-background drop-shadow-2xl mx-2 mt-3 pb-2">
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>
-            {label}
+            <span className="drop-shadow-lg">{label}</span>
           </Tab>
         ))}
       </TabsHeader>

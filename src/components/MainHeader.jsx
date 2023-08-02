@@ -12,7 +12,7 @@ const MainHeader = () => {
   };
 
   return (
-    <header className="p-5 flex bg-gray-950 justify-between items-center shadow-md">
+    <header className="p-5 flex bg-slate-800 justify-between items-center shadow-md">
       <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
         <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
       </div>
