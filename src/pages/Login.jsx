@@ -26,7 +26,7 @@ const Login = () => {
     >
       {({ isSubmitting }) => (
         <div className="flex items-center justify-center h-screen">
-          <div className=" rounded-md shadow-lg w-96 px-6 py-2 bg-gradient-to-br from-black to-gray-900">
+          <div className="border border-gray-700  rounded-md shadow-lg w-96 px-6 py-2 bg-gradient-to-br from-black to-gray-900">
             <h1 className="text-3xl font-bold mb-6 text-white">Login</h1>
             <Form>
               <div className="mb-5">
