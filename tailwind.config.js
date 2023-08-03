@@ -6,15 +6,16 @@ export default {
     extend: {
       colors: {
         light: {
-          primary: "#89ABE3",
-          secondary: "#6F9CEB",
-          tertiary: "#FF9AA2",
+          primary: "#EFFFFB",
+          secondary: "#50D890",
+          tertiary: "#4F98CA",
+          quaternary: "#272727",
         },
         dark: {
-          primary: "#1F2335",
-          secondary: "#00a4cc",
-          tertiary: "#007F7F",
-          quaternary: "#6a5acd",
+          primary: "#090030",
+          secondary: "#0C3C78",
+          tertiary: "#04879C",
+          quaternary: "#F30A49",
         },
         fontFamily: {
           roboto: ["Roboto", "sans-serif"],

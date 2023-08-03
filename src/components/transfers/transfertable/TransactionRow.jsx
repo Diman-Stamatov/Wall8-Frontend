@@ -2,7 +2,7 @@ const TransactionRow = ({ transaction }) => {
   const { name, type, amount, date } = transaction;
 
   return (
-    <tr className="dark:bg-dark-primary dark:hover:bg-dark-quaternary">
+    <tr className="dark:bg-dark-primary dark:hover:bg-dark-secondary">
       <th
         scope="row"
         className={
