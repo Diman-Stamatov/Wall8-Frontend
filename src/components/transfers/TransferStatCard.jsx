@@ -6,12 +6,24 @@ import {
   LinearProgress,
   CardActions,
 } from "@mui/material";
+import { useContext } from "react";
+import { ThemeContext } from "../../ThemeProvider";
 
 const TransferStatCard = ({ value, title }) => {
+  const { theme } = useContext(ThemeContext);
+  const cardBg = theme == "light" ? "#89ABE3" : "#1F2335";
+  const hoverBg = theme == "light" ? "#A9C4F2" : "#2C3249";
+  // Grozno ama raboti
+
   return (
     <Card
-      sx={{ minWidth: 275, minHeight: 90, backgroundColor: "slategray" }}
-      className="m-4 drop-shadow-lg rounded-sm w-2/3 h-auto flex flex-col justify-center items-center"
+      sx={{
+        minWidth: 275,
+        minHeight: 90,
+        backgroundColor: cardBg,
+        raised: true,
+      }}
+      className="m-4 drop-shadow-lg rounded-sm w-2/3 h-auto flex flex-col justify-center items-center outline dark:outline-light-tertiary"
     >
       <CardContent className="w-full flex flex-col justify-center items-center">
         <Typography variant="h6" component="h2" className="text-white mb-2">
@@ -34,7 +46,11 @@ const TransferStatCard = ({ value, title }) => {
         />
       </CardContent>
       <CardActions className="w-full flex justify-center items-center">
-        <Typography variant="body2" component="a" className="text-white">
+        <Typography
+          variant="body2"
+          component="a"
+          className="dark:text-dark-secondary"
+        >
           View
         </Typography>
       </CardActions>

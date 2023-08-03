@@ -17,9 +17,9 @@ const TransactionTable = ({
   });
 
   return (
-    <div className=" overflow-x-auto shadow-md sm:rounded-lg">
-      <table className="table-auto md:table-fixed min-w-full  text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <div className=" overflow-x-auto shadow-md sm:rounded-lg outline dark:outline-light-tertiary">
+      <table className="table-auto md:table-fixed min-w-full dark:bg-dark-tertiary dark:text-white ">
+        <thead className="text-xs  uppercase ">
           <tr>
             <th scope="col" className="px-12 py-4">
               Name

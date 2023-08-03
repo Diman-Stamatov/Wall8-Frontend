@@ -5,29 +5,29 @@ import TransferStatCard from "../transfers/TransferStatCard";
 
 function TransferTab({ transactions }) {
   return (
-    <div className="transfer-tab-bg">
+    <div className="">
       <div className="relative h-screen w-full">
         <div className="flex flex-row justify-between relative z-50">
           <div className="my-auto ml-5">
             <h1
               style={{ transition: "all .15s ease" }}
-              className="pb-5 text-slate-400 hover:text-slate-300 font-medium drop-shadow-md"
+              className="pb-5 dark:text-dark-tertiary pointer-events-none font-medium drop-shadow-md"
             >
               Recent Transfers
             </h1>
             <FilterableTransactionTable transactions={transactions} />
             <Button variant="text" size="large" color="info">
-              <span>View All</span>
+              <span className="dark:text-dark-secondary ">View All</span>
             </Button>
           </div>
-          <div className="flex flex-col justify-end my-auto">
+          <div className="pb-12 flex flex-col justify-end my-auto">
             <h1
               style={{ transition: "all .15s ease" }}
-              className="pb-2 text-slate-400 font-medium drop-shadow-md hover:text-slate-300"
+              className=" dark:text-dark-tertiary pointer-events-none font-medium drop-shadow-md "
             >
               Transfer Stats
             </h1>
-            <div className="grid grid-cols-2 my-auto">
+            <div className="grid grid-cols-2 ">
               <TransferStatCard title="Total Transfers" value={32} />
               <TransferStatCard title="Incoming Transfers" value={18} />
               <TransferStatCard title="Outgoing Transfers" value={14} />
