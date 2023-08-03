@@ -47,7 +47,7 @@ const Register = () => {
   return (
     <>
       {!isRegistered ? (
-        <div className="auth-background ">
+        <div className="dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
           <RegisterForm
             validationSchema={validationSchema}
             handleRegister={handleRegister}

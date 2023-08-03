@@ -10,18 +10,20 @@ function LoginForm({ validationSchema, handleLogin }) {
       onSubmit={handleLogin}
     >
       {({ isSubmitting }) => (
-        <div className="flex items-center justify-center h-screen">
-          <div className="border border-gray-700  rounded-md shadow-lg w-96 px-6 py-2 bg-gradient-to-br from-black to-gray-900 z-10">
-            <h1 className="text-3xl font-bold mb-6 text-white">Login</h1>
+        <div className="flex items-center justify-center h-screen ">
+          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-55 px-6 py-2 rounded-md ">
+            <h1 className="text-3xl font-bold mb-6 text-dark-secondary dark:text-dark-tertiary">
+              Login
+            </h1>
             <Form>
               <div className="mb-5">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Email
                 </label>
                 <Field
                   name="email"
                   type="text"
-                  className="p-1 rounded w-full"
+                  className="dark:bg-dark-tertiary dark:text-white p-1 rounded w-full"
                 />
                 <ErrorMessage
                   name="email"
@@ -29,14 +31,14 @@ function LoginForm({ validationSchema, handleLogin }) {
                   className="text-red-700"
                 />
               </div>
-              <div className="mb-6">
-                <label className="block text-sm font-medium text-gray-700">
+              <div className="mb-6 ">
+                <label className=" dark:text-dark-tertiary block text-sm font-medium text-gray-700 ">
                   Password
                 </label>
                 <Field
                   name="password"
                   type="password"
-                  className="p-1 rounded w-full"
+                  className="dark:bg-dark-tertiary dark:text-white p-1 rounded w-full dark:text-wite text-black"
                 />
                 <ErrorMessage
                   name="password"
@@ -48,22 +50,22 @@ function LoginForm({ validationSchema, handleLogin }) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="auth-btn bg-gradient-to-l from-transparent to-gray-500 text-white font-bold py-2 px-4 rounded"
+                  className="auth-btn dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-md"
                 >
                   Login
                 </button>
               </div>
               <Link to="/">
-                <text className="text-sm text-gray-500 hover:text-gray-700">
+                <text className="text-sm dark:text-dark-tertiary hover:text-gray-700">
                   Home
                 </text>
               </Link>
-              <text className="text-sm text-gray-500 hover:text-gray-700 pointer-events-none">
+              <text className="text-sm tdark:text-dark-tertiary hover:text-gray-700 pointer-events-none">
                 {" "}
                 |{" "}
               </text>
               <Link to="/register">
-                <text className="text-sm text-gray-500 hover:text-gray-700">
+                <text className="text-sm dark:text-dark-tertiary hover:text-gray-700">
                   Forgot Password?
                 </text>
               </Link>
@@ -72,7 +74,7 @@ function LoginForm({ validationSchema, handleLogin }) {
                 |{" "}
               </text>
               <Link to="/register">
-                <text className="text-sm text-gray-500 hover:text-gray-700 ">
+                <text className="text-sm dark:text-dark-tertiary hover:text-gray-700 ">
                   Don't have an account?
                 </text>
               </Link>

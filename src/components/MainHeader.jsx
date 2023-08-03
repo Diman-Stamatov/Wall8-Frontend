@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { ConfirmDialog } from "./dialogs/ConfirmDialog";
 import AuthContext from "../context/AuthContext";
+import { ThemeContext } from "../ThemeProvider";
 
 const MainHeader = () => {
   const { user } = useContext(AuthContext);
   console.log("user", user);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const { logoutUser } = useContext(AuthContext);
   const handleLogout = () => {
@@ -17,6 +19,12 @@ const MainHeader = () => {
         <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
       </div>
       <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
+      <div className="flex items-center justify-center">
+        <button
+          className="w-10 h-10 p-3 rounded-full bg-gray-100 dark:bg-gray-600"
+          onClick={toggleTheme}
+        ></button>
+      </div>
       <div className="flex-grow mx-10 flex justify-center">
         <input
           type="text"

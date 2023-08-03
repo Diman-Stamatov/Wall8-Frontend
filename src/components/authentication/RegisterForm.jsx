@@ -19,19 +19,19 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
     >
       {({ isSubmitting }) => (
         <div className="flex items-center justify-center h-screen ">
-          <div className="border border-gray-700  rounded-md shadow-lg w-96 px-6 py-2 bg-gradient-to-br from-black to-gray-900 z-10">
-            <h1 className="text-3xl font-bold mb-6 text-white font-roboto">
+          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-96 px-6 py-2 rounded-md ">
+            <h1 className="text-3xl font-bold mb-6 text-dark-tertiary">
               Sign up
             </h1>
             <Form>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Username
                 </label>
                 <Field
                   name="username"
                   type="text"
-                  className="p-1 rounded w-full "
+                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
                 />
                 <ErrorMessage
                   name="username"
@@ -40,13 +40,13 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Email
                 </label>
                 <Field
                   name="email"
                   type="email"
-                  className="p-1 rounded w-full"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
                 />
                 <ErrorMessage
                   name="email"
@@ -55,10 +55,14 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Phone
                 </label>
-                <Field name="phone" type="tel" className="p-1 rounded w-full" />
+                <Field
+                  name="phone"
+                  type="tel"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
+                />
                 <ErrorMessage
                   name="phone"
                   component="div"
@@ -66,13 +70,13 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Password
                 </label>
                 <Field
                   name="password"
                   type="password"
-                  className="p-1 rounded w-full"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
                 />
                 <ErrorMessage
                   name="password"
@@ -81,13 +85,13 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Confirm Password
                 </label>
                 <Field
                   name="confirmPassword"
                   type="password"
-                  className="p-1 rounded w-full"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
                 />
                 <ErrorMessage
                   name="confirmPassword"
@@ -99,7 +103,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 <button
                   type="submit"
                   disabled={isSubmitting || isLoading}
-                  className="auth-btn bg-gradient-to-l from-transparent to-gray-500 text-white font-bold py-2 px-4 rounded"
+                  className="auth-btn dark:bg-dark-secondary text-white font-bold py-2 px-4 rounded"
                 >
                   {isSubmitting ? (
                     <div className="flex justify-center items-center">
@@ -113,6 +117,15 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
               <Link to="/">
                 <text className="text-sm text-gray-500 hover:text-gray-700">
                   Home
+                </text>
+              </Link>
+              <text className="text-sm dark:text-dark-tertiary hover:text-gray-700 pointer-events-none">
+                {" "}
+                |{" "}
+              </text>
+              <Link to="/register">
+                <text className="text-sm dark:text-dark-tertiary hover:text-gray-700">
+                  Have an account?
                 </text>
               </Link>
             </Form>
