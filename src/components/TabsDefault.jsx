@@ -11,6 +11,7 @@ import { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
 import FilterableTransactionTable from "./transfers/transfertable/FilterableTransactionTable";
 import TransferTab from "./transfers/TransferTab";
+import UserProfileTab from "./profile/UserProfileTab";
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
@@ -35,7 +36,7 @@ export function TabsDefault() {
       component: (
         <div className="md:flex">
           <div className="md:w-1/4 p-3">
-            <WalletBalance balance={balance} />
+            <UserProfileTab balance={balance} />
             <AddFundsButton balance={balance} setBalance={setBalance} />
           </div>
           <div className="md:w-2/3 p-5">
