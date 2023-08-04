@@ -55,7 +55,7 @@ export function TabsDefault() {
 
   return (
     <Tabs value="tab1" className=" ">
-      <TabsHeader className="tab-header-container dark:bg-dark-secondary dark:hover:bg-dark-tertiary drop-shadow-2xl mx-2 mt-3 pb-2">
+      <TabsHeader className="tab-header-container dark:bg-dark-primary dark:hover:bg-dark-tertiary drop-shadow-2xl mx-2 mt-3 pb-2">
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>
             <span className="drop-shadow-lg">{label}</span>

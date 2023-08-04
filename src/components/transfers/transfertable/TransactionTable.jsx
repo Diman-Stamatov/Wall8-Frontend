@@ -18,7 +18,7 @@ const TransactionTable = ({
 
   return (
     <div className=" overflow-x-auto shadow-md sm:rounded-lg outline dark:outline-dark-tertiary">
-      <table className="table-auto md:table-fixed min-w-full dark:bg-dark-secondary dark:text-white ">
+      <table className="table-auto md:table-fixed min-w-full dark:bg-dark-secondary dark:text-white">
         <thead className="text-xs  uppercase ">
           <tr>
             <th scope="col" className="px-12 py-4">
@@ -35,7 +35,7 @@ const TransactionTable = ({
             </th>
           </tr>
         </thead>
-        <tbody className="bg-gray-800 divide-y divide-gray-200">
+        <tbody className="dark:bg-dark-primary divide-y dark:divide-dark-tertiary">
           {filteredTransactions.map((transaction) => (
             <TransactionRow key={transaction.id} transaction={transaction} />
           ))}

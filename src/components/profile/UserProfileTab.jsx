@@ -1,7 +1,17 @@
 import React from "react";
 import WalletBalance from "../WalletBalance";
+import AuthContext from "../../context/AuthContext";
+import { ConfirmDialog } from "../dialogs/ConfirmDialog";
+import { useContext } from "react";
+
 
 function UserProfileTab({balance}) {
+
+    const { logoutUser } = useContext(AuthContext);
+    const handleLogout = () => {
+      logoutUser();
+      console.log("Logout finished");
+    }
     return (
 <div class="mx-auto right-0 mt-2 w-60">
                 <div class="dark:bg-light-primary rounded overflow-hidden shadow-lg outline dark:outline-light-tertiary">
@@ -23,9 +33,14 @@ function UserProfileTab({balance}) {
                     </div>
 
                     <div class=" dark:bg-dark-primary">
-                        <button href="#" class="flex justify-center w-full px-4 py-4 pb-4 hover:dark:bg-dark-secondary flex">
-                            <p class="text-sm justify-self-center  font-medium dark:text-light-primary leading-none"> Logout </p>
-                        </button>
+                        <ConfirmDialog
+                        buttonName="Logout"
+                        title="Confirm Logout"
+                        message="Are you sure you want to logout?"
+                        onConfirm={handleLogout}
+                        onCancel={() => console.log("logout cancelled")}
+                        />
+                        
                     </div>
                 </div>
             </div>

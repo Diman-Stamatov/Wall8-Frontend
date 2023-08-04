@@ -48,7 +48,8 @@ const TransferStatCard = ({ value, title }) => {
         <Typography
           variant="body2"
           component="a"
-          className="dark:text-dark-secondary"
+          className="dark:text-light-primary cursor-pointer hover:dark:text-dark-tertiary"
+          onClick={() => console.log("View button pressed")}
         >
           View
         </Typography>
