@@ -19,12 +19,7 @@ const MainHeader = () => {
         <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
       </div>
       <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
-      <div className="flex items-center justify-center">
-        <button
-          className="w-10 h-10 p-3 rounded-full bg-gray-100 dark:bg-gray-600"
-          onClick={toggleTheme}
-        ></button>
-      </div>
+      
       <div className="flex-grow mx-10 flex justify-center">
         <input
           style={{ transition: "all .15s ease" }}
@@ -33,14 +28,11 @@ const MainHeader = () => {
           className="w-1/2 px-3 py-2 transfer-input rounded-xl shadow-md dark:bg-dark-secondary focus:outline-none focus:ring-2 focus:ring-dark-secondary focus:border-transparent"
         />
       </div>
-      <div className="flex items-center justify-end">
-        <ConfirmDialog
-          buttonName="Logout"
-          title="Confirm Logout"
-          message="Are you sure you want to logout?"
-          onConfirm={handleLogout}
-          onCancel={() => console.log("logout cancelled")}
-        />
+      <div className="flex items-center justify-center">
+        <button
+          className="w-10 h-10 p-3 rounded-full bg-gray-100 dark:bg-gray-600"
+          onClick={toggleTheme}
+        ></button>
       </div>
     </header>
   );
