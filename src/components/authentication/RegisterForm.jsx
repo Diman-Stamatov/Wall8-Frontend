@@ -1,6 +1,5 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
@@ -123,7 +122,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 {" "}
                 |{" "}
               </text>
-              <Link to="/register">
+              <Link to="/login">
                 <text className="text-sm dark:text-dark-tertiary hover:text-gray-700">
                   Have an account?
                 </text>

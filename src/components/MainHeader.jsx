@@ -14,8 +14,8 @@ const MainHeader = () => {
   };
 
   return (
-    <header className="p-5 flex bg-slate-800 justify-between items-center shadow-md">
-      <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+    <header className="p-5 flex dark:bg-dark-primary outline dark:outline-dark-quaternary justify-between items-center shadow-md">
+      <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
         <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
       </div>
       <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
@@ -27,9 +27,10 @@ const MainHeader = () => {
       </div>
       <div className="flex-grow mx-10 flex justify-center">
         <input
+          style={{ transition: "all .15s ease" }}
           type="text"
           placeholder="Search..."
-          className="w-1/2 px-3 py-2 rounded border-separate focus:outline-none focus:ring-2 focus:ring-gray-700 focus:border-transparent"
+          className="w-1/2 px-3 py-2 transfer-input rounded-xl shadow-md dark:bg-dark-secondary focus:outline-none focus:ring-2 focus:ring-dark-secondary focus:border-transparent"
         />
       </div>
       <div className="flex items-center justify-end">
