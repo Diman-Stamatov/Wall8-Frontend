@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import MainHeader from "../components/MainHeader";
 import { useAuth } from "../context/AuthContext";
-
+import UpdateEmailButton from "../components/UpdateEmailButton";
 
 
 
@@ -37,8 +37,8 @@ const Profile = () => {
                             <tr>
                                 <td style={{ textAlign: "left", paddingLeft: 20 }}>Phone number:</td>
                                 <td>{user ? user.data.phoneNumber : "0888 890 123"}</td>
-                                <td className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-1 rounded">
-                                    Update
+                                <td >
+                                    <UpdateEmailButton/>
                                 </td>
                             </tr>
                             <tr >
