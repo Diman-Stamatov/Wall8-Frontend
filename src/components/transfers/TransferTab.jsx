@@ -18,8 +18,8 @@ function TransferTab({ transactions }) {
               Recent Transfers
             </h1>
             <FilterableTransactionTable transactions={transactions} />
-            <Button variant="text" size="large" color="info">
-              <span className="dark:text-dark-secondary ">View All</span>
+            <Button variant="text" size="large" color="info" >
+              <span className="dark:text-light-primary ">View All</span>
             </Button>
           </div>
           <div className="my-auto mr-5">
