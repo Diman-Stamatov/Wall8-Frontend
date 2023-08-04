@@ -4,6 +4,9 @@
 @tailwind utilities;
 
 :root {
+  --dark-bg-color: #090030;
+  --light-bg-color: #effffb;
+
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -262,5 +265,3 @@ h1 {
   filter: blur(5px);
   -webkit-filter: blur(5px);
 }
-
-

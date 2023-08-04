@@ -7,6 +7,8 @@ export default function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(storedTheme || "light");
 
   useEffect(() => {
+    document.body.style.backgroundColor =
+      theme === "light" ? "#EFFFFB" : "#090030";
     document.documentElement.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);

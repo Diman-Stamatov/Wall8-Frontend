@@ -2,6 +2,8 @@ import React from "react";
 import FilterableTransactionTable from "./transfertable/FilterableTransactionTable";
 import { Button } from "@mui/material";
 import TransferStatCard from "../transfers/TransferStatCard";
+import TransferButton from "./TransferButton";
+import TransferForm from "./transferprocess/TransferForm";
 
 function TransferTab({ transactions }) {
   return (
@@ -19,6 +21,9 @@ function TransferTab({ transactions }) {
             <Button variant="text" size="large" color="info">
               <span className="dark:text-dark-secondary ">View All</span>
             </Button>
+          </div>
+          <div className="my-auto mr-5">
+            <TransferButton />
           </div>
           <div className="pb-12 flex flex-col justify-end my-auto">
             <h1

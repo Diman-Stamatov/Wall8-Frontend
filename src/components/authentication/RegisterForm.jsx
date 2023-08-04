@@ -1,6 +1,5 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
