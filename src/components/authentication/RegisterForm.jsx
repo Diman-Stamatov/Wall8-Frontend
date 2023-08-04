@@ -122,7 +122,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 {" "}
                 |{" "}
               </text>
-              <Link to="/register">
+              <Link to="/login">
                 <text className="text-sm dark:text-dark-tertiary hover:text-gray-700">
                   Have an account?
                 </text>
