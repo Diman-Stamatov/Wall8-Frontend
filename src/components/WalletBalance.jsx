@@ -2,7 +2,7 @@ import { FaWallet } from "react-icons/fa";
 
 function WalletBalance({ balance }) {
   return (
-    <div className="container max-h-screen mx-auto p-6 mt-2 bg-transparent outline-none outline-zinc-700 rounded-xl shadow-md space-y-4">
+    <div className="container max-h-screen mx-auto p-6  bg-transparent  shadow-md space-y-4 ">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center">
           <FaWallet size={24} className="text-green-600 mr-2" />
