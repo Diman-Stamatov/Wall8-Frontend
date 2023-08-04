@@ -1,5 +1,7 @@
-import ExpandedRecipient from "./ExpandedRecipient";
+import { Avatar } from "@mui/material";
 import { useState } from "react";
+import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md";
+import { AiOutlineCheck } from "react-icons/ai";
 
 const TransferPickRecipient = ({
   recipient,
@@ -9,12 +11,10 @@ const TransferPickRecipient = ({
   recipients,
   onNext,
 }) => {
-  const [expandedRecipient, setExpandedRecipient] = useState(null);
+  const [openIndex, setOpenIndex] = useState(null);
 
-  const handleExpand = (recipientId) => {
-    setExpandedRecipient(
-      recipientId === expandedRecipient ? null : recipientId
-    );
+  const toggleOpen = (index) => () => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   const selectRecipient = (selectedRecipient) => {
@@ -36,66 +36,85 @@ const TransferPickRecipient = ({
   });
 
   return (
-    <div className="max-w-md mx-auto">
-      <div className="box-border h-32 w-64 p-4 border-2 dark:border-dark-tertiary mb-4 rounded-md">
-        <span className="text-sm space-x-1 flex flex-row font-semibold">
-          Selected Recipient:
-        </span>
-        <p>{recipient.username} </p>
+    <div style={{ width: "350px" }}>
+      <h1 className="text-4xl text-center mb-4">Select a recipient</h1>
+      <div className="flex justify-between items-center mb-4"></div>
+      <input
+        className="border border-gray-300 dark:border-dark-tertiary rounded-lg px-3 py-2 w-full mb-2 focus:outline-none focus:ring focus:border-blue-300 dark:focus:border-dark-primary"
+        id="search"
+        type="text"
+        placeholder="Search..."
+        value={filterText}
+        onChange={(e) => onFilterTextChange(e.target.value)}
+      />
+
+      <div className="border-2 shadow-inner  dark:shadow-light-quaternary rounded-lg pt-4 pb-4 px-2 py-2 mb-4">
+        <ul className="space-y-2">
+          {filteredRecipients.map((filtRec, index) => (
+            <li
+              key={index}
+              className={` border rounded-lg px-4 py-2 shadow-inner dark:shadow-light-quaternary ${
+                openIndex !== index
+                  ? "hover:dark:bg-dark-secondary cursor-pointer"
+                  : ""
+              } dark:text-light-primary`}
+            >
+              <div
+                className="flex justify-between items-center"
+                onClick={toggleOpen(index)}
+              >
+                <p className="cursor-pointer flex items-center ">
+                  {filtRec.username}
+                  {recipient.id === filtRec.id && (
+                    <AiOutlineCheck className="ml-2 cursor-pointer text-green-500" />
+                  )}
+                </p>
+                {openIndex === index ? (
+                  <MdOutlineExpandLess className="cursor-pointer" />
+                ) : (
+                  <MdOutlineExpandMore className="cursor-pointer" />
+                )}
+              </div>
+              {openIndex === index && (
+                <div className="mt-4">
+                  <div className="flex items-center">
+                    <Avatar />
+                    <p className="ml-2 font-bold pointer-events-none">
+                      {filtRec.username}
+                    </p>
+                  </div>
+                  <div className="border-b mt-2 mb-1"></div>
+                  <p>
+                    <p className="dark:text-dark-tertiary">Email:</p>{" "}
+                    {filtRec.email}
+                  </p>
+                  <p className="text-sm">
+                    <p className="dark:text-dark-tertiary">Phone number:</p>{" "}
+                    {filtRec.phone}
+                  </p>
+                  <div className="flex justify-end">
+                    <button
+                      className="border dark:border-light-primary rounded-lg px-2 py-1 hover:bg-gray-100 dark:hover:bg-dark-secondary dark:hover:border-dark-secondary cursor-pointer"
+                      onClick={() => selectRecipient(filtRec)}
+                    >
+                      <p className="dark:text-light-primary ">Select</p>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
       </div>
-      <h1 className="text-lg font-semibold mb-2">Pick a Recipient</h1>
-      <label
-        htmlFor="searchInput"
-        className="block text-sm font-medium text-gray-700"
+      <button
+        className="text-sm text-blue-500 hover:underline focus:outline-none"
+        onClick={clearRecipient}
       >
-        Search Recipients
-      </label>
-      <div className="relative">
-        <input
-          id="searchInput"
-          className="w-full px-4 py-2 rounded-lg shadow-md focus:ring-2 focus:ring-blue-300 focus:outline-none"
-          type="text"
-          placeholder="Search..."
-          value={filterText}
-          onChange={(e) => onFilterTextChange(e.target.value)}
-        />
-        {filterText && (
-          <button
-            className="absolute right-2 top-2 text-gray-500 hover:text-gray-700 focus:outline-none"
-            onClick={() => onFilterTextChange("")}
-          >
-            Clear
-          </button>
-        )}
-      </div>
-      <ul className="space-y-2 mt-4">
-        {filteredRecipients.map((recipient) => (
-          <ExpandedRecipient
-            key={recipient.id}
-            recipient={recipient}
-            expanded={expandedRecipient === recipient.id}
-            onItemClick={handleExpand}
-            selectRecipient={selectRecipient}
-          />
-        ))}
-      </ul>
-      <div className="mt-4">
-        {recipient && (
-          <button
-            className="mr-2 bg-gray-300 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-opacity-50"
-            onClick={clearRecipient}
-          >
-            Clear Selection
-          </button>
-        )}
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
-          onClick={onNext}
-          disabled={!recipient}
-        >
-          Next
-        </button>
-      </div>
+        Clear selection
+      </button>
+      <button onClick={onNext} className="border py-1 px-4 rounded-md m-2">
+        Next
+      </button>
     </div>
   );
 };
