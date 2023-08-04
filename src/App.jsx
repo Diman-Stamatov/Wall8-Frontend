@@ -9,6 +9,8 @@ import { AuthProvider } from "./context/AuthContext";
 import ThemeProvider from "./ThemeProvider";
 import TransferPage from "./pages/TransferPage";
 
+// TODO: error pages for 404, 401, 500, etc.
+
 function App() {
   return (
     <ThemeProvider>

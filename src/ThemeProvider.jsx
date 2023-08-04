@@ -6,6 +6,8 @@ export default function ThemeProvider({ children }) {
   const storedTheme = localStorage.getItem("theme");
   const [theme, setTheme] = useState(storedTheme || "light");
 
+  // TODO: get system preferences and set theme accordingly
+
   useEffect(() => {
     document.body.style.backgroundColor =
       theme === "light" ? "#EFFFFB" : "#090030";
