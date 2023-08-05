@@ -59,7 +59,7 @@ const TransferForm = ({ user }) => {
         setComplete={setComplete}
         steps={steps}
       />
-      <div className="container mx-auto p-4">
+      <div className="flex justify-center mx-auto p-4">
         {step === 1 && (
           <PickRecipient
             recipient={recipient}
