@@ -51,6 +51,11 @@ export function TabsDefault() {
       desc: "Tab 2 content",
       component: <TransferTab transactions={transactions} />,
     },
+    {
+      label: "Cards",
+      value: "tab3",
+      desc: "Tab 3 content",
+    },
   ];
 
   return (
