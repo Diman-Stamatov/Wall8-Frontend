@@ -5,7 +5,7 @@ const TransferProgressBar = ({currentStep, setCurrentStep, complete, setComplete
 
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between ">
         {steps?.map((step, i) => (
           <div
             key={i}

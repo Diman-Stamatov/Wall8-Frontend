@@ -19,7 +19,7 @@ const TransferPickRecipient = ({
 
   const selectRecipient = (selectedRecipient) => {
     setRecipient(selectedRecipient);
-    console.log(selectedRecipient);
+    console.log(selectedRecipient.username);
   };
 
   const clearRecipient = () => {
@@ -48,14 +48,14 @@ const TransferPickRecipient = ({
         onChange={(e) => onFilterTextChange(e.target.value)}
       />
 
-      <div className="border-2 shadow-inner  dark:shadow-light-quaternary rounded-lg pt-4 pb-4 px-2 py-2 mb-4">
+      <div className="border-2 shadow-inner dark:shadow-light-quaternary rounded-lg pt-4 pb-4 px-2 py-2 mb-4">
         <ul className="space-y-2">
           {filteredRecipients.map((filtRec, index) => (
             <li
               key={index}
               className={` border rounded-lg px-4 py-2 shadow-inner dark:shadow-light-quaternary ${
                 openIndex !== index
-                  ? "hover:dark:bg-dark-secondary cursor-pointer"
+                  ? "hover:dark:bg-dark-primary cursor-pointer"
                   : ""
               } dark:text-light-primary`}
             >
