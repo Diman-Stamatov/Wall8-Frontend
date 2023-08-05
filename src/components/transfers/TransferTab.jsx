@@ -10,7 +10,7 @@ function TransferTab({ transactions }) {
     <div className="">
       <div className="relative h-screen w-full">
         <div className="flex flex-row justify-between relative z-50">
-          <div className="my-auto ml-5">
+          <div className="my-auto ml-5 text-center">
             <h1
               style={{ transition: "all .15s ease" }}
               className="pb-5 dark:text-dark-tertiary pointer-events-none font-medium drop-shadow-md"
@@ -19,13 +19,13 @@ function TransferTab({ transactions }) {
             </h1>
             <FilterableTransactionTable transactions={transactions} />
             <Button variant="text" size="large" color="info" >
-              <span className="dark:text-light-primary ">View All</span>
+              <span className="dark:text-light-primary text-center">View All</span>
             </Button>
           </div>
-          <div className="my-auto mr-5">
+          <div className="my-auto ml-5 text-center">
             <TransferButton />
           </div>
-          <div className="pb-12 flex flex-col justify-end my-auto">
+          <div className="pb-12 flex flex-col justify-end my-auto text-center">
             <h1
               style={{ transition: "all .15s ease" }}
               className=" dark:text-dark-tertiary pointer-events-none font-medium drop-shadow-md "

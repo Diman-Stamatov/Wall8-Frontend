@@ -35,7 +35,7 @@ export function TabsDefault() {
       value: "tab1",
       component: (
         <div className="md:flex">
-          <div className="md:w-1/4 p-3">
+          <div className="justify-center">
             <UserProfileTab balance={balance} />
             <AddFundsButton balance={balance} setBalance={setBalance} />
           </div>

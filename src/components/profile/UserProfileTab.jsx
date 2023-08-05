@@ -33,7 +33,7 @@ function UserProfileTab({ balance }) {
                     <WalletBalance balance={balance} />
                 </div>
 
-                <div class=" dark:bg-dark-primary">
+                <div class=" dark:bg-dark-primary text-center">
                     <ConfirmDialog
                         buttonName="Logout"
                         title="Confirm Logout"

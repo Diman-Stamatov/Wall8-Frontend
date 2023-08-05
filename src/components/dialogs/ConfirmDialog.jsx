@@ -27,8 +27,8 @@ export function ConfirmDialog({
   const openDialog = () => setOpen(true);
 
   return (
-    <div>
-      <Button onClick={openDialog} variant="text" color="warning">
+    <div className="justify-center">
+      <Button onClick={openDialog} variant="text" color="error">
         {buttonName}
       </Button>
       <Dialog

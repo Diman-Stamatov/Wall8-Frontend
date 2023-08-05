@@ -44,7 +44,7 @@ const TransferStatCard = ({ value, title }) => {
           color="warning"
         />
       </CardContent>
-      <CardActions className="w-full flex justify-center items-center">
+      <CardActions className="w-full flex justify-center mx-auto my-auto">
         <Typography
           variant="body2"
           component="a"

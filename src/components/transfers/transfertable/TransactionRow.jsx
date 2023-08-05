@@ -13,9 +13,9 @@ const TransactionRow = ({ transaction }) => {
       >
         {name}
       </th>
-      <td className="px-12 py-4 whitespace-nowrap">${amount.toFixed(2)}</td>
-      <td className="px-12 py-4 whitespace-nowrap">{date}</td>
-      <td className="px-12 py-4 whitespace-nowrap">{type}</td>
+      <td className="px-12 py-4 whitespace-nowrap text-center">${amount.toFixed(2)}</td>
+      <td className="px-12 py-4 whitespace-nowrap text-center">{date}</td>
+      <td className="px-12 py-4 whitespace-nowrap text-center">{type}</td>
     </tr>
   );
 };
