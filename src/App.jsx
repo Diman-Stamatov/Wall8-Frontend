@@ -10,6 +10,9 @@ import ThemeProvider from "./ThemeProvider";
 import TransferPage from "./pages/TransferPage";
 import InfoPage from "./pages/About";
 import ConfirmTransferScreen from "./pages/ConfirmTransferScreen";
+import { UserProvider } from "./context/UserContext";
+import { LoadingProvider } from "./context/LoadingContext";
+import { ErrorProvider } from "./context/ErrorContext";
 
 // TODO: error pages for 404, 401, 500, etc.
 
@@ -18,19 +21,25 @@ function App() {
     <ThemeProvider>
       <Router>
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/credit-card-add" element={<CreditCardAdd />} />
-            <Route path="/transfer" element={<TransferPage />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/info" element={<InfoPage />} />
-            <Route
-              path="/confirmed-transfer"
-              element={<ConfirmTransferScreen />}
-            />
-          </Routes>
+          <UserProvider>
+            <LoadingProvider>
+              <ErrorProvider>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/credit-card-add" element={<CreditCardAdd />} />
+                  <Route path="/transfer" element={<TransferPage />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/info" element={<InfoPage />} />
+                  <Route
+                    path="/confirmed-transfer"
+                    element={<ConfirmTransferScreen />}
+                  />
+                </Routes>
+              </ErrorProvider>
+            </LoadingProvider>
+          </UserProvider>
         </AuthProvider>
       </Router>
     </ThemeProvider>

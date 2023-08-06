@@ -33,7 +33,7 @@ const TransferPickRecipient = ({
     const searchTerm = filterText.toLowerCase();
     return (
       recipient.username.toLowerCase().includes(searchTerm) ||
-      recipient.phone.toLowerCase().includes(searchTerm) ||
+      recipient.phoneNumber.toLowerCase().includes(searchTerm) ||
       recipient.email.toLowerCase().includes(searchTerm)
     );
   });
@@ -94,7 +94,7 @@ const TransferPickRecipient = ({
                   </p>
                   <p className="text-sm">
                     <p className="dark:text-dark-tertiary">Phone number:</p>{" "}
-                    {filtRec.phone}
+                    {filtRec.phoneNumber}
                   </p>
                   <div className="flex justify-between">
                     <Link to={`/user/${filtRec.id}`}>

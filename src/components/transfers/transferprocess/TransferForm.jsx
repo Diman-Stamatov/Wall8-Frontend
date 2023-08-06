@@ -4,6 +4,9 @@ import ChooseAmount from "./TransferChooseAmount";
 import Confirm from "./TransferConfirm";
 import { useNavigate } from "react-router-dom";
 import TransferProgressBar from "./progressbar/TransferProgressBar";
+import { useUsers } from "../../../context/UserContext";
+import { useLoading } from "../../../context/LoadingContext";
+import { useError } from "../../../context/ErrorContext";
 
 const TransferForm = ({ user }) => {
   const [step, setStep] = useState(1);
@@ -16,13 +19,13 @@ const TransferForm = ({ user }) => {
 
   const steps = ["Choose Recipient", "Choose Amount", "Review and Submit"];
 
-  const recipients = [
-    { id: "1", username: "tusanko", email: "test@email", phone: "incoming" },
-    { id: "2", username: "petar", email: "test2@email", phone: "incoming" },
-    { id: "3", username: "diman4o", email: "test3@email", phone: "outgoing" },
-    { id: "4", username: "k0seb0s3", email: "test4@email", phone: "outgoing" },
-    { id: "5", username: "Rado", email: "test5@email", phone: "outgoing" },
-  ];
+  const { state } = useUsers();
+  console.log("state", state);
+  const { isLoading } = useLoading();
+  const { error, clearError } = useError();
+
+  const recipients = state.users;
+  console.log("recipients", recipients);
 
   const handleStepClick = () => {
     if (currentStep === steps.length) {
@@ -34,7 +37,7 @@ const TransferForm = ({ user }) => {
 
   const navigate = useNavigate();
 
-  const balance = 10000;
+  const balance = user.data.balance;
 
   const handleNext = () => {
     setStep(step + 1);
