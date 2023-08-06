@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 import MainHeader from "../components/MainHeader";
 import { useAuth } from "../context/AuthContext";
 import UpdateEmailButton from "../components/UpdateEmailButton";
-
+import UpdatePhoneNumberButton from "../components/UpdatePhoneNumberButton";
 
 
 const Profile = () => {
     const { user } = useAuth();
-    const [username, setUsername] = useState("");
+    const [username, setUsername] = useState("");    
     const profilePic = "https://i.kym-cdn.com/photos/images/original/002/029/752/c73.jpg"
     const verified = user.data.isVerified;
 
@@ -30,15 +30,16 @@ const Profile = () => {
                             <tr >
                                 <td style={{ textAlign: "left", paddingLeft: 20 }}>E-mail:</td>
                                 <td>{user ? user.data.email : "some@other.com"}</td>
-                                <td className="  button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded">
-                                    Update
+                                <td >
+                                <UpdateEmailButton/>
                                 </td>
                             </tr>
                             <tr>
                                 <td style={{ textAlign: "left", paddingLeft: 20 }}>Phone number:</td>
                                 <td>{user ? user.data.phoneNumber : "0888 890 123"}</td>
                                 <td >
-                                    <UpdateEmailButton/>
+                                    <UpdatePhoneNumberButton/>
+                                    
                                 </td>
                             </tr>
                             <tr >
