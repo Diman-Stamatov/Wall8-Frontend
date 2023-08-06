@@ -2,6 +2,8 @@ import { Avatar } from "@mui/material";
 import { useState } from "react";
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md";
 import { AiOutlineCheck } from "react-icons/ai";
+import { BiX } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const TransferPickRecipient = ({
   recipient,
@@ -24,6 +26,7 @@ const TransferPickRecipient = ({
 
   const clearRecipient = () => {
     setRecipient("");
+    console.log("Recipient cleared");
   };
 
   const filteredRecipients = recipients.filter((recipient) => {
@@ -48,7 +51,7 @@ const TransferPickRecipient = ({
           style={{ transition: "all .15s ease" }}
         />
       </div>
-      <div className="border-2 shadow-inner dark:shadow-light-quaternary rounded-lg pt-4 pb-4 px-2 py-2 ">
+      <div className="border-2 shadow-lg dark:shadow-dark-primary rounded-lg pt-4 pb-4 px-2 py-2 ">
         <ul className="space-y-2">
           {filteredRecipients.map((filtRec, index) => (
             <li
@@ -93,7 +96,14 @@ const TransferPickRecipient = ({
                     <p className="dark:text-dark-tertiary">Phone number:</p>{" "}
                     {filtRec.phone}
                   </p>
-                  <div className="flex justify-end">
+                  <div className="flex justify-between">
+                    <Link to={`/user/${filtRec.id}`}>
+                      <button className="mt-5 hover:translate-x-0.5 cursor-pointer">
+                        <label className="dark:text-dark-tertiary text-sm ">
+                          View profile
+                        </label>
+                      </button>
+                    </Link>
                     <button
                       className="border  dark:border-light-primary rounded-lg px-2 py-1 hover:translate-x-0.5 hover:bg-gray-100 dark:hover:bg-dark-secondary dark:hover:border-dark-secondary cursor-pointer"
                       onClick={() => selectRecipient(filtRec)}
@@ -115,10 +125,11 @@ const TransferPickRecipient = ({
           Clear selection
         </button>
         <button
+          disabled={!recipient}
           onClick={onNext}
-          className="border py-1 px-4 text-center hover:bg-dark-primary hover:translate-x-0.5 rounded-full font-semibold"
+          className="disabled:hover:bg-dark-quaternary border py-1 px-4 text-center hover:bg-dark-primary hover:translate-x-0.5 rounded-full font-semibold"
         >
-          Next
+          <p className="drop-shadow-2xl">Next</p>
         </button>
       </div>
     </div>

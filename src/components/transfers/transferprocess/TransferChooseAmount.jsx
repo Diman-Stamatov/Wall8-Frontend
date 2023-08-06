@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CurrencyInput from "react-currency-input-field";
 
 const TransferChooseAmount = ({
   balance,
@@ -7,50 +8,63 @@ const TransferChooseAmount = ({
   onPrevious,
   onNext,
 }) => {
-  const newBalance = balance - amount;
-
-  const handleAmountChange = (e) => {
-    const newAmount = parseFloat(e.target.value);
-    setAmount(newAmount);
-    console.log(e.target.value);
+  const handleValueChange = (value, name, values) => {
+    if (values.float > balance) {
+      setAmount(balance);
+      return;
+    }
+    setAmount(values.float);
   };
 
   return (
-    <div className="max-w-md mx-auto p-4 border rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Transfer Amount</h2>
-      <div className="mb-4">
-        <label
-          htmlFor="amount"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Amount
-        </label>
-        <input
-          type="number"
-          id="amount"
-          className="mt-1 p-2 block w-full border rounded-md shadow-sm focus:ring focus:ring-opacity-50 focus:outline-none"
-          placeholder="Enter amount"
-          value={amount}
-          onChange={handleAmountChange}
-        />
+    <div style={{ width: "350px" }}>
+      <h1 className="text-4xl text-center mb-4">Enter Amount</h1>
+      <div className="max-w-md mx-auto p-4 border rounded-lg shadow-lg dark:shadow-dark-primary">
+        <div className="flex flex-col justify-between">
+          <label className="dark:text-light-tertiary text-center text-xs font-semibold mb-4">
+            Your balance:
+          </label>
+          <h1 className="text-center text-2xl font-semibold mb-4">
+            {new Intl.NumberFormat("de-DE", {
+              currency: "EUR",
+              style: "currency",
+            }).format(balance - amount)}
+          </h1>
+        </div>
+        <div className="">
+          <label
+            htmlFor="amount"
+            className="block text-sm font-medium dark:text-light-tertiary"
+          >
+            Amount
+          </label>
+          <CurrencyInput
+            name="amount"
+            id="amount"
+            onValueChange={handleValueChange}
+            value={amount}
+            intlConfig={{ locale: "de-DE", currency: "EUR" }}
+            placeholder="0.00"
+            allowDecimals={true}
+            decimalScale={2}
+            allowNegativeValue={false}
+            className="mt-1 block w-full p-4 font-semibold border-gray-300 rounded-md shadow-sm dark:bg-dark-secondary dark:border-dark-primary dark:text-light-primary dark:placeholder-light-tertiary dark:focus:ring-light-primary dark:focus:border-light-primary focus:ring-light-tertiary focus:border-light-tertiary sm:text-sm"
+          />
+        </div>
       </div>
-      <div className="mb-4">
-        <p className="text-gray-700">
-          Remaining Balance: ${newBalance.toFixed(2)}
-        </p>
-      </div>
-      <div className="flex justify-between">
+      <div className="flex-row justify-between flex mt-2">
         <button
-          className="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700"
+          className="text-xl hover:text-light-tertiary focus:outline-none"
           onClick={onPrevious}
         >
           Previous
         </button>
         <button
-          className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md"
+          disabled={!amount}
           onClick={onNext}
+          className="disabled:hover:bg-dark-quaternary border py-1 px-4 text-center hover:bg-dark-primary hover:translate-x-0.5 rounded-full font-semibold"
         >
-          Next
+          <p className="drop-shadow-2xl">Next</p>
         </button>
       </div>
     </div>

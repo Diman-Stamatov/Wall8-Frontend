@@ -4,6 +4,9 @@ export default {
   darkMode: "class",
   theme: {
     extend: {
+      transitionProperty: {
+        height: "height",
+      },
       colors: {
         light: {
           primary: "#EFFFFB",

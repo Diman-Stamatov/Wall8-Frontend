@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./transferProgressBar.css";
 import { TiTick } from "react-icons/ti";
-const TransferProgressBar = ({currentStep, setCurrentStep, complete, setComplete, steps}) => {
+import ClipLoader from "react-spinners/ClipLoader";
 
+const TransferProgressBar = ({ currentStep, complete, steps, loading }) => {
   return (
     <>
       <div className="flex justify-between ">
@@ -14,8 +15,19 @@ const TransferProgressBar = ({currentStep, setCurrentStep, complete, setComplete
             } `}
           >
             <div className="step">
-              {i + 1 < currentStep || complete ? <TiTick size={24} /> : i + 1}
+              {loading && complete ? (
+                <ClipLoader color={"#ffffff"} loading={loading} size={24} />
+              ) : (
+                <>
+                  {i + 1 < currentStep || complete ? (
+                    <TiTick size={24} />
+                  ) : (
+                    i + 1
+                  )}
+                </>
+              )}
             </div>
+
             <p className="text-gray-500">{step}</p>
           </div>
         ))}

@@ -8,6 +8,8 @@ import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { AuthProvider } from "./context/AuthContext";
 import ThemeProvider from "./ThemeProvider";
 import TransferPage from "./pages/TransferPage";
+import InfoPage from "./pages/About";
+import ConfirmTransferScreen from "./pages/ConfirmTransferScreen";
 
 // TODO: error pages for 404, 401, 500, etc.
 
@@ -23,6 +25,11 @@ function App() {
             <Route path="/credit-card-add" element={<CreditCardAdd />} />
             <Route path="/transfer" element={<TransferPage />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/info" element={<InfoPage />} />
+            <Route
+              path="/confirmed-transfer"
+              element={<ConfirmTransferScreen />}
+            />
           </Routes>
         </AuthProvider>
       </Router>
