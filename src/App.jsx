@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import CreditCardAdd from "./components/CreditCardAdd";
 import Profile from "./pages/Profile";
+import UpdateEmailPage from "./pages/UpdateEmailPage";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { AuthProvider } from "./context/AuthContext";
 import ThemeProvider from "./ThemeProvider";
@@ -32,6 +33,7 @@ function App() {
                   <Route path="/transfer" element={<TransferPage />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/info" element={<InfoPage />} />
+                  <Route path="/update-email" element={<UpdateEmailPage />} />
                   <Route
                     path="/confirmed-transfer"
                     element={<ConfirmTransferScreen />}
