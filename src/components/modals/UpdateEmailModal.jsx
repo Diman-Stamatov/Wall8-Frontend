@@ -5,19 +5,17 @@ function UpdateEmailModal({ showModal, setShowModal }) {
   const [confirmed, setConfirmed] = useState(false);
 
   const handleConfirm = () => {
-    setConfirmed(true);   
+    setConfirmed(true);
     try {
-      
-      
       const response = axios.post(
-        "http://localhost:5120/api/virtual-wallet/auth/initiate-email-change"
+        "http://localhost:5120/api/virtual-wallet/auth/initiate-email-change",
+        {},
+        { withCredentials: true }
       );
       console.log("change email response: ", response);
     } catch (error) {
-      
       console.log("change email error: ", error);
     }
-
   };
 
   const handleCancel = () => {
@@ -40,14 +38,14 @@ function UpdateEmailModal({ showModal, setShowModal }) {
             : "A confirmation link has been sent to your e-mail. Please check your inbox to proceed."}
           <tr className="flex justify-center ">
             <td>
-              {!confirmed ?
-              <button
-                onClick={handleConfirm}
-                className="p-2 bg-gray-800 text-white rounded-lg w-full text-lg font-bold font-roboto"
-              >
-                Confirm
-              </button> : null
-              }
+              {!confirmed ? (
+                <button
+                  onClick={handleConfirm}
+                  className="p-2 bg-gray-800 text-white rounded-lg w-full text-lg font-bold font-roboto"
+                >
+                  Confirm
+                </button>
+              ) : null}
             </td>
 
             <td>
@@ -55,9 +53,7 @@ function UpdateEmailModal({ showModal, setShowModal }) {
                 onClick={handleCancel}
                 className="p-2 bg-gray-800 text-white rounded-lg w-full text-lg font-bold font-roboto"
               >
-                {!confirmed
-            ? "Cancel"
-            : "Close"}
+                {!confirmed ? "Cancel" : "Close"}
               </button>
             </td>
           </tr>
