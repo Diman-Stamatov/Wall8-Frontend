@@ -11,7 +11,9 @@ const Profile = () => {
     const profilePic = "https://i.kym-cdn.com/photos/images/original/002/029/752/c73.jpg"
     const verified = user.data.isVerified;
 
+    const [updated, setUpdated] = useState(false)
     return (
+        
         <div className="bg-dark-tertiary dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
             <MainHeader username={username} setUsername={setUsername} />
             <div style={{ marginTop: 50 }} className="flex justify-center ">
@@ -38,7 +40,9 @@ const Profile = () => {
                                 <td style={{ textAlign: "left", paddingLeft: 20 }}>Phone number:</td>
                                 <td>{user ? user.data.phoneNumber : "0888 890 123"}</td>
                                 <td >
-                                    <UpdatePhoneNumberButton/>
+                                    <UpdatePhoneNumberButton
+                                    setUpdated = {setUpdated}
+                                    />
                                     
                                 </td>
                             </tr>

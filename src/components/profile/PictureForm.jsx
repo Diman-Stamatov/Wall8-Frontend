@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 
-function PhoneNumberForm({ validationSchema, handleUpdate, handleCancel }) {
+function PictureForm({ validationSchema, handleUpdate, handleCancel }) {
   return (
     <Formik
       initialValues={{ newPhoneNumber: "" }}
@@ -55,4 +55,4 @@ function PhoneNumberForm({ validationSchema, handleUpdate, handleCancel }) {
   );
 }
 
-export {PhoneNumberForm};
+export {PictureForm};

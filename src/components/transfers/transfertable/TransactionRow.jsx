@@ -1,5 +1,5 @@
 const TransactionRow = ({ transaction }) => {
-  const { name, type, amount, date } = transaction;
+  const { recipientUsername, type, amount, timestamp } = transaction;
 
   return (
     <tr className="dark:bg-dark-primary dark:hover:bg-dark-secondary">
@@ -11,11 +11,11 @@ const TransactionRow = ({ transaction }) => {
             : "px-12 py-4 font-medium text-red-900 whitespace-nowrap dark:text-red-500"
         }
       >
-        {name}
+        {recipientUsername}
       </th>
       <td className="px-12 py-4 whitespace-nowrap text-center">${amount.toFixed(2)}</td>
-      <td className="px-12 py-4 whitespace-nowrap text-center">{date}</td>
-      <td className="px-12 py-4 whitespace-nowrap text-center">{type}</td>
+      <td className="px-12 py-4 whitespace-nowrap text-center">{timestamp}</td>
+      <td className="px-12 py-4 whitespace-nowrap text-center">{timestamp}</td>
     </tr>
   );
 };

@@ -1,46 +1,142 @@
-import React, { useState } from "react";
-import TransactionRow from "./TransactionRow";
+import React, { useState } from 'react';
+import { useTable, usePagination } from 'react-table';
 
 const TransactionTable = ({
-  transactions,
+  transfers,
   filterText,
   incomingOnly,
   outgoingOnly,
 }) => {
-  const filteredTransactions = transactions.filter((transaction) => {
-    const textMatch = transaction.name
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearchChange = (event) => {
+    setSearchValue(event.target.value);
+  };
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Name',
+        accessor: 'recipientUsername',
+      },
+      {
+        Header: 'Amount',
+        accessor: 'amount',
+      },
+      {
+        Header: 'Date',
+        accessor: 'timestamp',
+      },
+      {
+        Header: 'Type',
+        accessor: 'type',
+      },
+    ],
+    []
+  );
+
+  const data = React.useMemo(() => transfers, [transfers]);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    prepareRow,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize },
+  } = useTable(
+    {
+      columns,
+      data,
+      initialState: { pageIndex: 0, pageSize: 5 }, // Set initial page index and size
+    },
+    usePagination // Enable pagination
+  );
+
+  const filteredTransfers = transfers.filter((transfer) => {
+    const textMatch = transfer.recipientUsername
       .toLowerCase()
-      .includes(filterText.toLowerCase());
-    const incomingMatch = !incomingOnly || transaction.type === "incoming";
-    const outgoingMatch = !outgoingOnly || transaction.type == "outgoing";
-    return textMatch && incomingMatch && outgoingMatch;
+      .includes(searchValue.toLowerCase());
+    return textMatch;
   });
 
   return (
-    <div className=" overflow-x-auto shadow-md sm:rounded-lg outline dark:outline-dark-tertiary">
-      <table className="table-auto md:table-fixed min-w-full dark:bg-dark-secondary dark:text-white">
-        <thead className="text-xs  uppercase ">
-          <tr>
-            <th scope="col" className="px-12 py-4">
-              Name
-            </th>
-            <th scope="col" className="px-12 py-4">
-              Amount
-            </th>
-            <th scope="col" className="px-12 py-4">
-              Date
-            </th>
-            <th scope="col" className="px-12 py-4">
-              Type
-            </th>
-          </tr>
-        </thead>
-        <tbody className="dark:bg-dark-primary divide-y dark:divide-dark-tertiary">
-          {filteredTransactions.map((transaction) => (
-            <TransactionRow key={transaction.id} transaction={transaction} />
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <div>
+        <input
+          type="text"
+          value={searchValue}
+          onChange={handleSearchChange}
+          placeholder="Search..."
+        />
+      </div>
+      <div className="overflow-x-auto shadow-md sm:rounded-lg outline dark:outline-dark-tertiary">
+        <table {...getTableProps()} className="table-auto md:table-fixed min-w-full dark:bg-dark-secondary dark:text-white">
+          <thead className="text-xs uppercase">
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                  <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()} className="dark:bg-dark-primary divide-y dark:divide-dark-tertiary">
+            {page.map(row => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map(cell => {
+                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>;
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+        <div>
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            Previous
+          </button>
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            Next
+          </button>
+          <div>
+            Page{' '}
+            <input
+              type="number"
+              value={pageIndex + 1}
+              onChange={e => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                gotoPage(page);
+              }}
+            />{' '}
+            of {pageOptions.length}
+          </div>
+          <div>
+            <select
+              value={pageSize}
+              onChange={e => {
+                setPageSize(Number(e.target.value));
+              }}
+            >
+              {[5, 10, 20].map(pageSize => (
+                <option key={pageSize} value={pageSize}>
+                  Show {pageSize}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

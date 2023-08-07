@@ -1,9 +1,9 @@
 import { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
-import {PhoneNumberForm} from "../profile/PhoneNumberForm";
+import { PictureForm } from "../profile/PictureForm";
 
-function UpdatePhoneNumberModal({ showModal, setShowModal, setUpdated }) { 
+function UpdatePictureModal({ showModal, setShowModal, setUpdated }) { 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleUpdate = async (values, { setSubmitting, resetForm }) => {
@@ -53,7 +53,7 @@ function UpdatePhoneNumberModal({ showModal, setShowModal, setUpdated }) {
           className="modal-content p-6 bg-transparent outline-none rounded-xl shadow-md"
           onClick={(e) => e.stopPropagation()}
         >
-          <PhoneNumberForm
+          <PictureForm
             validationSchema={validationSchema}
             handleUpdate={handleUpdate}
             isLoading={isLoading}
@@ -67,4 +67,4 @@ function UpdatePhoneNumberModal({ showModal, setShowModal, setUpdated }) {
   );
 }
 
-export default UpdatePhoneNumberModal;
+export default UpdatePictureModal;

@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 function TransferConfirmed() {
   const navigate = useNavigate();
   return (
-    <div className="dark:bg-gradient-to-t from-dark-primary to-light-quaternary min-h-screen">
-      <div className="container mx-auto py-8 ">
-        <div className="p-6 rounded-lg shadow-md">
+    <div className="dark:bg-gradient-to-t from-dark-primary to-light-quaternary min-h-screen shadow-2xl">
+      <div className=" container  mx-auto py-8 ">
+        <div className="p-6 rounded-lg ">
           <h1 className="text-2xl font-semibold mb-4">Transfer Confirmed</h1>
           <p className=" mb-6">
             Your transfer has been confirmed. You will receive an email with the
