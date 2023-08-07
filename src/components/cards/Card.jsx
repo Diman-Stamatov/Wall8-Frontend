@@ -1,7 +1,7 @@
 import React from "react";
 function CardTab({ cards }) {
   return (
-    <div className="grid lg:grid-cols-3 md:grid-cols-2 space-y-5">
+    <div className="flex flex-row flex-wrap gap-y-4">
       {cards.map((card, index) => {
         const { cardHolderName, cardNumber, expirationDate, type, brand } =
           card;
