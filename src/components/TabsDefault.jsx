@@ -13,6 +13,7 @@ import TransferTab from "./transfers/TransferTab";
 import UserProfileTab from "./profile/UserProfileTab";
 import { Card } from "@mui/material";
 import CardTab from "./cards/Card";
+import { useCards } from "../context/CardContext";
 
 
 export function TabsDefault() {
@@ -20,17 +21,22 @@ export function TabsDefault() {
   const [balance, setBalance] = useState(authContext.user.data.balance);
   const [transfers, setTransfers] = useState(
     authContext.user.data.sentTransfers
-  );
 
+  );
+  const [cards, setCards] = useState(authContext.user.data.bankCards);
+  
   useEffect(
     () => {
       setBalance(authContext.user.data.balance);
       setTransfers(authContext.user.data.sentTransfers);
+      setCards(authContext.user.data.bankCards);
     },
     [authContext.user.data.balance],
-    [authContext.user.data.sentTransfers]
-  );
+    [authContext.user.data.sentTransfers],
+    [authContext.user.data.bankCards]
 
+  );
+    console.log("Cards:" , cards);
   const data = [
     {
       label: "Funds",
@@ -55,7 +61,7 @@ export function TabsDefault() {
       value: "tab3",
       desc: "Tab 3 content",
       component:(
-        <CardTab Type={"Debit"} CardholderName={"Barak Obamna"} CardNumber={1234123412341234} ExpDate={"12/45"} Brand={"Visa"}/>
+        <CardTab cards = {cards}/>
       ),
     },
   ];
