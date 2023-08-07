@@ -9,7 +9,7 @@ function Navbar() {
       <a href="#" className="pl-8">
         Logo
       </a>
-      <div className="px-4 cursor-pointer md:hidden"></div>
+      <div className="px-4 cursor-pointer md:hidden "></div>
       <div className="pr-8 md:block hidden">
         <a className="p-4" href="#">
           Login

@@ -1,14 +1,16 @@
 import React from "react";
+import AddFundsButton from "../AddFundsButton";
+import { Button } from "@material-tailwind/react";
 function CardTab({ cards }) {
   return (
-    <div className="flex flex-row flex-wrap gap-y-4">
+    <div className="flex flex-row flex-wrap gap-6 pl-2">
       {cards.map((card, index) => {
         const { cardHolderName, cardNumber, expirationDate, type, brand } =
           card;
         return (
           <div
             key={cardNumber}
-            className="w-96 h-56 m-auto mx-auto  rounded-xl relative dark:text-light-primary shadow-xl dark:shadow-dark-primary transition-transform transform hover:scale-110"
+            className="w-96 h-56 rounded-xl relative dark:text-light-primary shadow-xl dark:shadow-dark-primary transition-transform transform hover:scale-110 hover:z-10"
           >
             <img
               className="relative object-cover w-full h-full rounded-xl"
@@ -50,7 +52,10 @@ function CardTab({ cards }) {
         );
       })}
       ;
+
     </div>
+    
   );
+  
 }
 export default CardTab;

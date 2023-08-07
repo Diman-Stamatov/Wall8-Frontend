@@ -15,6 +15,8 @@ function TransferConfirm({
     return amount * 0.01;
   };
 
+  console.log("Why is the button not working?", isLoading);
+
   React.useEffect(() => {
     const calculatedFee = calculateFee(amount);
     setFee(calculatedFee);

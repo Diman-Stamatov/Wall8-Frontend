@@ -10,7 +10,7 @@ export const UserDashboard = () => {
   const [showModal, setShowModal] = useState(false);
 
   return (
-    <div className="flex flex-col w-screen h-screen justify-between">
+    <div className="flex flex-col justify-between">
       <div className="flex flex-col">
         <MainHeader username={username} setUsername={setUsername} />
         <TabsDefault />

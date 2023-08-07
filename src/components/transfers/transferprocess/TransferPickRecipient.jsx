@@ -31,9 +31,9 @@ const TransferPickRecipient = ({
   const filteredRecipients = recipients.filter((recipient) => {
     const searchTerm = filterText.toLowerCase();
     return (
-      recipient.username.toLowerCase().includes(searchTerm) ||
-      recipient.phoneNumber.toLowerCase().includes(searchTerm) ||
-      recipient.email.toLowerCase().includes(searchTerm)
+      recipient?.username?.toLowerCase()?.includes(searchTerm) ||
+      recipient?.phoneNumber?.toLowerCase()?.includes(searchTerm) ||
+      recipient?.email?.toLowerCase()?.includes(searchTerm)
     );
   });
 

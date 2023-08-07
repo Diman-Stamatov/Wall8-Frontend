@@ -4,27 +4,23 @@ import {
   TabsBody,
   Tab,
   TabPanel,
+  Button,
 } from "@material-tailwind/react";
 import AddFundsButton from "./AddFundsButton";
 import { useState, useContext, useEffect } from "react";
-import AuthContext from "../context/AuthContext";
-import FilterableTransactionTable from "./transfers/transfertable/FilterableTransactionTable";
+import  AuthContext  from "../context/AuthContext";
 import TransferTab from "./transfers/TransferTab";
 import UserProfileTab from "./profile/UserProfileTab";
-import { Card } from "@mui/material";
 import CardTab from "./cards/Card";
-import { useCards } from "../context/CardContext";
-
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
   const [balance, setBalance] = useState(authContext.user.data.balance);
   const [transfers, setTransfers] = useState(
     authContext.user.data.sentTransfers
-
   );
   const [cards, setCards] = useState(authContext.user.data.bankCards);
-  
+
   useEffect(
     () => {
       setBalance(authContext.user.data.balance);
@@ -34,9 +30,8 @@ export function TabsDefault() {
     [authContext.user.data.balance],
     [authContext.user.data.sentTransfers],
     [authContext.user.data.bankCards]
-
   );
-    console.log("Cards:" , cards);
+  console.log("Cards:", cards);
   const data = [
     {
       label: "Funds",
@@ -60,8 +55,11 @@ export function TabsDefault() {
       label: "Cards",
       value: "tab3",
       desc: "Tab 3 content",
-      component:(
-        <CardTab cards = {cards}/>
+      component: (
+        <div className="flex flex-row flex-nowrap">
+          <CardTab cards={cards} />
+          <Button style={{ height: "60px" }}>Hello</Button>
+        </div>
       ),
     },
   ];

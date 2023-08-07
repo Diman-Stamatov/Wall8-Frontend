@@ -32,7 +32,7 @@ function TransferTab({ transfers }) {
             >
               Transfer Stats
             </h1>
-            <div className="grid grid-cols-2 ">
+            <div className="grid lg:grid-cols-2  sm:grid-cols-1">
               <TransferStatCard title="Total Transfers" value={32} />
               <TransferStatCard title="Incoming Transfers" value={18} />
               <TransferStatCard title="Outgoing Transfers" value={14} />

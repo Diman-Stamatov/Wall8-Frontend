@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PickRecipient from "./TransferPickRecipient";
 import ChooseAmount from "./TransferChooseAmount";
 import Confirm from "./TransferConfirm";
@@ -8,6 +8,7 @@ import { useUsers } from "../../../context/UserContext";
 import { useLoading } from "../../../context/LoadingContext";
 import { useError } from "../../../context/ErrorContext";
 import { useTransfer } from "../../../context/TransferContext";
+import axios from "axios";
 
 const TransferForm = ({ user }) => {
   const [step, setStep] = useState(1);
@@ -17,14 +18,36 @@ const TransferForm = ({ user }) => {
   const [complete, setComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const { postTransfer } = useTransfer();
+  const { users, dispatch } = useUsers();
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_USERS_LOADING" });
+    console.log("Get recipients dispatch initiated");
+    axios
+      .get("http://localhost:5120/api/virtual-wallet/users/filter?pageSize=5", {
+        withCredentials: true,
+      })
+      .then((response) => {
+        dispatch({
+          type: "FETCH_USERS_SUCCESS",
+          payload: response.data.users.items,
+        });
+        console.log("dispatched success");
+        console.log("Users", response.data.users.items);
+      })
+      .catch((error) => {
+        dispatch({ type: "FETCH_USERS_ERROR", payload: error });
+        console.log("dispatched error");
+        console.log("Error", error);
+      });
+  }, []);
 
   const steps = ["Choose Recipient", "Choose Amount", "Review and Submit"];
 
-  const { state } = useUsers();
   const { loading } = useLoading();
   const { error, clearError } = useError();
 
-  const recipients = state.users;
+  const recipients = users ?? [];
 
   const handleStepClick = () => {
     if (currentStep === steps.length) {

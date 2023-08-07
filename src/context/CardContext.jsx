@@ -35,9 +35,11 @@ export const CardsProvider = ({ children }) => {
           payload: [...state.cards, cards],
         }),
           loadingDispatch({ type: "SET_LOADING", payload: false });
+
       })
       .catch((error) => {
         dispatch({ payload: error, type: "GET_CARDS_ERROR" });
+        loadingDispatch({ type: "SET_LOADING", payload: false });
       });
   };
   useEffect(() => {

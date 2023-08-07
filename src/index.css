@@ -6,7 +6,6 @@
 :root {
   --dark-bg-color: #090030;
   --light-bg-color: #effffb;
-
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -14,8 +13,6 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: rgba(16, 16, 16, 1);
-
-  overflow: hidden;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -35,8 +32,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: grid;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   width: 100%;

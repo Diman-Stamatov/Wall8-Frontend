@@ -5,8 +5,10 @@ const TransferPage = () => {
   const { user } = useAuth();
 
   return (
-    <div className="px-16 py-7 w-full h-full bg-gradient-to-t from-dark-primary to-light-quaternary shadow-2xl rounded-lg">
-      <TransferForm user={user} />
+    <div className="flex flex-col items-center justify-center h-screen">
+      <div className="px-16 py-7 bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary from-light-primary to-dark-secondary  shadow-2xl rounded-lg">
+        <TransferForm user={user} />
+      </div>
     </div>
   );
 };

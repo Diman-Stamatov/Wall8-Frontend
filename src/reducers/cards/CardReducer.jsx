@@ -15,4 +15,3 @@ export const cardReducer = (state, action) => {
         return state;
     }
   };
-  

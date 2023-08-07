@@ -20,8 +20,8 @@ const Hero = () => {
   }, [bgImages.length]);
 
   return (
-    <div className="flex flex-col w-full h-screen justify-center items-center">
-      <div className="flex-grow w-screen h-full">
+    <div className="flex flex-col justify-center items-center">
+      <div className="flex-grow">
         {bgImages.map((img, index) => (
           <div
             key={img}
