@@ -1,7 +1,8 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Link } from "react-router-dom";
 
-function PhoneNumberForm({ validationSchema, handleUpdate }) {
+function PhoneNumberForm({ validationSchema, handleUpdate, handleCancel }) {
   return (
     <Formik
       initialValues={{ newPhoneNumber: "" }}
@@ -34,12 +35,19 @@ function PhoneNumberForm({ validationSchema, handleUpdate }) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="auth-btn dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-md" style={{marginBottom:20}}
+                  className="auth-btn-small dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-md" style={{marginRight:5}}
                 >
                   Apply
                 </button>
+                <button
+                onClick={handleCancel}
+                className="auth-btn-small dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-md"
+              >
+                Cancel
+              </button>
               </div>
             </Form>
+            
           </div>
         </div>
       )}

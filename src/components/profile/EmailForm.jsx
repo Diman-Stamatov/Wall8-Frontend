@@ -3,11 +3,12 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
-function EmailForm({ validationSchema, handleConfirm, isLoading }) {
+function EmailForm({ validationSchema, handleConfirm, isLoading, token }) {
+  
   return (
     <Formik
       initialValues={{
-        token: "",
+        token: token,
         email: "",
         confirmEmail: "",
       }}
@@ -20,22 +21,7 @@ function EmailForm({ validationSchema, handleConfirm, isLoading }) {
             <h1 className="text-3xl font-bold mb-6 text-dark-tertiary">
               Please imput your new e-mail address:
             </h1>
-            <Form>
-              <div className="mb-4">
-                <label className="block text-sm font-medium dark:text-dark-tertiary">
-                  Token
-                </label>
-                <Field
-                  name="token"
-                  type="text"
-                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
-                />
-                <ErrorMessage
-                  name="token"
-                  component="div"
-                  className="text-red-700"
-                />
-              </div>
+            <Form>              
               <div className="mb-4">
                 <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Email
