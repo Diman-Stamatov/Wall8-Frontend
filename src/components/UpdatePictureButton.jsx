@@ -9,10 +9,10 @@ function UpdatePictureButton({setUpdated}) {
   return (
     <div>
       <button
-        className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded"
+        className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded" style={{marginBottom:20}}
         onClick={() => setUpdatePictureModal(true)}
       >
-        <span className="font-roboto text-l">Update</span>
+        <span className="font-roboto text-l">Change picture</span>
       </button>
       {showUpdatePictureModal&& (
         <UpdatePictureModal

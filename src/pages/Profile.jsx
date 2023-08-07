@@ -3,17 +3,17 @@ import MainHeader from "../components/MainHeader";
 import { useAuth } from "../context/AuthContext";
 import UpdateEmailButton from "../components/UpdateEmailButton";
 import UpdatePhoneNumberButton from "../components/UpdatePhoneNumberButton";
-
+import UpdatePictureButton from "../components/UpdatePictureButton";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
     const { user } = useAuth();
     const [username, setUsername] = useState("");    
-    const profilePic = "https://i.kym-cdn.com/photos/images/original/002/029/752/c73.jpg"
+    const profilePic = user.data.photoUrl ?? "https://i.imgur.com/R7vnue3.jpeg";    
     const verified = user.data.isVerified;
 
     const [updated, setUpdated] = useState(false)
     return (
-        
         <div className="bg-dark-tertiary dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
             <MainHeader username={username} setUsername={setUsername} />
             <div style={{ marginTop: 50 }} className="flex justify-center ">
@@ -26,7 +26,12 @@ const Profile = () => {
                             </tr>
                             <tr >
                                 <td colSpan={3}>
-                                    <img style={{ height: 160, width: 160, display: "block", margin: "auto", marginBottom:40}} src={profilePic} alt="ProfilePic" />
+                                    <img style={{ height: 160, width: 160, display: "block", margin: "auto"}} src={profilePic} alt="ProfilePic" />
+                                </td>
+                            </tr>
+                            <tr >
+                                <td colSpan={3}>
+                                <UpdatePictureButton/>
                                 </td>
                             </tr>
                             <tr >
@@ -50,7 +55,16 @@ const Profile = () => {
                                 <td style={{ paddingTop: 40 }} className="max-w-md" colSpan={3}>{!verified ? "You have not verified your account yet! Please check your inbox for the verification link sent to you after registering your account." : ""}</td>
                             </tr>
                         </tbody>
+                       
+                        
                     </table>
+                    <Link to="/" className="flex justify-center ">
+                        <button
+                            className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded"
+                        >
+                            <span className="font-roboto text-l">Home</span>
+                        </button>
+                        </Link>
                 </div>
             </div>
         </div>

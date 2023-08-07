@@ -12,21 +12,21 @@ function PictureForm({ validationSchema, handleUpdate, handleCancel }) {
       {({ isSubmitting }) => (
         <div className="flex items-center justify-center" style={{marginBottom:20}}>
           <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-55 px-6 py-2 rounded-md ">
-            <h1 className="text-3xl font-bold mb-6 text-dark-secondary dark:text-dark-tertiary">
-              Please input your new phone number.
+            <h1 className="text-2xl font-bold mb-6 text-dark-secondary dark:text-dark-tertiary">
+              Please input your new profile pic URL.
             </h1>
             <Form>
               <div className="mb-5">
                 <label className="block text-sm font-medium dark:text-dark-tertiary">
-                  Phone number
+                  Profile pic URL
                 </label>
                 <Field
-                  name="newPhoneNumber"
+                  name="newPictureUrl"
                   type="text"
                   className="dark:bg-dark-tertiary dark:text-white p-1 rounded w-full"
                 />
                 <ErrorMessage
-                  name="newPhoneNumber"
+                  name="newPictureUrl"
                   component="div"
                   className="text-red-700"
                 />
