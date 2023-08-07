@@ -5,7 +5,6 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
-import WalletBalance from "./WalletBalance";
 import AddFundsButton from "./AddFundsButton";
 import { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/AuthContext";
@@ -16,18 +15,18 @@ import UserProfileTab from "./profile/UserProfileTab";
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
   const [balance, setBalance] = useState(authContext.user.data.balance);
+  const [transfers, setTransfers] = useState(
+    authContext.user.data.sentTransfers
+  );
 
-  useEffect(() => {
-    setBalance(authContext.user.data.balance);
-  }, [authContext.user.data.balance]);
-
-  const transactions = [
-    { id: "1", date: "25/08", name: "tusanko", amount: 100, type: "incoming" },
-    { id: "2", date: "12/12", name: "petar", amount: 50, type: "incoming" },
-    { id: "3", date: "11/09", name: "diman4o", amount: 80, type: "outgoing" },
-    { id: "4", date: "24/12", name: "k0seb0s3", amount: 20, type: "outgoing" },
-    { id: "5", date: "24/12", name: "Rado", amount: 2000, type: "outgoing" },
-  ];
+  useEffect(
+    () => {
+      setBalance(authContext.user.data.balance);
+      setTransfers(authContext.user.data.sentTransfers);
+    },
+    [authContext.user.data.balance],
+    [authContext.user.data.sentTransfers]
+  );
 
   const data = [
     {
@@ -39,9 +38,6 @@ export function TabsDefault() {
             <UserProfileTab balance={balance} />
             <AddFundsButton balance={balance} setBalance={setBalance} />
           </div>
-          <div className="md:w-2/3 p-5">
-            <FilterableTransactionTable transactions={transactions} />
-          </div>
         </div>
       ),
     },
@@ -49,7 +45,7 @@ export function TabsDefault() {
       label: "Transfers",
       value: "tab2",
       desc: "Tab 2 content",
-      component: <TransferTab transactions={transactions} />,
+      component: <TransferTab transfers={transfers} />,
     },
     {
       label: "Cards",
