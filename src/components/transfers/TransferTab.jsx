@@ -5,7 +5,7 @@ import TransferStatCard from "../transfers/TransferStatCard";
 import TransferButton from "./TransferButton";
 import TransferForm from "./transferprocess/TransferForm";
 
-function TransferTab({ transactions }) {
+function TransferTab({ transfers }) {
   return (
     <div className="">
       <div className="relative h-screen w-full">
@@ -17,7 +17,7 @@ function TransferTab({ transactions }) {
             >
               Recent Transfers
             </h1>
-            <FilterableTransactionTable transactions={transactions} />
+            <FilterableTransactionTable transfers={transfers} />
             <Button variant="text" size="large" color="info" >
               <span className="dark:text-light-primary text-center">View All</span>
             </Button>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PickRecipient from "./TransferPickRecipient";
 import ChooseAmount from "./TransferChooseAmount";
 import Confirm from "./TransferConfirm";
@@ -7,6 +7,7 @@ import TransferProgressBar from "./progressbar/TransferProgressBar";
 import { useUsers } from "../../../context/UserContext";
 import { useLoading } from "../../../context/LoadingContext";
 import { useError } from "../../../context/ErrorContext";
+import { useTransfer } from "../../../context/TransferContext";
 
 const TransferForm = ({ user }) => {
   const [step, setStep] = useState(1);
@@ -15,17 +16,15 @@ const TransferForm = ({ user }) => {
   const [filterText, onFilterTextChange] = useState("");
   const [complete, setComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const { postTransfer } = useTransfer();
 
   const steps = ["Choose Recipient", "Choose Amount", "Review and Submit"];
 
   const { state } = useUsers();
-  console.log("state", state);
-  const { isLoading } = useLoading();
+  const { loading } = useLoading();
   const { error, clearError } = useError();
 
   const recipients = state.users;
-  console.log("recipients", recipients);
 
   const handleStepClick = () => {
     if (currentStep === steps.length) {
@@ -46,7 +45,6 @@ const TransferForm = ({ user }) => {
 
   const handlePrevious = () => {
     if (complete || loading) {
-      setLoading(false);
       setComplete(false);
     }
 
@@ -54,17 +52,16 @@ const TransferForm = ({ user }) => {
     setCurrentStep((prev) => prev - 1);
   };
 
-  const handleSubmit = () => {
-    console.log("loading", loading);
-    console.log("Posting to API, recipient with Id:", recipient.id);
-    console.log("Transfer submitted:", recipient, amount);
+  const handleSubmit = async () => {
+    const newTransfer = {
+      amount: amount,
+      recipientId: recipient.id,
+    };
+
+    await postTransfer(newTransfer);
+
     setComplete(true);
-    setLoading(true);
-    console.log("loading", loading);
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/confirmed-transfer");
-    }, 2000);
+    navigate("/confirmed-transfer", { replace: true });
   };
 
   return (

@@ -2,7 +2,6 @@ import { Avatar } from "@mui/material";
 import { useState } from "react";
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md";
 import { AiOutlineCheck } from "react-icons/ai";
-import { BiX } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 const TransferPickRecipient = ({
@@ -88,14 +87,17 @@ const TransferPickRecipient = ({
                     </p>
                   </div>
                   <div className="border-b mt-2 mb-1"></div>
-                  <p>
-                    <p className="dark:text-dark-tertiary">Email:</p>{" "}
-                    {filtRec.email}
-                  </p>
-                  <p className="text-sm">
-                    <p className="dark:text-dark-tertiary">Phone number:</p>{" "}
-                    {filtRec.phoneNumber}
-                  </p>
+                  <dl>
+                    <div>
+                      <dt className="dark:text-dark-tertiary">Email:</dt>
+                      <dd>{filtRec.email}</dd>
+                    </div>
+                    <div className="text-sm">
+                      <dt className="dark:text-dark-tertiary">Phone number:</dt>
+                      <dd>{filtRec.phoneNumber}</dd>
+                    </div>
+                  </dl>
+
                   <div className="flex justify-between">
                     <Link to={`/user/${filtRec.id}`}>
                       <button className="mt-5 hover:translate-x-0.5 cursor-pointer">

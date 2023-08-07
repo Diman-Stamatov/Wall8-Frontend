@@ -3,7 +3,7 @@ import TrSearchBar from "./TrSearchBar";
 import TransactionTable from "./TransactionTable";
 import { useState } from "react";
 
-const FilterableTransactionTable = ({ transactions }) => {
+const FilterableTransactionTable = ({ transfers }) => {
   const [filterText, setFilterText] = useState("");
   const [incomingOnly, setIncomingOnly] = useState(false);
   const [outgoingOnly, setOutgoingOnly] = useState(false);
@@ -20,7 +20,7 @@ const FilterableTransactionTable = ({ transactions }) => {
       />
       <div className="flex-auto py-8 justify-center">
         <TransactionTable
-          transactions={transactions}
+          transfers={transfers}
           filterText={filterText}
           incomingOnly={incomingOnly}
           outgoingOnly={outgoingOnly}
