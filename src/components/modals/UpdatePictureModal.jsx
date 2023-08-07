@@ -12,24 +12,19 @@ function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
       setSubmitting(true);
       setIsLoading(true);
       const response = await axios.put(
-        "http://localhost:5120/api/virtual-wallet/users/change-phone-number",
+        "http://localhost:5120/api/virtual-wallet/users/change-picture-url",
         {          
-          newPhoneNumber: values.newPhoneNumber          
+          newPictureUrl: values.newPictureUrl          
         },
         { withCredentials: true }
       );
-      console.log("update phone response: ", response);           
+      console.log("update picture response: ", response);           
       resetForm();
     } catch (error) {
       setSubmitting(false);
-      console.log("update phone error: ", error);
-    }
-     
-    setShowModal(false);
-    
-    setUpdated(true);
-
-    
+      console.log("update picture error: ", error);
+    }     
+    setShowModal(false);  
   };
 
   const handleCancel = () => {
@@ -42,8 +37,18 @@ function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
     return null;
   }
 
+  const SUPPORTED_FORMATS = ["jpg", "jpeg", "png"];
+
+  function get_url_extension( url ) {
+      return url.split(/[#?]/)[0].split('.').pop().trim();
+  }
+
   const validationSchema = Yup.object().shape({    
-    newPhoneNumber: Yup.string().min(10).required("Required")
+    newPictureUrl: Yup.mixed()
+    .required("Please select Image")
+    .test("fileFormat", "Please input an image URL", (value) => {
+      return SUPPORTED_FORMATS.indexOf(get_url_extension(value)) !== -1;
+    })
   });
 
   return (
@@ -59,8 +64,6 @@ function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
             isLoading={isLoading}
             handleCancel = {handleCancel}
           />
-          <tr className="flex justify-center ">  
-          </tr>
         </div>
       </div>
     </div>
