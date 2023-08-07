@@ -1,4 +1,10 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -32,20 +38,12 @@ export const AuthProvider = ({ children }) => {
       const decoded = jwt_decode(token);
 
       const userId = decoded.sub;
-      console.log("userId", userId);
-
-      let accountDetails = await axios.get(
-        `http://localhost:5120/api/virtual-wallet/users/${userId}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
 
       const profile = await axios.get(
         `http://localhost:5120/api/virtual-wallet/users/${userId}/profile`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      console.log("profile", profile);
 
-      accountDetails["profile"] = profile;
       setUser(profile);
     } catch (error) {
       console.log(error);
@@ -55,7 +53,6 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = async (userInfo) => {
     try {
-      console.log("login initiated");
       const response = await axios.post(
         "http://localhost:5120/api/virtual-wallet/auth/login",
         {
@@ -63,25 +60,26 @@ export const AuthProvider = ({ children }) => {
           password: userInfo.password,
         }
       );
-      console.log("login response: ", response);
 
       document.cookie = `Cookie_JWT=${response.data.data.token}`;
-      console.log("cookie", document.cookie);
-      let id = response.data.data.id;
-      const accountDetails = await axios.get(
+
+      const id = response.data.data.id;
+
+      const profileResponse = await axios.get(
         `http://localhost:5120/api/virtual-wallet/users/${id}/profile`,
-        { withCredentials: true }
+        {
+          withCredentials: true,
+        }
       );
 
-      setUser(accountDetails);
+      setUser(profileResponse);
       navigate("/");
     } catch (error) {
-      console.log("login error: ", error);
+      console.error(error);
     }
   };
 
   const logoutUser = async () => {
-    console.log("logout");
     try {
       await axios.post(
         "http://localhost:5120/api/virtual-wallet/auth/logout",
@@ -96,12 +94,41 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const refreshUser = useCallback(async () => {
+    try {
+      const cookie = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("Cookie_JWT"));
+
+      if (cookie === undefined) {
+        setLoading(false);
+        return;
+      }
+
+      const token = cookie.split("=")[1];
+
+      const decoded = jwt_decode(token);
+
+      const userId = decoded.sub;
+
+      const profile = await axios.get(
+        `http://localhost:5120/api/virtual-wallet/users/${userId}/profile`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      setUser(profile);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const contextData = {
     balance,
     user,
     loginUser,
     logoutUser,
     setBalance,
+    refreshUser,
   };
 
   return (

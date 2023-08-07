@@ -8,7 +8,7 @@ import {
 } from "@material-tailwind/react";
 import AddFundsButton from "./AddFundsButton";
 import { useState, useContext, useEffect } from "react";
-import  AuthContext  from "../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 import TransferTab from "./transfers/TransferTab";
 import UserProfileTab from "./profile/UserProfileTab";
 import CardTab from "./cards/Card";
@@ -31,7 +31,6 @@ export function TabsDefault() {
     [authContext.user.data.sentTransfers],
     [authContext.user.data.bankCards]
   );
-  console.log("Cards:", cards);
   const data = [
     {
       label: "Funds",

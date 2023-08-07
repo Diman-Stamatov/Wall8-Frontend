@@ -1,10 +1,12 @@
 import { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
-import {PhoneNumberForm} from "../profile/PhoneNumberForm";
+import { PhoneNumberForm } from "../profile/PhoneNumberForm";
+import { useAuth } from "../../context/AuthContext";
 
-function UpdatePhoneNumberModal({ showModal, setShowModal, setUpdated }) { 
+function UpdatePhoneNumberModal({ showModal, setShowModal }) {
   const [isLoading, setIsLoading] = useState(false);
+  const { refreshUser } = useAuth();
 
   const handleUpdate = async (values, { setSubmitting, resetForm }) => {
     console.log("update phone values:", values);
@@ -13,37 +15,32 @@ function UpdatePhoneNumberModal({ showModal, setShowModal, setUpdated }) {
       setIsLoading(true);
       const response = await axios.put(
         "http://localhost:5120/api/virtual-wallet/users/change-phone-number",
-        {          
-          newPhoneNumber: values.newPhoneNumber          
+        {
+          newPhoneNumber: values.newPhoneNumber,
         },
         { withCredentials: true }
       );
-      console.log("update phone response: ", response);           
+      console.log("update phone response: ", response);
       resetForm();
+
+      await refreshUser();
     } catch (error) {
       setSubmitting(false);
       console.log("update phone error: ", error);
     }
-     
     setShowModal(false);
-    
-    setUpdated(true);
-
-    
   };
 
   const handleCancel = () => {
-        
     setShowModal(false);
-    
   };
 
   if (!showModal) {
     return null;
   }
 
-  const validationSchema = Yup.object().shape({    
-    newPhoneNumber: Yup.string().min(10).required("Required")
+  const validationSchema = Yup.object().shape({
+    newPhoneNumber: Yup.string().min(10).required("Required"),
   });
 
   return (
@@ -57,10 +54,9 @@ function UpdatePhoneNumberModal({ showModal, setShowModal, setUpdated }) {
             validationSchema={validationSchema}
             handleUpdate={handleUpdate}
             isLoading={isLoading}
-            handleCancel = {handleCancel}
+            handleCancel={handleCancel}
           />
-          <tr className="flex justify-center ">  
-          </tr>
+          <tr className="flex justify-center "></tr>
         </div>
       </div>
     </div>

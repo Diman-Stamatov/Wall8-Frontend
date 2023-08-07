@@ -2,9 +2,9 @@ import React from "react";
 import UpdatePhoneNumberModal from "./modals/UpdatePhoneNumberModal";
 import { useState, useContext } from "react";
 
-function UpdatePhoneNumberButton({setUpdated}) {
-  
-  const [showUpdatePhoneNumberModal, setUpdatePhoneNumberModal] = useState(false);
+function UpdatePhoneNumberButton() {
+  const [showUpdatePhoneNumberModal, setUpdatePhoneNumberModal] =
+    useState(false);
 
   return (
     <div>
@@ -18,7 +18,6 @@ function UpdatePhoneNumberButton({setUpdated}) {
         <UpdatePhoneNumberModal
           showModal={showUpdatePhoneNumberModal}
           setShowModal={setUpdatePhoneNumberModal}
-          setUpdated={setUpdated}
         />
       )}
     </div>
