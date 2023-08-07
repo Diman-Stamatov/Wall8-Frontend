@@ -1,55 +1,48 @@
 import React from "react";
-import WalletBalance from "../WalletBalance";
-import AuthContext from "../../context/AuthContext";
-import { ConfirmDialog } from "../dialogs/ConfirmDialog";
-import { useContext } from "react";
-import { Link } from "react-router-dom";
-
 function CardTab({ cards }) {
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 space-y-5">
       {cards.map((card, index) => {
-        const { cardHolderName, cardNumber, expirationDate, type, brand } = card;
+        const { cardHolderName, cardNumber, expirationDate, type, brand } =
+          card;
         return (
-          <div className="max-w-xs mx-auto dark:bg-dark-primary rounded-lg outline dark:outline-dark-secondary shadow-md overflow-hidden mt-24" key={cardNumber}>
-            <div className="dark:bg-dark-secondary px-4 py-2">
-              <h2 className="text-lg font-medium text-center dark:text-light-primary">
-                {type} Card
-              </h2>
-            </div>
-            <div className="px-4 py-5 sm:p-6">
-              <div className="flex flex-col align-items-center items-center justify-between mb-6">
-                <span className="text-sm font-medium dark:text-light-primary">
-                  Cardholder Name
-                </span>
-                <span className="text-lg font-medium dark:text-light-primary">
-                  {cardHolderName}
-                </span>
-              </div>
-              <div className="flex  flex-col align-align-items-lg-center items-center justify-between mb-6">
-                <span className="text-sm font-medium dark:text-light-primary">
-                  Card Number
-                </span>
-                <span className="text-lg font-medium dark:text-light-primary">
-                  {cardNumber}
-                </span>
-              </div>
-              <div className="flex flex-row items-center justify-between mb-6">
-                <div className="flex flex-col  text-center">
-                  <span className="text-sm font-medium dark:text-light-primary">
-                    Expiration Date
-                  </span>
-                  <span className="text-lg font-medium dark:text-light-primary">
-                    {expirationDate}
-                  </span>
+          <div
+            key={cardNumber}
+            className="w-96 h-56 m-auto mx-auto  rounded-xl relative dark:text-light-primary shadow-xl dark:shadow-dark-primary transition-transform transform hover:scale-110"
+          >
+            <img
+              className="relative object-cover w-full h-full rounded-xl"
+              src="https://i.imgur.com/kGkSg1v.png"
+            />
+            <div className="w-full px-8 absolute top-8">
+              <div className="flex justify-between">
+                <div className="">
+                  <p className="font-light">Name</p>
+                  <p className="font-medium tracking-widest">
+                    {cardHolderName}
+                  </p>
                 </div>
-                <div className="flex flex-col text-center">
-                  <span className="text-sm font-medium dark:text-light-primary">
-                    Brand
-                  </span>
-                  <span className="text-lg font-medium dark:text-light-primary">
-                    {brand}
-                  </span>
+                <img
+                  className="w-14 h-14"
+                  src="https://i.imgur.com/bbPHJVe.png"
+                />
+              </div>
+              <div className="pt-1">
+                <p className="font-light">Card Number</p>
+                <p className="font-medium tracking-more-wider">{cardNumber}</p>
+              </div>
+              <div className="pt-6 pr-6">
+                <div className="flex justify-between">
+                  <div className="">
+                    <p className="font-light  text-xs">Expiry</p>
+                    <p className="font-medium tracking-wider text-sm">
+                      {expirationDate}
+                    </p>
+                  </div>
+                  <div className="mt-2">
+                    <p className="font-light text-xs ">CVV</p>
+                    <p className="font-bold tracking-more-wider text-sm">···</p>
+                  </div>
                 </div>
               </div>
             </div>
