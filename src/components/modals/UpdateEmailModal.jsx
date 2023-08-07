@@ -34,7 +34,7 @@ function UpdateEmailModal({ showModal, setShowModal }) {
           onClick={(e) => e.stopPropagation()}
         >
           {!confirmed
-            ? "Are you sure you want to change your e-mail?"
+            ? "Are you sure you want to change your e-mail? A confirmation link will be sent to your current e-mail before you can proceed."
             : "A confirmation link has been sent to your e-mail. Please check your inbox to proceed."}
           <tr className="flex justify-center ">
             <td>
