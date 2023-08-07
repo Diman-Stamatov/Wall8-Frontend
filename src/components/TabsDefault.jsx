@@ -12,6 +12,9 @@ import AuthContext from "../context/AuthContext";
 import FilterableTransactionTable from "./transfers/transfertable/FilterableTransactionTable";
 import TransferTab from "./transfers/TransferTab";
 import UserProfileTab from "./profile/UserProfileTab";
+import { Card } from "@mui/material";
+import CardTab from "./cards/Card";
+
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
@@ -55,6 +58,9 @@ export function TabsDefault() {
       label: "Cards",
       value: "tab3",
       desc: "Tab 3 content",
+      component:(
+        <CardTab Type={"Debit"} CardholderName={"Barak Obamna"} CardNumber={1234123412341234} ExpDate={"12/45"} Brand={"Visa"}/>
+      ),
     },
   ];
 
