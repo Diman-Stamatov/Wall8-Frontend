@@ -19,7 +19,7 @@ const TransferChooseAmount = ({
 
   return (
     <div style={{ width: "350px" }}>
-      <div>        
+      <div style={{height: "101px"}}>        
         <SpecialAmountsComponent
         amount={amount}        
         />
