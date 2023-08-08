@@ -2,9 +2,11 @@ import { useState } from "react";
 import * as Yup from "yup";
 import axios from "axios";
 import { PictureForm } from "../profile/PictureForm";
+import { useAuth } from "../../context/AuthContext";
 
-function UpdatePictureModal({ showModal, setShowModal, setUpdated }) { 
+function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
   const [isLoading, setIsLoading] = useState(false);
+  const { refreshUser } = useAuth();
 
   const handleUpdate = async (values, { setSubmitting, resetForm }) => {
     console.log("update phone values:", values);
@@ -13,24 +15,27 @@ function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
       setIsLoading(true);
       const response = await axios.put(
         "http://localhost:5120/api/virtual-wallet/users/change-picture-url",
-        {          
-          newPictureUrl: values.newPictureUrl          
+        {
+          newPictureUrl: values.newPictureUrl,
         },
         { withCredentials: true }
       );
-      console.log("update picture response: ", response);           
+      console.log("update picture response: ", response);
       resetForm();
+
+      await refreshUser();
+      console.log("refresh user after avatar change");	
+      setIsLoading(false);
+      setSubmitting(false);
     } catch (error) {
       setSubmitting(false);
       console.log("update picture error: ", error);
-    }     
-    setShowModal(false);  
+    }
+    setShowModal(false);
   };
 
   const handleCancel = () => {
-        
     setShowModal(false);
-    
   };
 
   if (!showModal) {
@@ -39,16 +44,16 @@ function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
 
   const SUPPORTED_FORMATS = ["jpg", "jpeg", "png"];
 
-  function get_url_extension( url ) {
-      return url.split(/[#?]/)[0].split('.').pop().trim();
+  function get_url_extension(url) {
+    return url.split(/[#?]/)[0].split(".").pop().trim();
   }
 
-  const validationSchema = Yup.object().shape({    
+  const validationSchema = Yup.object().shape({
     newPictureUrl: Yup.mixed()
-    .required("Please select Image")
-    .test("fileFormat", "Please input an image URL", (value) => {
-      return SUPPORTED_FORMATS.indexOf(get_url_extension(value)) !== -1;
-    })
+      .required("Please select Image")
+      .test("fileFormat", "Please input an image URL", (value) => {
+        return SUPPORTED_FORMATS.indexOf(get_url_extension(value)) !== -1;
+      }),
   });
 
   return (
@@ -62,7 +67,7 @@ function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
             validationSchema={validationSchema}
             handleUpdate={handleUpdate}
             isLoading={isLoading}
-            handleCancel = {handleCancel}
+            handleCancel={handleCancel}
           />
         </div>
       </div>

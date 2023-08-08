@@ -9,9 +9,17 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const { user } = useAuth();
   const [username, setUsername] = useState("");
-  const profilePic = user.data.photoUrl ?? "https://i.imgur.com/R7vnue3.jpeg";
   const verified = user.data.isVerified;
   const [phoneNumber, setPhoneNumber] = useState(user.data.phoneNumber);
+  const [profilePicUrl, setProfilePicUrl] = useState(user.data.photoUrl);
+
+  useEffect(() => {
+    console.log("pfp not updated");
+    setProfilePicUrl(user.data.photoUrl);
+    console.log("pfp updated");
+    setPhoneNumber(user.data.phoneNumber);
+    console.log("phone number updated after pfp not updated?");
+  }, [user.data.phoneNumber, user.data.photoUrl]);
 
   return (
     <div className="bg-dark-tertiary dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
@@ -37,7 +45,7 @@ const Profile = () => {
                       display: "block",
                       margin: "auto",
                     }}
-                    src={profilePic}
+                    src={profilePicUrl}
                     alt="ProfilePic"
                   />
                 </td>
