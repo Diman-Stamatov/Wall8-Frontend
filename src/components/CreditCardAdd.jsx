@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 
-function CreditCardAdd() {
+
+function CreditCardAdd({handleSubmitRequest,setCardValues}) {
   const [card, setCard] = useState({
     number: "",
     name: "",
     expiry: "",
     cvc: "",
-    focus: "",
+    focused: "",
   });
 
   const handleInputChange = async (e) => {
@@ -30,8 +31,12 @@ function CreditCardAdd() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(card);
+    e.preventDefault(); 
+    // console.log("JUST BEFORE SETTING ");
+    // setCardValues(card);
+    console.log("SET CARD " , card);
+    handleSubmitRequest(card);
+    
   };
 
   return (
@@ -87,7 +92,7 @@ function CreditCardAdd() {
             type="tel"
             name="cvc"
             className="form-control"
-            placeholder="CVC"
+            placeholder="cvc"
             pattern="\d{3,4}"
             required
             value={card.cvc}

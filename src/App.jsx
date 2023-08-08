@@ -16,6 +16,7 @@ import { LoadingProvider } from "./context/LoadingContext";
 import { ErrorProvider } from "./context/ErrorContext";
 import { TransferProvider } from "./context/TransferContext";
 import { CardsProvider } from "./context/CardContext";
+import RegisterCard from "./pages/RegisterCard";
 
 // TODO: error pages for 404, 401, 500, etc.
 
@@ -27,30 +28,25 @@ function App() {
           <ErrorProvider>
             <AuthProvider>
               <UserProvider>
-                <CardsProvider>
-                  <TransferProvider>
-                    <Routes>
-                      <Route path="/" element={<Home />} />
-                      <Route path="/register" element={<Register />} />
-                      <Route path="/login" element={<Login />} />
-                      <Route
-                        path="/credit-card-add"
-                        element={<CreditCardAdd />}
-                      />
-                      <Route path="/transfer" element={<TransferPage />} />
-                      <Route path="/profile" element={<Profile />} />
-                      <Route path="/info" element={<InfoPage />} />
-                      <Route
-                        path="/update-email"
-                        element={<UpdateEmailPage />}
-                      />
-                      <Route
-                        path="/confirmed-transfer"
-                        element={<ConfirmTransferScreen />}
-                      />
-                    </Routes>
-                  </TransferProvider>
-                </CardsProvider>
+                <TransferProvider>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route
+                      path="/credit-card-add"
+                      element={<RegisterCard />}
+                    />
+                    <Route path="/transfer" element={<TransferPage />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/info" element={<InfoPage />} />
+                    <Route path="/update-email" element={<UpdateEmailPage />} />
+                    <Route
+                      path="/confirmed-transfer"
+                      element={<ConfirmTransferScreen />}
+                    />
+                  </Routes>
+                </TransferProvider>
               </UserProvider>
             </AuthProvider>
           </ErrorProvider>

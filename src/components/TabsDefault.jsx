@@ -12,6 +12,8 @@ import AuthContext from "../context/AuthContext";
 import TransferTab from "./transfers/TransferTab";
 import UserProfileTab from "./profile/UserProfileTab";
 import CardTab from "./cards/Card";
+import { BsPlusCircleFill } from "react-icons/bs";
+import AddCardButton from "./cards/AddCardButton";
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
@@ -55,9 +57,9 @@ export function TabsDefault() {
       value: "tab3",
       desc: "Tab 3 content",
       component: (
-        <div className="flex flex-row flex-nowrap">
+        <div className="flex flex-row flex-wrap gap-6 pl-2">
           <CardTab cards={cards} />
-          <Button style={{ height: "60px" }}>Hello</Button>
+          <AddCardButton/>
         </div>
       ),
     },
