@@ -13,10 +13,6 @@ const Profile = () => {
   const verified = user.data.isVerified;
   const [phoneNumber, setPhoneNumber] = useState(user.data.phoneNumber);
 
-  useEffect(() => {
-    setPhoneNumber(user.data.phoneNumber);
-  }, [user.data.phoneNumber]);
-
   return (
     <div className="bg-dark-tertiary dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
       <MainHeader username={username} setUsername={setUsername} />

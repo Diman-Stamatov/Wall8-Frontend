@@ -12,8 +12,8 @@ function WalletBalance({ balance }) {
         </div>
       </div>
       <div className="text-center p-4 dark:border-dark dark:bg-gradient-to-br dark:from-dark-primary dark:to-light-quaternary rounded-lg shadow-sm">
-        <span className=" dark:text-light-primary text-xl font-roboto">
-          ${balance.toFixed(2)}
+        <span className=" dark:text-light-primary text-xl font-medium drop-shadow-lg">
+          {balance}
         </span>
       </div>
     </div>

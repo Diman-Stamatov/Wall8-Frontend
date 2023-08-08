@@ -41,7 +41,10 @@ function UserProfileTab({ balance }) {
       </div>
 
       <div className="mt-2 mb-1">
-        <WalletBalance balance={balance} />
+        <WalletBalance balance={new Intl.NumberFormat("de-DE", {
+          currency: "EUR",
+          style: "currency",
+        }).format(balance)} />
       </div>
 
       <div className=" dark:bg-dark-primary text-center">

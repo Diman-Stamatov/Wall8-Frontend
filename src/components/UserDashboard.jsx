@@ -13,7 +13,9 @@ export const UserDashboard = () => {
     <div className="flex flex-col justify-between">
       <div className="flex flex-col">
         <MainHeader username={username} setUsername={setUsername} />
-        <TabsDefault />
+        <div className="flex-grow pt-4">
+          <TabsDefault />
+        </div>
       </div>
       {/* <main classname="p-10 flex justify-around">
         <button classname="p-5 m-2 bg-green-500 text-white rounded-lg flex flex-col items-center">
