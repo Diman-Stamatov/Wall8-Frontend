@@ -9,10 +9,11 @@ import { useAuth } from "../../context/AuthContext";
 function UserProfileTab({ balance }) {
   const { user } = useAuth();
   const { logoutUser } = useContext(AuthContext);
+
   const handleLogout = () => {
     logoutUser();
-    console.log("Logout finished");
   };
+
   return (
     <div className="mx-auto max-w-xs p-4 rounded-lg shadow-2xl dark:shadow-dark-primary dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary">
       <div className="text-center">
@@ -61,4 +62,5 @@ function UserProfileTab({ balance }) {
     </div>
   );
 }
+
 export default UserProfileTab;
