@@ -9,7 +9,6 @@ function UpdatePhoneNumberModal({ showModal, setShowModal }) {
   const { refreshUser } = useAuth();
 
   const handleUpdate = async (values, { setSubmitting, resetForm }) => {
-    console.log("update phone values:", values);
     try {
       setSubmitting(true);
       setIsLoading(true);
@@ -40,7 +39,18 @@ function UpdatePhoneNumberModal({ showModal, setShowModal }) {
   }
 
   const validationSchema = Yup.object().shape({
-    newPhoneNumber: Yup.string().min(10).required("Required"),
+    newPhoneNumber: Yup.string()
+      .required("Required")
+      .test(
+        "phone-length",
+        "Phone number must be exactly 10 digits",
+        function (value) {
+          if (value) {
+            return value.length === 10;
+          }
+          return true;
+        }
+      ),
   });
 
   return (
