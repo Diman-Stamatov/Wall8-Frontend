@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 
-
-function CreditCardAdd({handleSubmitRequest,setCardValues}) {
+function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
   const [card, setCard] = useState({
     number: "",
     name: "",
@@ -31,12 +30,11 @@ function CreditCardAdd({handleSubmitRequest,setCardValues}) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     // console.log("JUST BEFORE SETTING ");
     // setCardValues(card);
-    console.log("SET CARD " , card);
+    console.log("SET CARD ", card);
     handleSubmitRequest(card);
-    
   };
 
   return (

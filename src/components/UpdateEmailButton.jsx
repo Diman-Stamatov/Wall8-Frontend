@@ -8,10 +8,10 @@ function UpdateEmailButton() {
   return (
     <div>
       <button
-        className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded"
+        className="button rounded-full  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
         onClick={() => setShowUpdateEmailModal(true)}
       >
-        <span className="font-roboto text-l">Update</span>
+        <span className="font-roboto text-sm">Update</span>
       </button>
       {showUpdateEmailModal && (
         <UpdateEmailModal

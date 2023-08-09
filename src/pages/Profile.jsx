@@ -5,6 +5,7 @@ import UpdateEmailButton from "../components/UpdateEmailButton";
 import UpdatePhoneNumberButton from "../components/UpdatePhoneNumberButton";
 import UpdatePictureButton from "../components/UpdatePictureButton";
 import { Link } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -14,76 +15,98 @@ const Profile = () => {
   const [profilePicUrl, setProfilePicUrl] = useState(user.data.photoUrl);
 
   useEffect(() => {
-    console.log("pfp not updated");
     setProfilePicUrl(user.data.photoUrl);
-    console.log("pfp updated");
     setPhoneNumber(user.data.phoneNumber);
-    console.log("phone number updated after pfp not updated?");
   }, [user.data.phoneNumber, user.data.photoUrl]);
 
   return (
-    <div className="bg-dark-tertiary dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
+    <div>
       <MainHeader username={username} setUsername={setUsername} />
-      <div style={{ marginTop: 50 }} className="flex justify-center ">
-        <div
-          style={{ fontSize: 20, textAlign: "center" }}
-          className="  border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-55 px-6 py-2 rounded-md "
-        >
-          <table className="table-auto border-separate border-spacing-2 ">
-            <tbody>
-              <tr>
-                <td style={{ fontSize: 40 }} colSpan={3}>
-                  Welcome, {user ? user.data.username : "Guest"}.
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={3}>
-                  <img
-                    style={{
-                      height: 160,
-                      width: 160,
-                      display: "block",
-                      margin: "auto",
-                    }}
-                    src={profilePicUrl}
-                    alt="ProfilePic"
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td colSpan={3}>
+      <div className="flex justify-center py-5">
+        <div className=" z-10 dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary shadow-lg dark:shadow-black  w-1/2 px-6 py-2 rounded-lg">
+          <div className="flex flex-col gap-px">
+            <div className="text-center">
+              <h1 className="text-2xl font-semibold">
+                Welcome, {user ? user.data.username : "Guest"}
+              </h1>
+            </div>
+            <div className="flex justify-start my-auto">
+              <div className="flex flex-col items-center">
+                <Avatar
+                  src={profilePicUrl}
+                  alt="avatar"
+                  sx={{
+                    width: 100,
+                    height: 100,
+                    boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.3)",
+                  }}
+                />
+                <div className="mt-2">
                   <UpdatePictureButton />
-                </td>
-              </tr>
-              <tr>
-                <td style={{ textAlign: "left", paddingLeft: 20 }}>E-mail:</td>
-                <td>{user.data.email}</td>
-                <td>
-                  <UpdateEmailButton />
-                </td>
-              </tr>
-              <tr>
-                <td style={{ textAlign: "left", paddingLeft: 20 }}>
-                  Phone number:
-                </td>
-                <td>{phoneNumber}</td>
-                <td>
-                  <UpdatePhoneNumberButton />
-                </td>
-              </tr>
-              <tr>
-                <td style={{ paddingTop: 40 }} className="max-w-md" colSpan={3}>
-                  {!verified
-                    ? "You have not verified your account yet! Please check your inbox for the verification link sent to you after registering your account."
-                    : ""}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <Link to="/" className="flex justify-center ">
-            <button className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded">
-              <span className="font-roboto text-l">Home</span>
-            </button>
+                </div>
+                <span className=" text-xs font-semibold">
+                  ACCOUNT PREFERENCES
+                </span>
+              </div>
+            </div>
+            <div className="divide-y divide-dark-primary dark:divide-light-tertiary">
+              <div></div> {/* This is a spacer */}
+              <div className=" flex justify-between items-center">
+                <div className="text-left dark:text-light-primary text-lg font-bold">
+                  Email address{" "}
+                  <p className="text-xs font-normal dark:text-dark-tertiary">
+                    {user.data.email}
+                  </p>
+                </div>
+                <UpdateEmailButton />
+              </div>
+            </div>
+            <div className="mt-7 flex justify-between items-center">
+              <div className="dark:text-light-primary text-left text-lg font-bold">
+                Phone number{" "}
+                <p className="text-xs font-normal dark:text-dark-tertiary">
+                  {phoneNumber}
+                </p>
+              </div>
+              <UpdatePhoneNumberButton />
+            </div>
+            <div className="mt-7 flex justify-between items-center">
+              <div className="dark:text-light-primary text-left text-lg font-bold">
+                Wallet currency{" "}
+                <p className="text-xs dark:text-dark-tertiary">EUR (WIP)</p>
+              </div>
+              <UpdatePhoneNumberButton />
+            </div>
+            <span className="mt-7 text-xs text-dark-quaternary font-semibold">
+              DANGER ZONE
+            </span>
+            <div className="divide-y divide-dark-primary dark:divide-light-tertiary">
+              <div></div> {/* This is a spacer */}
+              <div className=" flex justify-between items-center">
+                <div className="text-left dark:text-light-primary text-lg font-bold">
+                  Password <p className="text-xs">(WIP)</p>
+                </div>
+                <UpdateEmailButton />
+              </div>
+            </div>
+            <div className="mt-7 flex justify-between items-center">
+              <div className="text-left dark:text-light-primary text-lg font-bold">
+                Delete account <p className="text-xs">(WIP)</p>
+              </div>
+              <UpdateEmailButton />
+            </div>
+            <div className="col-span-3">
+              {!verified ? (
+                <p className="max-w-md">
+                  You have not verified your account yet! Please check your
+                  inbox for the verification link sent to you after registering
+                  your account.
+                </p>
+              ) : null}
+            </div>
+          </div>
+          <Link to="/" className="flex justify-start mt-4">
+            <span className="text-sm font-semibold">Back to home</span>
           </Link>
         </div>
       </div>

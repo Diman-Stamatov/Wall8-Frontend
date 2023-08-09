@@ -13,12 +13,12 @@ function PictureForm({ validationSchema, handleUpdate, handleCancel }) {
         <div className="flex items-center justify-center" style={{marginBottom:20}}>
           <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-55 px-6 py-2 rounded-md ">
             <h1 className="text-2xl font-bold mb-6 text-dark-secondary dark:text-dark-tertiary">
-              Please input your new profile pic URL.
+              Please enter the URL of your new avatar
             </h1>
             <Form>
               <div className="mb-5">
                 <label className="block text-sm font-medium dark:text-dark-tertiary">
-                  Profile pic URL
+                  Avatar URL
                 </label>
                 <Field
                   name="newPictureUrl"

@@ -19,9 +19,9 @@ function EmailForm({ validationSchema, handleConfirm, isLoading, token }) {
         <div className="flex items-center justify-center h-screen ">
           <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-96 px-6 py-2 rounded-md ">
             <h1 className="text-3xl font-bold mb-6 text-dark-tertiary">
-              Please imput your new e-mail address:
+              Please enter your new email address
             </h1>
-            <Form>              
+            <Form>
               <div className="mb-4">
                 <label className="block text-sm font-medium dark:text-dark-tertiary">
                   Email
@@ -39,7 +39,7 @@ function EmailForm({ validationSchema, handleConfirm, isLoading, token }) {
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium dark:text-dark-tertiary">
-                  Confirm E-mail
+                  Confirm Email Address
                 </label>
                 <Field
                   name="confirmEmail"

@@ -13,7 +13,7 @@ const MainHeader = () => {
   };
 
   return (
-    <header className="z-50 sticky top-0 p-5 flex dark:bg-dark-primary outline dark:outline-dark-quaternary justify-between items-center shadow-md">
+    <header className="z-50 sticky top-0 rounded-b-xl p-5 flex dark:bg-dark-primary outline dark:outline-dark-quaternary justify-between items-center shadow-md">
       <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
         <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
       </div>

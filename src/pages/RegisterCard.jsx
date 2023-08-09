@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import CreditCardAdd from "../components/CreditCardAdd";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 
 function RegisterCard() {
     const navigate = useNavigate();
+    const { refreshUser } = useAuth();
 
     function initBack() {
         navigate("/");
       }
+
   const [cardValues, setCardValues] = useState([]);
   const handleSubmit = async (cardValues) => {
     const response = await axios
@@ -25,6 +28,7 @@ function RegisterCard() {
       })
       .then((response) => {
         console.log("Registered card: ", response);
+        refreshUser();
       })
       .catch((error) => {
         console.log("CARD REGISTER ERROR: ", error);

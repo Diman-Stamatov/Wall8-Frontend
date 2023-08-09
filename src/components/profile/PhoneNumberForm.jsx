@@ -15,7 +15,7 @@ function PhoneNumberForm({ validationSchema, handleUpdate, handleCancel }) {
         >
           <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-55 px-6 py-2 rounded-md ">
             <h1 className="text-3xl font-bold mb-6 text-dark-secondary dark:text-dark-tertiary">
-              Please input your new phone number.
+              Please enter your new phone number
             </h1>
             <Form>
               <div className="mb-5">

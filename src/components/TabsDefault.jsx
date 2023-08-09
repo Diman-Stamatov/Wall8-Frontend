@@ -23,16 +23,15 @@ export function TabsDefault() {
   );
   const [cards, setCards] = useState(authContext.user.data.bankCards);
 
-  useEffect(
-    () => {
-      setBalance(authContext.user.data.balance);
-      setTransfers(authContext.user.data.sentTransfers);
-      setCards(authContext.user.data.bankCards);
-    },
-    [authContext.user.data.balance],
-    [authContext.user.data.sentTransfers],
-    [authContext.user.data.bankCards]
-  );
+  useEffect(() => {
+    setBalance(authContext.user.data.balance);
+    setTransfers(authContext.user.data.sentTransfers);
+    setCards(authContext.user.data.bankCards);
+  }, [
+    authContext.user.data.balance,
+    authContext.user.data.sentTransfers,
+    authContext.user.data.bankCards,
+  ]);
   const data = [
     {
       label: "Funds",
@@ -59,7 +58,7 @@ export function TabsDefault() {
       component: (
         <div className="flex flex-row flex-wrap gap-6 pl-2">
           <CardTab cards={cards} />
-          <AddCardButton/>
+          <AddCardButton />
         </div>
       ),
     },

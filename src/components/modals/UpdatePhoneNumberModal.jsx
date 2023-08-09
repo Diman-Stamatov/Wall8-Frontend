@@ -25,7 +25,6 @@ function UpdatePhoneNumberModal({ showModal, setShowModal }) {
       await refreshUser();
       setIsLoading(false);
       setSubmitting(false);
-
     } catch (error) {
       setSubmitting(false);
       console.log("update phone error: ", error);

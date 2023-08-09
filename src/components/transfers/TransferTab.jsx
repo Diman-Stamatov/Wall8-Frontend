@@ -3,7 +3,6 @@ import FilterableTransactionTable from "./transfertable/FilterableTransactionTab
 import { Button } from "@mui/material";
 import TransferStatCard from "../transfers/TransferStatCard";
 import TransferButton from "./TransferButton";
-import TransferForm from "./transferprocess/TransferForm";
 
 function TransferTab({ transfers }) {
   return (
@@ -18,8 +17,10 @@ function TransferTab({ transfers }) {
               Recent Transfers
             </h1>
             <FilterableTransactionTable transfers={transfers} />
-            <Button variant="text" size="large" color="info" >
-              <span className="dark:text-light-primary text-center">View All</span>
+            <Button variant="text" size="large" color="info">
+              <span className="dark:text-light-primary text-center">
+                View All
+              </span>
             </Button>
           </div>
           <div className="my-auto ml-5 text-center">

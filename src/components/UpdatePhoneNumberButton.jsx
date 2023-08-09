@@ -9,10 +9,10 @@ function UpdatePhoneNumberButton() {
   return (
     <div>
       <button
-        className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded"
+        className="button  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded-full"
         onClick={() => setUpdatePhoneNumberModal(true)}
       >
-        <span className="font-roboto text-l">Update</span>
+        <span className="text-sm">Update</span>
       </button>
       {showUpdatePhoneNumberModal && (
         <UpdatePhoneNumberModal
