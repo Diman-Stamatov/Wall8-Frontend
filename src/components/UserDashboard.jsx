@@ -17,35 +17,6 @@ export const UserDashboard = () => {
           <TabsDefault />
         </div>
       </div>
-      {/* <main classname="p-10 flex justify-around">
-        <button classname="p-5 m-2 bg-green-500 text-white rounded-lg flex flex-col items-center">
-          <bspluscircle classname="text-6xl" />
-          <span>add funds</span>
-        </button>
-        <button
-          onclick={() => setshowmodal(true)}
-          classname="p-5 m-2 bg-blue-500 text-white rounded-lg flex flex-col items-center"
-        >
-          <bscreditcard classname="text-6xl" />
-          <span>add card</span>
-        </button>
-        {showmodal && (
-          <div classname="modal">
-            <div classname="backdrop" onclick={() => setshowmodal(false)}>
-              <div
-                classname="modal-content"
-                onclick={(e) => e.stoppropagation()}
-              >
-                {<creditcardadd />}
-              </div>
-            </div>
-          </div>
-        )}
-        <button classname="p-5 m-2 bg-yellow-500 text-white rounded-lg flex flex-col items-center">
-          <bsarrowupright classname="text-6xl" />
-          <span>transfer</span>
-        </button>
-      </main> */}
     </div>
   );
 };

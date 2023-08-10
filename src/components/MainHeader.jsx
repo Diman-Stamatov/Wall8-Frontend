@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { ThemeContext } from "../ThemeProvider";
+import AccountMenu from "./AccountMenu";
 
 const MainHeader = () => {
   const { user } = useContext(AuthContext);
@@ -14,11 +15,10 @@ const MainHeader = () => {
 
   return (
     <header className="z-50 sticky top-0 rounded-b-xl p-5 flex dark:bg-dark-primary outline dark:outline-dark-quaternary justify-between items-center shadow-md">
-      <div className="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full">
-        <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
+      <div className="flex items-center dark:bg-gradient-to-r dark:from-dark-primary dark:to-light-quaternary shadow-lg pl-2 py-1 pr-2 rounded-2xl">
+        <AccountMenu />
+        <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
       </div>
-      <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
-
       <div className="flex-grow mx-10 flex justify-center">
         <input
           style={{ transition: "all .15s ease" }}

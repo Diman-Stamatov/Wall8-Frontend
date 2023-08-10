@@ -17,19 +17,38 @@ import AddCardButton from "./cards/AddCardButton";
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
+  const combinedTransfers = [
+    ...authContext.user.data.sentTransfers,
+    ...authContext.user.data.receivedTransfers,
+  ];
   const [balance, setBalance] = useState(authContext.user.data.balance);
-  const [transfers, setTransfers] = useState(
-    authContext.user.data.sentTransfers
-  );
+  const [transfers, setTransfers] = useState([]);
   const [cards, setCards] = useState(authContext.user.data.bankCards);
 
   useEffect(() => {
+    const incomingTransfers = authContext.user.data.receivedTransfers.map(
+      (transfer) => ({
+        ...transfer,
+        type: "incoming",
+      })
+    );
+
+    const outgoingTransfers = authContext.user.data.sentTransfers.map(
+      (transfer) => ({
+        ...transfer,
+        type: "outgoing",
+      })
+    );
+
+    const combinedTransfers = [...incomingTransfers, ...outgoingTransfers];
+
     setBalance(authContext.user.data.balance);
-    setTransfers(authContext.user.data.sentTransfers);
+    setTransfers(combinedTransfers);
     setCards(authContext.user.data.bankCards);
   }, [
     authContext.user.data.balance,
     authContext.user.data.sentTransfers,
+    authContext.user.data.receivedTransfers,
     authContext.user.data.bankCards,
   ]);
   const data = [
@@ -65,7 +84,7 @@ export function TabsDefault() {
   ];
 
   return (
-    <Tabs value="tab1" className=" ">
+    <Tabs value="tab1">
       <TabsHeader className="tab-header-container dark:bg-dark-primary dark:hover:bg-dark-tertiary drop-shadow-2xl mx-2 mt-3 pb-2">
         {data.map(({ label, value }) => (
           <Tab key={value} value={value}>

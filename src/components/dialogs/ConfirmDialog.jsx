@@ -38,7 +38,7 @@ export function ConfirmDialog({
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
-        <DialogContent className="text-black " divider>
+        <DialogContent className="text-black ">
           <DialogContentText id="alert-dialog-description">
             {message}
           </DialogContentText>
