@@ -85,7 +85,7 @@ export function TabsDefault() {
   ];
 
   return (
-    <Tabs value="funds">
+    <Tabs value="profile">
       <TabsHeader
         className=" bg-transparent border-b dark:border-dark-secondary p-0 drop-shadow-2xl mx-2"
         indicatorProps={{
