@@ -1,5 +1,5 @@
 import React from "react";
-import AddFundsButton from "../AddFundsButton";
+import AddCardButton from "./AddCardButton";
 import { Button } from "@material-tailwind/react";
 function CardTab({ cards }) {
   return (
@@ -51,11 +51,11 @@ function CardTab({ cards }) {
           </div>
         );
       })}
+      <div className="w-96 h-56 flex justify-center items-center">
+        <AddCardButton />
+      </div>
       ;
-
     </div>
-    
   );
-  
 }
 export default CardTab;

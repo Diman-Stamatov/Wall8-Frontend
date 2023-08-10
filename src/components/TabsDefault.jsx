@@ -77,7 +77,7 @@ export function TabsDefault() {
       component: (
         <div className="flex flex-row flex-wrap gap-6 pl-2">
           <CardTab cards={cards} />
-          <AddCardButton />
+          
         </div>
       ),
     },
