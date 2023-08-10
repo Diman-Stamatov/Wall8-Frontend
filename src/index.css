@@ -226,11 +226,6 @@ h1 {
   outline: 1px solid whitesmoke;
 }
 
-.header-background {
-  background-image: url("src/assets/tab-header-bg.jpg");
-  background-size: cover;
-}
-
 .auth-background {
   background: primary;
   background-size: cover;

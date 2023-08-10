@@ -10,6 +10,7 @@ import { Avatar } from "@mui/material";
 function UserProfileTab({ balance }) {
   const { user } = useAuth();
   const { logoutUser } = useContext(AuthContext);
+  const {username, email, photoUrl} = user.data;
 
   const handleLogout = () => {
     logoutUser();
@@ -21,7 +22,7 @@ function UserProfileTab({ balance }) {
         <div className="flex justify-center">
           <Avatar
             alt="avatar"
-            src={user.data.photoUrl}
+            src={photoUrl}
             sx={{
               width: 86,
               height: 86,
@@ -30,9 +31,9 @@ function UserProfileTab({ balance }) {
           />
         </div>
         <p className="mt-2 text-lg font-semibold dark:text-light-primary">
-          {user.data.username}
+          {username}
         </p>
-        <p className="text-sm dark:text-dark-tertiary">{user.data.email}</p>
+        <p className="text-sm dark:text-dark-tertiary">{email}</p>
         <div className="mt-3">
           <Link to="/profile">
             <button className="w-2/8 border shadow-md dark:shadow-black dark:border-light-primary py-2 px-4 text-sm font-semibold dark:text-light-primary bg-primary-light dark:bg-dark-primary rounded-full dark:hover:bg-dark-secondary">
