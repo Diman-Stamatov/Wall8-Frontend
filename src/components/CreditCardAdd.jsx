@@ -21,8 +21,11 @@ function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
       return;
     }
     if (name === "expiry" && value.length > 5) return;
-
+    
     setCard((prevState) => ({ ...prevState, [name]: value }));
+    if (name==="number" && value.replace(/\s/g, '').length%4===0 && value.replace(/\s/g, '').length!=16 && value.replace(/\s/g, '').length!=0){
+      setCard((prevState) =>({...prevState,[name]:value+" "}));
+    }
   };
 
   const handleInputFocus = async (e) => {
@@ -33,6 +36,7 @@ function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
     e.preventDefault();
     // console.log("JUST BEFORE SETTING ");
     // setCardValues(card);
+    card.number = card.number.replace(/\s/g, '');
     console.log("SET CARD ", card);
     handleSubmitRequest(card);
   };
@@ -53,7 +57,7 @@ function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
             name="number"
             className="form-control"
             placeholder="Card Number"
-            pattern="[\d| ]{16,22}"
+            pattern="\d{4} \d{4} \d{4} \d{4}"
             value={card.number}
             required
             onChange={handleInputChange}
