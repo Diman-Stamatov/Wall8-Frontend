@@ -87,10 +87,10 @@ export function TabsDefault() {
   return (
     <Tabs value="profile">
       <TabsHeader
-        className=" bg-transparent border-b dark:border-dark-secondary p-0 drop-shadow-2xl mx-2"
+        className=" dark:border-dark-secondary p-0 drop-shadow-2xl mx-2"
         indicatorProps={{
           className:
-            "bg-transparent border-b-2 border-dark-tertiary drop-shadow-2xl rounded-none",
+            "bg-transparent border-b-2 border-light-quaternary dark:border-b-2 dark:border-dark-tertiary drop-shadow-2xl rounded-none",
         }}
       >
         {data.map(({ label, value, icon }) => (

@@ -11,8 +11,8 @@ function WalletBalance({ balance }) {
           </h2>
         </div>
       </div>
-      <div className="text-center p-4 dark:border-dark dark:bg-gradient-to-br dark:from-dark-primary dark:to-light-quaternary rounded-lg shadow-sm">
-        <span className=" dark:text-light-primary text-xl font-medium drop-shadow-lg">
+      <div className="text-center p-4 bg-light-quaternary dark:border-dark dark:bg-gradient-to-br dark:from-dark-primary dark:to-light-quaternary rounded-lg shadow-sm">
+        <span className="text-light-primary  dark:text-light-primary text-xl font-medium drop-shadow-lg">
           {balance}
         </span>
       </div>

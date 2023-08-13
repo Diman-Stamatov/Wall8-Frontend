@@ -14,17 +14,17 @@ const MainHeader = () => {
   };
 
   return (
-    <header className="z-50 sticky top-0 rounded-b-xl p-5 flex dark:bg-dark-primary outline dark:outline-dark-quaternary justify-between items-center shadow-md">
-      <div className="flex items-center dark:bg-gradient-to-r dark:from-dark-primary dark:to-light-quaternary shadow-lg pl-2 py-1 pr-2 rounded-2xl">
+    <header className="z-50 sticky top-0 rounded-b-xl p-5 flex  dark:bg-dark-primary outline outline-light-quaternary dark:outline-dark-quaternary justify-between items-center shadow-md">
+      <div className="flex items-center  bg-gradient-to-r from-light-quaternary to-light-primary  dark:bg-gradient-to-r  dark:from-dark-primary dark:to-light-quaternary shadow-lg pl-2 py-1 pr-2 rounded-2xl">
         <AccountMenu />
         <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
       </div>
-      <div className="flex-grow mx-10 flex justify-center">
+      <div className="flex-grow mx-10 flex justify-center ">
         <input
           style={{ transition: "all .15s ease" }}
           type="text"
           placeholder="Search..."
-          className="w-1/2 px-3 py-2 transfer-input rounded-xl shadow-md dark:bg-dark-secondary focus:outline-none focus:ring-2 focus:ring-dark-secondary focus:border-transparent"
+          className="w-1/2 px-3 py-2 transfer-input rounded-xl shadow-md bg-gradient-to-r from-light-quaternary to-light-primary  dark:bg-dark-secondary focus:outline-none focus:ring-2 focus:ring-light-quaternary  dark:focus:ring-dark-secondary focus:border-transparent"
         />
       </div>
       <div className="flex items-center justify-center">

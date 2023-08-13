@@ -6,7 +6,7 @@ import { UserDashboard } from "../components/UserDashboard";
 const HomePage = () => {
   const { user } = React.useContext(AuthContext);
 
-  return <div>{user ? <UserDashboard /> : <Hero />}</div>;
+  return <div className="">{user ? <UserDashboard /> : <Hero />}</div>;
 };
 
 export default HomePage;

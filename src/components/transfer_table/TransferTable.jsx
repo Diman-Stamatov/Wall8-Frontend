@@ -28,7 +28,7 @@ function TransferTable({ transfers }) {
           />
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 ">
             <div className="inline-block min-w-full shadow">
-              <table className="  min-w-full leading-normal shadow-xl dark:shadow-dark-primary border border-separate rounded-lg">
+              <table className="  min-w-full leading-normal shadow-xl shadow-light-quaternary dark:shadow-dark-primary  border-2 border-separate border-light-quaternary dark:border-dark-primary rounded-t-lg">
                 <TableHeader />
                 <TableBody
                   transfers={filteredTransfers}

@@ -17,7 +17,7 @@ function UserProfileTab({ balance }) {
   };
 
   return (
-    <div className="mx-auto max-w-xs p-4 rounded-lg shadow-md dark:shadow-black dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary">
+    <div className="mx-auto max-w-xs p-4 rounded-lg shadow-m dark:shadow-black outline outline-light-quaternary dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary">
       <div className="text-center">
         <div className="flex justify-center">
           <Avatar
@@ -30,20 +30,20 @@ function UserProfileTab({ balance }) {
             }}
           />
         </div>
-        <p className="mt-2 text-lg font-semibold dark:text-light-primary">
+        <p className="mt-2 text-lg font-semibold text-light-quaternary dark:text-light-primary">
           {username}
         </p>
-        <p className="text-sm dark:text-dark-tertiary">{email}</p>
+        <p className="text-sm text-light-quaternary dark:text-dark-tertiary">{email}</p>
         <div className="mt-3">
           <Link to="/profile">
-            <button className="w-2/8 border shadow-md dark:shadow-black dark:border-light-primary py-2 px-4 text-sm font-semibold dark:text-light-primary bg-primary-light dark:bg-dark-primary rounded-full dark:hover:bg-dark-secondary">
+            <button className="w-2/8 border shadow-md text-light-quaternary hover:bg-light-quaternary hover:text-light-primary dark:shadow-black border-light-quaternary dark:border-light-primary py-2 px-4 text-sm font-semibold   rounded-full hover:from-light-primary hover:to-light-primary dark:text-light-primary  dark:hover:text-light-quaternary dark:hover:bg-light-primary">
               Manage Account
             </button>
           </Link>
         </div>
       </div>
 
-      <div className="mt-2 mb-1 border rounded-xl shadow-md dark:shadow-black dark:border-light-primary">
+      <div className="mt-2 mb-1 border rounded-xl shadow-md dark:shadow-black shadow-light-quaternary border-light-quaternary dark:border-light-primary">
         <WalletBalance
           balance={new Intl.NumberFormat("de-DE", {
             currency: "EUR",
@@ -52,15 +52,7 @@ function UserProfileTab({ balance }) {
         />
       </div>
 
-      <div className=" dark:bg-dark-primary text-center">
-        <ConfirmDialog
-          buttonName="Logout"
-          title="Confirm Logout"
-          message="Are you sure you want to logout?"
-          onConfirm={handleLogout}
-          onCancel={() => console.log("logout cancelled")}
-        />
-      </div>
+      
     </div>
   );
 }

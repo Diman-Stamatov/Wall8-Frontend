@@ -21,7 +21,7 @@ export default function ThemeProvider({ children }) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="bg-light-primary dark:bg-dark-primary text-light-quaternary dark:text-dark-tertiary dark:outline-dark-tertiary outline-light-quaternary" >
+      <div className="min-h-screen border-light-quaternary bg-light-primary dark:bg-dark-primary text-light-quaternary dark:text-dark-tertiary dark:outline-dark-tertiary outline-light-quaternary" >
         {children}
       </div>
     </ThemeContext.Provider>
