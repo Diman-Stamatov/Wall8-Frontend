@@ -11,19 +11,19 @@ function LoginForm({ validationSchema, handleLogin }) {
     >
       {({ isSubmitting }) => (
         <div className="flex items-center justify-center h-screen ">
-          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-55 px-6 py-2 rounded-md ">
-            <h1 className="text-3xl font-bold mb-6 text-dark-secondary dark:text-dark-tertiary">
+          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-white dark:bg-dark-primary w-55 px-6 py-2 rounded-md ">
+            <h1 className="text-3xl font-bold mb-6  dark:text-dark-tertiary">
               Login
             </h1>
             <Form>
               <div className="mb-5">
-                <label className="block text-sm font-medium dark:text-dark-tertiary">
+                <label className="block text-sm font-medium  dark:text-dark-tertiary">
                   Email
                 </label>
                 <Field
                   name="email"
                   type="text"
-                  className="dark:bg-dark-tertiary dark:text-white p-1 rounded w-full"
+                  className=" dark:bg-dark-tertiary bg-light-tertiary  dark:text-white p-1 rounded w-full"
                 />
                 <ErrorMessage
                   name="email"
@@ -32,13 +32,13 @@ function LoginForm({ validationSchema, handleLogin }) {
                 />
               </div>
               <div className="mb-6 ">
-                <label className=" dark:text-dark-tertiary block text-sm font-medium text-gray-700 ">
+                <label className="  dark:text-dark-tertiary block text-sm font-medium ">
                   Password
                 </label>
                 <Field
                   name="password"
                   type="password"
-                  className="dark:bg-dark-tertiary dark:text-white p-1 rounded w-full dark:text-wite text-black"
+                  className="dark:bg-dark-tertiary bg-light-tertiary  dark:text-white p-1 rounded w-full dark:text-wite text-black"
                 />
                 <ErrorMessage
                   name="password"
@@ -50,7 +50,7 @@ function LoginForm({ validationSchema, handleLogin }) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="auth-btn dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-md"
+                  className="auth-btn dark:bg-dark-secondary  bg-dark-secondary hover:bg-light-tertiary dark:text-white font-bold py-2 px-4 rounded-md"
                 >
                   Login
                 </button>
@@ -60,7 +60,7 @@ function LoginForm({ validationSchema, handleLogin }) {
                   Home
                 </span>
               </Link>
-              <span className="text-sm tdark:text-dark-tertiary hover:text-gray-700 pointer-events-none">
+              <span className="text-sm dark:text-dark-tertiary hover:text-gray-700 pointer-events-none">
                 {" "}
                 |{" "}
               </span>
