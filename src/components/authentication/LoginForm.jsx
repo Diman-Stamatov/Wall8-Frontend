@@ -56,27 +56,27 @@ function LoginForm({ validationSchema, handleLogin }) {
                 </button>
               </div>
               <Link to="/">
-                <text className="text-sm dark:text-dark-tertiary hover:text-gray-700">
+                <span className="text-sm dark:text-dark-tertiary hover:text-gray-700">
                   Home
-                </text>
+                </span>
               </Link>
-              <text className="text-sm tdark:text-dark-tertiary hover:text-gray-700 pointer-events-none">
+              <span className="text-sm tdark:text-dark-tertiary hover:text-gray-700 pointer-events-none">
                 {" "}
                 |{" "}
-              </text>
+              </span>
               <Link to="/register">
-                <text className="text-sm dark:text-dark-tertiary hover:text-gray-700">
+                <span className="text-sm dark:text-dark-tertiary hover:text-gray-700">
                   Forgot Password?
-                </text>
+                </span>
               </Link>
-              <text className="text-sm text-gray-500 hover:text-gray-700 pointer-events-none">
+              <span className="text-sm text-gray-500 hover:text-gray-700 pointer-events-none">
                 {" "}
                 |{" "}
-              </text>
+              </span>
               <Link to="/register">
-                <text className="text-sm dark:text-dark-tertiary hover:text-gray-700 ">
+                <span className="text-sm dark:text-dark-tertiary hover:text-gray-700 ">
                   Don't have an account?
-                </text>
+                </span>
               </Link>
             </Form>
           </div>

@@ -4,13 +4,14 @@ import { useAuth } from "../context/AuthContext";
 import UpdateEmailButton from "../components/UpdateEmailButton";
 import UpdatePhoneNumberButton from "../components/UpdatePhoneNumberButton";
 import UpdatePictureButton from "../components/UpdatePictureButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
+import HomePage from "./Home";
 
 const Profile = () => {
   const { user } = useAuth();
   const [username, setUsername] = useState("");
-  const verified = user.data.isVerified;
+  const verified = user ? user.data.isVerified : false; // probably useless
   const [phoneNumber, setPhoneNumber] = useState(user.data.phoneNumber);
   const [profilePicUrl, setProfilePicUrl] = useState(user.data.photoUrl);
 

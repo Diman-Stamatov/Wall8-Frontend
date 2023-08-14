@@ -16,6 +16,7 @@ import { ErrorProvider } from "./context/ErrorContext";
 import { TransferProvider } from "./context/TransferContext";
 import RegisterCard from "./pages/RegisterCard";
 import NextTopLoader from "nextjs-toploader";
+import PrivateRoutes from "./utils/PrivateRoutes";
 
 // TODO: error pages for 404, 401, 500, etc.
 
@@ -33,15 +34,23 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/credit-card-add" element={<RegisterCard />} />
-                    <Route path="/transfer" element={<TransferPage />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/info" element={<InfoPage />} />
-                    <Route path="/update-email" element={<UpdateEmailPage />} />
-                    <Route
-                      path="/confirmed-transfer"
-                      element={<ConfirmTransferScreen />}
-                    />
+                    <Route element={<PrivateRoutes />}>
+                      <Route
+                        path="/credit-card-add"
+                        element={<RegisterCard />}
+                      />
+                      <Route path="/transfer" element={<TransferPage />} />
+                      <Route path="/profile" element={<Profile />} />
+                      <Route path="/info" element={<InfoPage />} />
+                      <Route
+                        path="/update-email"
+                        element={<UpdateEmailPage />}
+                      />
+                      <Route
+                        path="/confirmed-transfer"
+                        element={<ConfirmTransferScreen />}
+                      />
+                    </Route>
                   </Routes>
                 </TransferProvider>
               </UserProvider>
