@@ -18,7 +18,7 @@ const Login = () => {
   });
 
   return (
-    <div className="bg-dark-tertiary dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
+    <div className=" bg-light-quaternary  dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
       <LoginForm
         validationSchema={validationSchema}
         handleLogin={handleLogin}

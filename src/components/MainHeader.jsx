@@ -24,7 +24,7 @@ const MainHeader = () => {
           style={{ transition: "all .15s ease" }}
           type="text"
           placeholder="Search..."
-          className="w-1/2 px-3 py-2 transfer-input rounded-xl shadow-md bg-gradient-to-r from-light-quaternary to-light-primary  dark:bg-dark-secondary focus:outline-none focus:ring-2 focus:ring-light-quaternary  dark:focus:ring-dark-secondary focus:border-transparent"
+          className="w-1/2 px-3 py-2 transfer-input rounded-xl shadow-md bg-gradient-to-r from-light-quaternary to-light-primary  dark:from-dark-tertiary dark:to-dark-primary focus:outline-none focus:ring-2 focus:ring-light-quaternary  dark:focus:ring-dark-secondary focus:border-transparent"
         />
       </div>
       <div className="flex items-center justify-center">

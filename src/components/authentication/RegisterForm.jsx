@@ -18,8 +18,8 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
     >
       {({ isSubmitting }) => (
         <div className="flex items-center justify-center h-screen ">
-          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-96 px-6 py-2 rounded-md ">
-            <h1 className="text-3xl font-bold mb-6 text-dark-tertiary">
+          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-white dark:bg-dark-primary  w-96 px-6 py-2 rounded-md ">
+            <h1 className="text-3xl font-bold mb-6 text-light-quaternary dark:text-dark-tertiary">
               Sign up
             </h1>
             <Form>
@@ -30,7 +30,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 <Field
                   name="username"
                   type="text"
-                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary bg-light-tertiary  dark:text-white"
                 />
                 <ErrorMessage
                   name="username"
@@ -45,7 +45,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 <Field
                   name="email"
                   type="email"
-                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary bg-light-tertiary  dark:text-white"
                 />
                 <ErrorMessage
                   name="email"
@@ -60,7 +60,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 <Field
                   name="phone"
                   type="tel"
-                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary bg-light-tertiary  dark:text-white"
                 />
                 <ErrorMessage
                   name="phone"
@@ -75,7 +75,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 <Field
                   name="password"
                   type="password"
-                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary bg-light-tertiary  dark:text-white"
                 />
                 <ErrorMessage
                   name="password"
@@ -90,7 +90,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 <Field
                   name="confirmPassword"
                   type="password"
-                  className="p-1 rounded w-full dark:bg-dark-tertiary dark:text-white"
+                  className="p-1 rounded w-full dark:bg-dark-tertiary bg-light-tertiary  dark:text-white"
                 />
                 <ErrorMessage
                   name="confirmPassword"
@@ -102,7 +102,7 @@ function RegisterForm({ isLoading, validationSchema, handleRegister }) {
                 <button
                   type="submit"
                   disabled={isSubmitting || isLoading}
-                  className="auth-btn dark:bg-dark-secondary text-white font-bold py-2 px-4 rounded"
+                  className="auth-btn dark:bg-dark-secondary text-white bg-dark-secondary  font-bold py-2 px-4 rounded"
                 >
                   {isSubmitting ? (
                     <div className="flex justify-center items-center">
