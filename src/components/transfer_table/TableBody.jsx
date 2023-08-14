@@ -5,7 +5,7 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
   const startIndex = (currentPage - 1) * transfersPerPage;
   const endIndex = Math.min(startIndex + transfersPerPage, transfers.length);
   const limitedTransfers = transfers.slice(startIndex, endIndex);
-// TODO: Get currency setting from user profile (to add to backend first)
+  // TODO: Get currency setting from user profile (to add to backend first)
   return (
     <tbody>
       {limitedTransfers.map((transfer, index) => (
@@ -27,7 +27,7 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
           </td>
           <td className="px-5 py-5 text-sm font-semibold">
             <p className="dark:text-dark-tertiary whitespace-no-wrap">
-              {new Intl.NumberFormat("de-DE",{
+              {new Intl.NumberFormat("en-UK", {
                 style: "currency",
                 currency: "EUR",
               }).format(transfer.amount)}

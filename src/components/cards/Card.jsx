@@ -22,9 +22,7 @@ function CardTab({ cards }) {
   return (
     <div className="flex flex-row flex-wrap gap-6 pl-2">
       {cards.map((card, index) => {
-        console.log("CARD NUMBER: " , maskString(card.cardNumber))
         const expiryEdit = card.expirationDate.replace('.','');
-        console.log(expiryEdit);
         const { cardHolderName, cardNumber, expirationDate, type } = card;
         return (
           <div

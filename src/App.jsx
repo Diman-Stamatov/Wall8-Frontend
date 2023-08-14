@@ -17,47 +17,51 @@ import { TransferProvider } from "./context/TransferContext";
 import RegisterCard from "./pages/RegisterCard";
 import NextTopLoader from "nextjs-toploader";
 import PrivateRoutes from "./utils/PrivateRoutes";
+import React from "react";
+import { LocaleProvider } from "./context/LocaleContext";
 
 // TODO: error pages for 404, 401, 500, etc.
 
 function App() {
   return (
     <ThemeProvider>
-      <Router>
-        <NextTopLoader />
-        <LoadingProvider>
-          <ErrorProvider>
-            <AuthProvider>
-              <UserProvider>
-                <TransferProvider>
-                  <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route element={<PrivateRoutes />}>
-                      <Route
-                        path="/credit-card-add"
-                        element={<RegisterCard />}
-                      />
-                      <Route path="/transfer" element={<TransferPage />} />
-                      <Route path="/profile" element={<Profile />} />
-                      <Route path="/info" element={<InfoPage />} />
-                      <Route
-                        path="/update-email"
-                        element={<UpdateEmailPage />}
-                      />
-                      <Route
-                        path="/confirmed-transfer"
-                        element={<ConfirmTransferScreen />}
-                      />
-                    </Route>
-                  </Routes>
-                </TransferProvider>
-              </UserProvider>
-            </AuthProvider>
-          </ErrorProvider>
-        </LoadingProvider>
-      </Router>
+      <LocaleProvider>
+        <Router>
+          <NextTopLoader />
+          <LoadingProvider>
+            <ErrorProvider>
+              <AuthProvider>
+                <UserProvider>
+                  <TransferProvider>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/register" element={<Register />} />
+                      <Route path="/login" element={<Login />} />
+                      <Route element={<PrivateRoutes />}>
+                        <Route
+                          path="/credit-card-add"
+                          element={<RegisterCard />}
+                        />
+                        <Route path="/transfer" element={<TransferPage />} />
+                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/info" element={<InfoPage />} />
+                        <Route
+                          path="/update-email"
+                          element={<UpdateEmailPage />}
+                        />
+                        <Route
+                          path="/confirmed-transfer"
+                          element={<ConfirmTransferScreen />}
+                        />
+                      </Route>
+                    </Routes>
+                  </TransferProvider>
+                </UserProvider>
+              </AuthProvider>
+            </ErrorProvider>
+          </LoadingProvider>
+        </Router>
+      </LocaleProvider>
     </ThemeProvider>
   );
 }
