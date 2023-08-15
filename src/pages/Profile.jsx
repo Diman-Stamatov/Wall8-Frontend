@@ -11,9 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import HomePage from "./Home";
 
 const Profile = () => {
-  const {profileUsername} = useParams();
-  const getProfileData  = useAuth();
-  const profileUser = getProfileData(profileUsername);
+  const {profileUsername} = useParams();  
+  const {getProfileData} = useAuth();
+  getProfileData({profileUsername});
+  const {profileUser} = useAuth();
   debugger
   const { user } = useAuth();
   const [username, setUsername] = useState("");
