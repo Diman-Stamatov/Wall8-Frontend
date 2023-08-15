@@ -1,6 +1,5 @@
 import { FaWallet } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
-import { useEffect, useState } from "react";
 import { useUserLocale } from "../context/LocaleContext";
 
 function WalletBalance() {

@@ -9,7 +9,7 @@ function UserProfileTab() {
   const { username, email, photoUrl } = user.data;
 
   return (
-    <div className="mx-auto max-w-xs p-4 rounded-lg shadow-m dark:shadow-black outline outline-light-quaternary dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary">
+    <div style={{ width: "400px"}} className="mx-auto p-4 rounded-lg shadow-m dark:shadow-black outline outline-light-quaternary dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary">
       <div className="text-center">
         <div className="flex justify-center">
           <Avatar

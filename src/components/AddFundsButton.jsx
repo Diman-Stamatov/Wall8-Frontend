@@ -21,7 +21,7 @@ function AddFundsButton() {
             className="p-5 m-2 bg-transparent text-green-500 rounded-lg flex flex-col items-center"
           >
             <BsPatchPlus className="text-6xl" />
-            <span className="font-roboto text-l">Deposit Funds</span>
+            <span className="font-roboto text-l">Deposit kFunds</span>
           </button>
           {showAddFundsModal && (
             <AddFundsModal

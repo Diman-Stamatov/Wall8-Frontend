@@ -5,7 +5,7 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
   const startIndex = (currentPage - 1) * transfersPerPage;
   const endIndex = Math.min(startIndex + transfersPerPage, transfers.length);
   const limitedTransfers = transfers.slice(startIndex, endIndex);
-  // TODO: Get currency setting from user profile (to add to backend first)
+  console.log("BIG TRANSFERS", transfers);
   return (
     <tbody>
       {limitedTransfers.map((transfer, index) => (

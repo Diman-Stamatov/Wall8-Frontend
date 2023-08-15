@@ -19,12 +19,14 @@ const TransferForm = ({ user }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const { postTransfer } = useTransfer();
   const { users, dispatch } = useUsers();
+  const [recPage, setRecPage] = useState(1);
+  const [pageInfo, setPageInfo] = useState([]);
 
   useEffect(() => {
     dispatch({ type: "FETCH_USERS_LOADING" });
     console.log("Get recipients dispatch initiated");
     axios
-      .get("http://localhost:5120/api/virtual-wallet/users/filter?pageSize=5", {
+      .get(`http://localhost:5120/api/virtual-wallet/users/filter?pageSize=5&page=${recPage}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -32,15 +34,15 @@ const TransferForm = ({ user }) => {
           type: "FETCH_USERS_SUCCESS",
           payload: response.data.users.items,
         });
-        console.log("dispatched success");
-        console.log("Users", response.data.users.items);
+        setPageInfo(response.data.users)
+        console.log("Page info", response.data.users);
       })
       .catch((error) => {
         dispatch({ type: "FETCH_USERS_ERROR", payload: error });
         console.log("dispatched error");
         console.log("Error", error);
       });
-  }, []);
+  }, [recPage ]);
 
   const steps = ["Choose Recipient", "Choose Amount", "Review and Submit"];
 
@@ -59,7 +61,7 @@ const TransferForm = ({ user }) => {
 
   const navigate = useNavigate();
 
-  const balance = user.data.balance;
+  const wallet = user.data.wallet.balance;
 
   const handleNext = () => {
     setStep(step + 1);
@@ -106,12 +108,16 @@ const TransferForm = ({ user }) => {
             filterText={filterText}
             onFilterTextChange={onFilterTextChange}
             onNext={handleNext}
+            onNextPage={() => setRecPage((prevPage) => prevPage + 1)}
+            onPrevPage={() => setRecPage((prevPage) => prevPage - 1)}
+            hasNextPage = {pageInfo.hasNextPage}
+            hasPrevPage = {pageInfo.hasPreviousPage}
           />
         )}
         {step === 2 && (
           <ChooseAmount
             amount={amount}
-            balance={balance}
+            wallet={wallet}
             setAmount={setAmount}
             onPrevious={handlePrevious}
             onNext={handleNext}
