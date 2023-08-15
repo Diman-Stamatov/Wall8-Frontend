@@ -9,7 +9,6 @@ const MainHeader = () => {
   const { user } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { users, dispatch } = useUsers();
-  const [allUsers, setAllUsers] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -57,12 +56,12 @@ const MainHeader = () => {
   }, []);
 
   return (
-    <header className="z-50 sticky top-0 rounded-b-xl p-5 flex  dark:bg-dark-primary outline outline-light-quaternary dark:outline-dark-quaternary justify-between items-center shadow-md">
-      <div className="flex items-center  bg-gradient-to-r from-light-quaternary to-light-primary  dark:bg-gradient-to-r  dark:from-dark-primary dark:to-light-quaternary shadow-lg pl-2 py-1 pr-2 rounded-2xl">
+    <header className="flex z-40 sticky top-0 rounded-b-xl p-5 dark:bg-dark-primary outline outline-light-quaternary dark:outline-dark-quaternary justify-between items-center shadow-md">
+      <div className="flex items-center bg-gradient-to-r from-light-quaternary to-light-primary  dark:bg-gradient-to-r  dark:from-dark-primary dark:to-light-quaternary shadow-lg pl-2 py-1 pr-2 rounded-2xl">
         <AccountMenu />
         <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
       </div>
-      <div className="flex flex-col mx-10 justify-center items-stretch ">
+      <div className="mx-10 w-1/2 relative">
         <input
           style={{ transition: "all .15s ease" }}
           type="text"
@@ -70,14 +69,22 @@ const MainHeader = () => {
           value={searchValue}
           onChange={handleSearchChange}
           onBlur={handleInputBlur}
-          className="w-1/2 px-3 py-2 transfer-input rounded-xl shadow-md bg-gradient-to-r from-light-quaternary to-light-primary  dark:from-dark-tertiary dark:to-dark-primary focus:outline-none focus:ring-2 focus:ring-light-quaternary  dark:focus:ring-dark-secondary focus:border-transparent"
+          className="w-full px-3 py-2 transfer-input rounded-xl shadow-md bg-gradient-to-r from-light-quaternary to-light-primary  dark:from-dark-tertiary dark:to-dark-primary focus:outline-none focus:ring-2 focus:ring-light-quaternary  dark:focus:ring-dark-secondary focus:border-transparent"
         />
         {showDropdown && (
-          <ul className="bg-white w-1/2 rounded-xl shadow-md">
+          <ul className="dark:bg-dark-primary rounded-xl w-full mt-1 border dark:border-dark-secondary shadow-sm dark:shadow-dark-tertiary absolute">
             {filteredUsers.map((user, index) => {
-              <li key={index} className="p-2">
-                {user.username}
-              </li>;
+              return (
+                <li
+                  key={index}
+                  className="p-2 hover:dark:bg-dark-secondary cursor-pointer rounded-lg"
+                >
+                  <div className="flex flex-col justify-start">
+                    <p className="font-semibold dark:text-light-primary">{user.username}</p>
+                    <p className="text-sm font-light dark:text-dark-tertiary">{user.email} | {user.phoneNumber}</p>
+                  </div>
+                </li>
+              );
             })}
           </ul>
         )}
