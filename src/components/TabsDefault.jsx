@@ -16,6 +16,7 @@ import { CreditCardIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import AddCardButton from "./cards/AddCardButton";
 import { DiAndroid } from "react-icons/di";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
+import UserStatisticsCards from "./users/UserStatisticsCards";
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
@@ -55,10 +56,13 @@ export function TabsDefault() {
       value: "profile",
       icon: UserCircleIcon,
       component: (
-        <div className="md:flex">
-          <div className="justify-center">
+        <div className="flex flex-row-gap-sm-5">
+          <div className="justify-center ">
             <UserProfileTab balance={balance} />
             <AddFundsButton balance={balance} setBalance={setBalance} />
+          </div>
+          <div className="ml-auto mr-auto">
+            <UserStatisticsCards transfers={transfers} />
           </div>
         </div>
       ),
