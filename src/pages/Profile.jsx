@@ -6,33 +6,30 @@ import axios from "axios";
 
 const Profile = () => {
   const { profileUsername } = useParams();
-  const [profileUser, setProfileUser] = useState(null);
-  
-  useEffect(() => {
-    getProfileData();
-  }, []);
+  const [profileUser, setProfileUser] = useState({ data: {} });
 
   const getProfileData = async () => {
     try {
-      debugger
       const profileResponse = await axios.get(
         `http://localhost:5120/api/virtual-wallet/users/profile/${profileUsername}`,
         {
           withCredentials: true,
         }
       );
-      
-      setProfileUser(profileResponse);
-
+      setProfileUser(profileResponse.data);
     } catch (error) {
       console.error(error);
     }
   };
 
+  useEffect(() => {
+    getProfileData();
+  }, [profileUsername]);
+
   return (
     <div>
       <MainHeader />
-      {<UserProfile profileUser={profileUser} />}
+      <UserProfile profileUser={profileUser} />
     </div>
   );
 };

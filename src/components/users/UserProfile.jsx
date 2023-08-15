@@ -5,30 +5,23 @@ import UpdatePictureButton from "../../components/UpdatePictureButton";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 
-
-const UserProfile = ({profileUser}) => { 
-  const [profileUsername, setProfileUsername] = useState(profileUser.data.username);
-  const [phoneNumber, setPhoneNumber] = useState(profileUser.data.phoneNumber);
-  const [profilePicUrl, setProfilePicUrl] = useState(profileUser.data.photoUrl);
-  const [profileEmail, setProfileEmail] = useState(profileUser.data.email);
-  const [verified, setVerified] = useState(profileUser.data.verified);
+const UserProfile = ({ profileUser }) => {
+  const [profileUsername, setProfileUsername] = useState(profileUser.username);
+  const [phoneNumber, setPhoneNumber] = useState(profileUser.phoneNumber);
+  const [profilePicUrl, setProfilePicUrl] = useState(profileUser.photoUrl);
+  const [profileEmail, setProfileEmail] = useState(profileUser.email);
+  const [verified, setVerified] = useState(profileUser.verified);
 
   useEffect(() => {
-    setProfilePicUrl(profileUser.data.photoUrl);
-    setPhoneNumber(profileUser.data.phoneNumber);
-    setProfileUsername(profileUser.data.username);
-    setProfileEmail(profileUser.data.email);
-    setVerified(profileUser.data.verified);
-  }, [
-    profileUser.data.phoneNumber,
-    profileUser.data.photoUrl,
-    profileUser.data.username,
-    profileUser.data.verified,
-  ]);
+    setProfilePicUrl(profileUser.photoUrl);
+    setPhoneNumber(profileUser.phoneNumber);
+    setProfileUsername(profileUser.username);
+    setProfileEmail(profileUser.email);
+    setVerified(profileUser.isVerified);
+  }, [profileUser]);
 
   return (
     <div>
-      
       <div className="flex justify-center py-5">
         <div className=" z-10 dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary shadow-lg dark:shadow-black  w-1/2 px-6 py-2 rounded-lg">
           <div className="flex flex-col gap-px">
