@@ -19,6 +19,7 @@ import NextTopLoader from "nextjs-toploader";
 import PrivateRoutes from "./utils/PrivateRoutes";
 import React from "react";
 import { LocaleProvider } from "./context/LocaleContext";
+import AdminDashboard from "./pages/AdminDashboard";
 
 // TODO: error pages for 404, 401, 500, etc.
 
@@ -43,7 +44,7 @@ function App() {
                           element={<RegisterCard />}
                         />
                         <Route path="/transfer" element={<TransferPage />} />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/profile/:profileUsername" element={<Profile />} />
                         <Route path="/info" element={<InfoPage />} />
                         <Route
                           path="/update-email"
@@ -52,6 +53,10 @@ function App() {
                         <Route
                           path="/confirmed-transfer"
                           element={<ConfirmTransferScreen />}
+                        />
+                        <Route
+                          path="/admin-dashboard"
+                          element={<AdminDashboard />}
                         />
                       </Route>
                     </Routes>

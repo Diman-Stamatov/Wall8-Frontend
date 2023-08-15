@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import MainHeader from "../components/MainHeader";
 import { useAuth } from "../context/AuthContext";
+
 import UpdateEmailButton from "../components/UpdateEmailButton";
 import UpdatePhoneNumberButton from "../components/UpdatePhoneNumberButton";
 import UpdatePictureButton from "../components/UpdatePictureButton";
 import { Link, useNavigate } from "react-router-dom";
+import { useParams } from 'react-router-dom'
 import Avatar from "@mui/material/Avatar";
 import HomePage from "./Home";
 
 const Profile = () => {
+  const {profileUsername} = useParams();  
+  const {getProfileData} = useAuth();
+  getProfileData({profileUsername});
+  const {profileUser} = useAuth();
+  debugger
   const { user } = useAuth();
   const [username, setUsername] = useState("");
-  const verified = user ? user.data.isVerified : false; // probably useless
+  const verified = user.data.isVerified; 
   const [phoneNumber, setPhoneNumber] = useState(user.data.phoneNumber);
   const [profilePicUrl, setProfilePicUrl] = useState(user.data.photoUrl);
 
@@ -28,7 +35,7 @@ const Profile = () => {
           <div className="flex flex-col gap-px">
             <div className="text-center">
               <h1 className="text-2xl font-semibold">
-                Welcome, {user ? user.data.username : "Guest"}
+                Welcome, {user.data.username}
               </h1>
             </div>
             <div className="flex justify-start my-auto">
