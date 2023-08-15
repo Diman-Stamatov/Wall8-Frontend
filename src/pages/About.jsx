@@ -12,7 +12,7 @@ const InfoPage = () => {
           </p>
           <h2 className="text-lg font-semibold mb-2">Transfer Fees</h2>
           <p className=" mb-4">
-            We charge a 1% fee on all transfers. This fee is used to cover the
+            We charge a 0.5% fee on all transfers. This fee is used to cover the
             costs of running the project.
           </p>
           <h2 className="text-lg font-semibold mb-2">Contact Us</h2>

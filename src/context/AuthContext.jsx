@@ -14,6 +14,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [profileUser, setProfileUser] = useState(null);
   const [balance, setBalance] = useState(0);
 
   const navigate = useNavigate();
@@ -21,6 +22,24 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     getUserOnLoad();
   }, []);
+
+  const getProfileData = async (profileUsername) => {
+    try {
+      
+      const profileResponse = await axios.get(
+        `http://localhost:5120/api/virtual-wallet/users/profile/${profileUsername}`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+
+      setProfileUser(profileResponse);
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getUserOnLoad = async () => {
     try {
@@ -125,8 +144,10 @@ export const AuthProvider = ({ children }) => {
   const contextData = {
     balance,
     user,
+    profileUser,
     loginUser,
     logoutUser,
+    getProfileData,
     setBalance,
     refreshUser,
   };
