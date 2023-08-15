@@ -44,7 +44,7 @@ function App() {
                           element={<RegisterCard />}
                         />
                         <Route path="/transfer" element={<TransferPage />} />
-                        <Route path="/profile" element={<Profile />} />
+                        <Route path="/profile/:profileUsername" element={<Profile />} />
                         <Route path="/info" element={<InfoPage />} />
                         <Route
                           path="/update-email"

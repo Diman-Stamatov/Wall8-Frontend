@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MdOutlineExpandLess, MdOutlineExpandMore } from "react-icons/md";
 import { AiOutlineCheck } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const TransferPickRecipient = ({
   recipient,
@@ -11,7 +12,12 @@ const TransferPickRecipient = ({
   onFilterTextChange,
   recipients,
   onNext,
+  onNextPage,
+  onPrevPage,
+  hasNextPage,
+  hasPrevPage,
 }) => {
+  const { user } = useAuth();
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleOpen = (index) => () => {
@@ -30,11 +36,14 @@ const TransferPickRecipient = ({
 
   const filteredRecipients = recipients.filter((recipient) => {
     const searchTerm = filterText.toLowerCase();
-    return (
+    const filterMatches =
       recipient?.username?.toLowerCase()?.includes(searchTerm) ||
       recipient?.phoneNumber?.toLowerCase()?.includes(searchTerm) ||
-      recipient?.email?.toLowerCase()?.includes(searchTerm)
-    );
+      recipient?.email?.toLowerCase()?.includes(searchTerm);
+
+    const excludeUser = recipient.id !== user.data.id;
+
+    return filterMatches && excludeUser;
   });
 
   return (
@@ -118,6 +127,30 @@ const TransferPickRecipient = ({
             </li>
           ))}
         </ul>
+        <div className="flex justify-between -mb-4 mx-1">
+          <button
+            className={`px-4 py-2 0 dark:text-light-primary rounded-lg transition-colors duration-300 ${
+              !hasPrevPage
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:text-light-secondary"
+            }`}
+            onClick={onPrevPage}
+            disabled={!hasPrevPage}
+          >
+            Previous
+          </button>
+          <button
+            className={`px-4 py-2 dark:text-light-primary rounded-lg transition-colors duration-300 ${
+              !hasNextPage
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:text-light-secondary"
+            }`}
+            onClick={onNextPage}
+            disabled={!hasNextPage}
+          >
+            Next
+          </button>
+        </div>
       </div>
       <div className="flex-row justify-between flex mt-2">
         <button
