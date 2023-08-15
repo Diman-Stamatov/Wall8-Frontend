@@ -25,19 +25,15 @@ export const AuthProvider = ({ children }) => {
 
   const getProfileData = async (profileUsername) => {
     try {  
-      
-      debugger
       const profileResponse = await axios.get(
         `http://localhost:5120/api/virtual-wallet/users/profile/${profileUsername}`,        
         {
           withCredentials: true,
         }
       );
-      debugger
       setProfileUser(profileResponse);
       
     } catch (error) {
-      debugger
       console.error(error);
     }    
   };

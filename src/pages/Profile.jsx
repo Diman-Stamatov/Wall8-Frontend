@@ -6,23 +6,22 @@ import UpdateEmailButton from "../components/UpdateEmailButton";
 import UpdatePhoneNumberButton from "../components/UpdatePhoneNumberButton";
 import UpdatePictureButton from "../components/UpdatePictureButton";
 import { Link, useNavigate } from "react-router-dom";
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import HomePage from "./Home";
 
 const Profile = () => {
-  const {profileUsername} = useParams();  
-  const {getProfileData} = useAuth();
-  getProfileData({profileUsername});
-  const {profileUser} = useAuth();
-  debugger
+  const { profileUsername } = useParams();
+  const { getProfileData } = useAuth();
+  const { profileUser } = useAuth();
   const { user } = useAuth();
   const [username, setUsername] = useState("");
-  const verified = user.data.isVerified; 
+  const verified = user.data.isVerified;
   const [phoneNumber, setPhoneNumber] = useState(user.data.phoneNumber);
   const [profilePicUrl, setProfilePicUrl] = useState(user.data.photoUrl);
 
   useEffect(() => {
+    getProfileData(profileUsername);
     setProfilePicUrl(user.data.photoUrl);
     setPhoneNumber(user.data.phoneNumber);
   }, [user.data.phoneNumber, user.data.photoUrl]);

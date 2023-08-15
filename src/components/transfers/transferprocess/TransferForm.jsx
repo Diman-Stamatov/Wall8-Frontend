@@ -24,25 +24,26 @@ const TransferForm = ({ user }) => {
 
   useEffect(() => {
     dispatch({ type: "FETCH_USERS_LOADING" });
-    console.log("Get recipients dispatch initiated");
     axios
-      .get(`http://localhost:5120/api/virtual-wallet/users/filter?pageSize=5&page=${recPage}`, {
-        withCredentials: true,
-      })
+      .get(
+        `http://localhost:5120/api/virtual-wallet/users/filter?pageSize=5&page=${recPage}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         dispatch({
           type: "FETCH_USERS_SUCCESS",
           payload: response.data.users.items,
         });
-        setPageInfo(response.data.users)
-        console.log("Page info", response.data.users);
+        setPageInfo(response.data.users);
       })
       .catch((error) => {
         dispatch({ type: "FETCH_USERS_ERROR", payload: error });
         console.log("dispatched error");
         console.log("Error", error);
       });
-  }, [recPage ]);
+  }, [recPage]);
 
   const steps = ["Choose Recipient", "Choose Amount", "Review and Submit"];
 
@@ -110,8 +111,8 @@ const TransferForm = ({ user }) => {
             onNext={handleNext}
             onNextPage={() => setRecPage((prevPage) => prevPage + 1)}
             onPrevPage={() => setRecPage((prevPage) => prevPage - 1)}
-            hasNextPage = {pageInfo.hasNextPage}
-            hasPrevPage = {pageInfo.hasPreviousPage}
+            hasNextPage={pageInfo.hasNextPage}
+            hasPrevPage={pageInfo.hasPreviousPage}
           />
         )}
         {step === 2 && (
