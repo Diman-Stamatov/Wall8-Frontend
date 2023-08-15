@@ -4,14 +4,15 @@ import { ThemeContext } from "../ThemeProvider";
 import AccountMenu from "./AccountMenu";
 import { useUsers } from "../context/UserContext";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const MainHeader = () => {
   const { user } = useContext(AuthContext);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { toggleTheme } = useContext(ThemeContext);
   const { users, dispatch } = useUsers();
   const [searchValue, setSearchValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
-
+  const navigate = useNavigate();
   function getAllUsers() {
     dispatch({
       type: "FETCH_USERS_LOADING",
@@ -47,8 +48,13 @@ const MainHeader = () => {
     setShowDropdown(true);
   };
 
+  let handleInputBlurTimeout;
+
   const handleInputBlur = () => {
-    setShowDropdown(false);
+    clearTimeout(handleInputBlurTimeout);
+    handleInputBlurTimeout = setTimeout(() => {
+      setShowDropdown(false);
+    }, 100);
   };
 
   useEffect(() => {
@@ -74,14 +80,22 @@ const MainHeader = () => {
         {showDropdown && (
           <ul className="dark:bg-dark-primary rounded-xl w-full mt-1 border dark:border-dark-secondary shadow-sm dark:shadow-dark-tertiary absolute">
             {filteredUsers.map((user, index) => {
+              const goToUserProfile = (username) => {
+                navigate(`profile/${username}`);
+              };
               return (
                 <li
                   key={index}
                   className="p-2 hover:dark:bg-dark-secondary cursor-pointer rounded-lg"
+                  onClick={() => goToUserProfile(user.username)}
                 >
                   <div className="flex flex-col justify-start">
-                    <p className="font-semibold dark:text-light-primary">{user.username}</p>
-                    <p className="text-sm font-light dark:text-dark-tertiary">{user.email} | {user.phoneNumber}</p>
+                    <p className="font-semibold dark:text-light-primary">
+                      {user.username}
+                    </p>
+                    <p className="text-sm font-light dark:text-dark-tertiary">
+                      {user.email} | {user.phoneNumber}
+                    </p>
                   </div>
                 </li>
               );
