@@ -14,6 +14,7 @@ import UserProfileTab from "./profile/UserProfileTab";
 import CardTab from "./cards/Card";
 import { CreditCardIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
+import UserStatisticsCards from "./users/UserStatisticsCards";
 import TransferInit from "./users/TransferInit";
 
 export function TabsDefault() {
@@ -54,11 +55,12 @@ export function TabsDefault() {
       value: "profile",
       icon: UserCircleIcon,
       component: (
-        <div className="md:flex">
-          <div className="flex justify-between space-x-5">
+        <div className="flex flex-row-gap-sm-5">
+          <div className="flex justify-between space-x-5 ">
             <UserProfileTab balance={balance} />
-            <TransferInit />
+            <AddFundsButton balance={balance} setBalance={setBalance} />
           </div>
+          
         </div>
       ),
     },
