@@ -2,7 +2,7 @@ import React from "react";
 import UpdatePictureModal from "./modals/UpdatePictureModal";
 import { useState, useContext } from "react";
 
-function UpdatePictureButton({setUpdated}) {
+function UpdatePictureButton() {
   
   const [showUpdatePictureModal, setUpdatePictureModal] = useState(false);
 
