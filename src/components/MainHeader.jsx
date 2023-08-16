@@ -6,6 +6,7 @@ import { useUsers } from "../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+ 
 const MainHeader = () => {
   const { user } = useContext(AuthContext);
   const { toggleTheme } = useContext(ThemeContext);
@@ -54,9 +55,12 @@ const MainHeader = () => {
     clearTimeout(handleInputBlurTimeout);
     handleInputBlurTimeout = setTimeout(() => {
       setShowDropdown(false);
-    }, 100);
+    }, 500);
   };
-
+  const goToUserProfile = (username) => {
+    window.location.assign (`http://localhost:3006/profile/${username}`);
+    // navigate(`profile/${username}`, { replace: true });
+  };
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -80,14 +84,13 @@ const MainHeader = () => {
         {showDropdown && (
           <ul className="bg-light-quaternary dark:bg-dark-primary rounded-xl w-full mt-1 border border-light-quaternary dark:border-dark-secondary shadow-sm shadow-light-quaternary dark:shadow-dark-tertiary absolute">
             {filteredUsers.map((user, index) => {
-              const goToUserProfile = (username) => {
-                console.log("WE GOT TO HERE:", username);
-                navigate(`profile/${username}`, { replace: true });
-              };
+              
               return (
                 <li
                   key={index}
+                  
                   className="p-2 dark:hover:bg-dark-secondary cursor-pointer rounded-lg  hover:bg-light-tertiary"
+                  
                   onClick={() => goToUserProfile(user.username)}
                 >
                   <div className="flex flex-col justify-start">
