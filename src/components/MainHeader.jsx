@@ -81,7 +81,8 @@ const MainHeader = () => {
           <ul className="bg-light-quaternary dark:bg-dark-primary rounded-xl w-full mt-1 border border-light-quaternary dark:border-dark-secondary shadow-sm shadow-light-quaternary dark:shadow-dark-tertiary absolute">
             {filteredUsers.map((user, index) => {
               const goToUserProfile = (username) => {
-                navigate(`profile/${username}`);
+                console.log("WE GOT TO HERE:", username);
+                navigate(`profile/${username}`, { replace: true });
               };
               return (
                 <li
