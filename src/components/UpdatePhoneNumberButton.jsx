@@ -2,7 +2,7 @@ import React from "react";
 import UpdatePhoneNumberModal from "./modals/UpdatePhoneNumberModal";
 import { useState, useContext } from "react";
 
-function UpdatePhoneNumberButton() {
+function UpdatePhoneNumberButton({ onPostComplete }) {
   const [showUpdatePhoneNumberModal, setUpdatePhoneNumberModal] =
     useState(false);
 
@@ -16,6 +16,7 @@ function UpdatePhoneNumberButton() {
       </button>
       {showUpdatePhoneNumberModal && (
         <UpdatePhoneNumberModal
+          onPostComplete={onPostComplete}
           showModal={showUpdatePhoneNumberModal}
           setShowModal={setUpdatePhoneNumberModal}
         />

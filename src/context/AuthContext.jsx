@@ -15,13 +15,18 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [balance, setBalance] = useState(0);
+  const [mainState, setMainState] = useState(null);
+
+  const handleUserUpdate = (update) => {
+    setMainState(update);
+  };
 
   const navigate = useNavigate();
 
   useEffect(() => {
     getUserOnLoad();
   }, []);
-  
+
   const getUserOnLoad = async () => {
     try {
       const cookie = document.cookie
@@ -124,11 +129,12 @@ export const AuthProvider = ({ children }) => {
 
   const contextData = {
     balance,
-    user,    
+    user,
     loginUser,
-    logoutUser,    
+    logoutUser,
     setBalance,
     refreshUser,
+    handleUserUpdate,
   };
 
   return (

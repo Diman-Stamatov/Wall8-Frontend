@@ -2,7 +2,7 @@ import React from "react";
 import UpdateEmailModal from "./modals/UpdateEmailModal";
 import { useState, useContext } from "react";
 
-function UpdateEmailButton() {
+function UpdateEmailButton({onPostComplete}) {
   const [showUpdateEmailModal, setShowUpdateEmailModal] = useState(false);
 
   return (
@@ -15,6 +15,7 @@ function UpdateEmailButton() {
       </button>
       {showUpdateEmailModal && (
         <UpdateEmailModal
+        onPostComplete={onPostComplete}
           showModal={showUpdateEmailModal}
           setShowModal={setShowUpdateEmailModal}
         />

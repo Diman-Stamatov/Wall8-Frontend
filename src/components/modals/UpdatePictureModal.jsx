@@ -4,9 +4,13 @@ import axios from "axios";
 import { PictureForm } from "../profile/PictureForm";
 import { useAuth } from "../../context/AuthContext";
 
-function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
+function UpdatePictureModal({
+  showModal,
+  setShowModal,
+  setUpdated,
+  onPostComplete,
+}) {
   const [isLoading, setIsLoading] = useState(false);
-  const { refreshUser } = useAuth();
 
   const handleUpdate = async (values, { setSubmitting, resetForm }) => {
     console.log("update phone values:", values);
@@ -23,8 +27,7 @@ function UpdatePictureModal({ showModal, setShowModal, setUpdated }) {
       console.log("update picture response: ", response);
       resetForm();
 
-      await refreshUser();
-      console.log("refresh user after avatar change");	
+      onPostComplete(response);
       setIsLoading(false);
       setSubmitting(false);
     } catch (error) {

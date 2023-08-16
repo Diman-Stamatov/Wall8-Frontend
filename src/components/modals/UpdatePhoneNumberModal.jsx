@@ -4,7 +4,7 @@ import axios from "axios";
 import { PhoneNumberForm } from "../profile/PhoneNumberForm";
 import { useAuth } from "../../context/AuthContext";
 
-function UpdatePhoneNumberModal({ showModal, setShowModal }) {
+function UpdatePhoneNumberModal({ showModal, setShowModal, onPostComplete }) {
   const [isLoading, setIsLoading] = useState(false);
   const { refreshUser } = useAuth();
 
@@ -22,6 +22,7 @@ function UpdatePhoneNumberModal({ showModal, setShowModal }) {
       console.log("update phone response: ", response);
       resetForm();
 
+      onPostComplete(response);
       await refreshUser();
       setIsLoading(false);
       setSubmitting(false);

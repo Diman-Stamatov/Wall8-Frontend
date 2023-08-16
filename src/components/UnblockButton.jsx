@@ -2,7 +2,7 @@ import React from "react";
 import UnblockModal from "./modals/UnblockModal";
 import { useState } from "react";
 
-function UnblockButton({profileUser}) {
+function UnblockButton({profileUser, onPostComplete}) {
   const [showUnblockModal, setShowUnblockModal] = useState(false);
 
   return (
@@ -18,6 +18,7 @@ function UnblockButton({profileUser}) {
           showModal={showUnblockModal}
           setShowModal={setShowUnblockModal}
           profileUser = {profileUser}
+          onPostComplete={onPostComplete}
         />
       )}
     </div>

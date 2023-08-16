@@ -45,12 +45,19 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                     boxShadow: "0px 3px 5px 2px rgba(0, 0, 0, 0.3)",
                   }}
                 />
-                {ownProfile ? <UpdatePictureButton /> : ""}
+                {ownProfile ? (
+                  <UpdatePictureButton onPostComplete={onPostComplete} />
+                ) : (
+                  ""
+                )}
                 <div className="mt-3 mb-3">
                   {!ownProfile && loggedAdmin ? (
                     <>
                       {isBlocked ? (
-                        <UnblockButton profileUser={profileUser} />
+                        <UnblockButton
+                          profileUser={profileUser}
+                          onPostComplete={onPostComplete}
+                        />
                       ) : (
                         <BlockButton
                           profileUser={profileUser}
@@ -76,7 +83,7 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                     {email}
                   </p>
                 </div>
-                {ownProfile ? <UpdateEmailButton /> : null}
+                {ownProfile ? <UpdateEmailButton onPostComplete={onPostComplete} /> : null}
               </div>
             </div>
             <div className="mt-7 flex justify-between items-center">
@@ -86,7 +93,7 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                   {phoneNumber}
                 </p>
               </div>
-              {ownProfile ? <UpdatePhoneNumberButton /> : null}
+              {ownProfile ? <UpdatePhoneNumberButton onPostComplete={onPostComplete}/> : null}
             </div>
             <div className="mt-7 flex justify-between items-center">
               <div className="dark:text-light-primary text-left text-lg font-bold">
