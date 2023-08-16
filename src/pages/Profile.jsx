@@ -21,7 +21,7 @@ const Profile = () => {
       console.error(error);
     }
   };
-
+  
   useEffect(() => {
     getProfileData();
   }, [profileUsername]);
@@ -29,7 +29,9 @@ const Profile = () => {
   return (
     <div>
       <MainHeader />
-      <UserProfile profileUser={profileUser} />
+      <UserProfile 
+      profileUser={profileUser}
+      />
     </div>
   );
 };
