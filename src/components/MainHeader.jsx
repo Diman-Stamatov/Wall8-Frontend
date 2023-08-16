@@ -78,7 +78,7 @@ const MainHeader = () => {
           className="w-full px-3 py-2 transfer-input rounded-xl shadow-md bg-gradient-to-r from-light-quaternary to-light-primary  dark:from-dark-tertiary dark:to-dark-primary focus:outline-none focus:ring-2 focus:ring-light-quaternary  dark:focus:ring-dark-secondary focus:border-transparent"
         />
         {showDropdown && (
-          <ul className="dark:bg-dark-primary rounded-xl w-full mt-1 border dark:border-dark-secondary shadow-sm dark:shadow-dark-tertiary absolute">
+          <ul className="bg-light-quaternary dark:bg-dark-primary rounded-xl w-full mt-1 border border-light-quaternary dark:border-dark-secondary shadow-sm shadow-light-quaternary dark:shadow-dark-tertiary absolute">
             {filteredUsers.map((user, index) => {
               const goToUserProfile = (username) => {
                 navigate(`profile/${username}`);
@@ -86,14 +86,14 @@ const MainHeader = () => {
               return (
                 <li
                   key={index}
-                  className="p-2 hover:dark:bg-dark-secondary cursor-pointer rounded-lg"
+                  className="p-2 dark:hover:bg-dark-secondary cursor-pointer rounded-lg  hover:bg-light-tertiary"
                   onClick={() => goToUserProfile(user.username)}
                 >
                   <div className="flex flex-col justify-start">
-                    <p className="font-semibold dark:text-light-primary">
+                    <p className="font-semibold text-light-primary dark:text-light-primary">
                       {user.username}
                     </p>
-                    <p className="text-sm font-light dark:text-dark-tertiary">
+                    <p className="text-sm font-light text-light-primary dark:text-dark-tertiary">
                       {user.email} | {user.phoneNumber}
                     </p>
                   </div>
