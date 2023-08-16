@@ -60,7 +60,7 @@ export function TabsDefault() {
       icon: UserCircleIcon,
       component: (
         <div className="flex h-screen justify-between">
-          <div className="w-1/3 flex flex-col ">
+          <div className="w-1/3 flex flex-col gap-10">
             <UserSection />
             <WalletSection wallet={wallet} />
           </div>

@@ -12,7 +12,7 @@ function WalletSection({ wallet }) {
     currency: currency,
   }).format(balance);
   return (
-    <div className="dark:bg-gradient-to-b dark:from-dark-primary dark:to-light-quaternary border dark:border-light-secondary flex sm:flex-wrap items-end py-10 rounded-xl shadow-xl ">
+    <div className=" shadow-light-quaternary dark:bg-gradient-to-b dark:from-dark-primary dark:to-light-quaternary dark:text-light-primary border  dark:border-light-secondary flex flex-row items-end py-10 rounded-xl shadow-2xl ">
       <div className="flex flex-col items-center">
         <img
           style={{ width: "260px", height: "260px" }}

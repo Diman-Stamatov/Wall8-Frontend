@@ -62,7 +62,7 @@ const MainHeader = () => {
   }, []);
 
   return (
-    <header className="flex z-40 sticky top-0 rounded-b-xl p-5 dark:bg-dark-primary outline outline-light-quaternary dark:outline-dark-quaternary justify-between items-center shadow-md">
+    <header className="flex z-40 sticky top-0 rounded-b-xl p-5 bg-light-primary dark:bg-dark-primary outline outline-light-quaternary dark:outline-dark-quaternary justify-between items-center shadow-md">
       <div className="flex items-center bg-gradient-to-r from-light-quaternary to-light-primary  dark:bg-gradient-to-r  dark:from-dark-primary dark:to-light-quaternary shadow-lg pl-2 py-1 pr-2 rounded-2xl">
         <AccountMenu />
         <p className="text-2xl mr-auto pl-3">{user.data.username}</p>
