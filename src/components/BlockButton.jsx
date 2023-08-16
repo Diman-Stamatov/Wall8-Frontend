@@ -2,7 +2,7 @@ import React from "react";
 import BlockModal from "./modals/BlockModal";
 import { useState } from "react";
 
-function BlockButton({profileUser}) {
+function BlockButton({profileUser, onPostComplete}) {
   const [showBlockModal, setShowBlockModal] = useState(false);
 
   return (
@@ -15,6 +15,7 @@ function BlockButton({profileUser}) {
       </button>
       {showBlockModal && (
         <BlockModal
+        onPostComplete = {onPostComplete}
           showModal={showBlockModal}
           setShowModal={setShowBlockModal}
           profileUser = {profileUser}          

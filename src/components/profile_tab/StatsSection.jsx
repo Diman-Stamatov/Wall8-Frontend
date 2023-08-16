@@ -19,7 +19,6 @@ const StatsSection = () => {
           <StatCard />
           <StatCard />
         </div>
-
         {/* Big Button */}
         <div className="flex flex-col justify-center items-center p-4  shadow ml-4">
           <Link to={`transfer`}>

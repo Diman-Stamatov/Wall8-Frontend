@@ -8,29 +8,33 @@ import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { useAuth } from "../../context/AuthContext";
 
-const UserProfile = ({ profileUser}) => {
+const UserProfile = ({ profileUser, onPostComplete }) => {
   const { user } = useAuth();
-  const { photoUrl,
-    phoneNumber,
-    username,
-    email,
-    isVerified,
-    isBlocked } = profileUser;
- 
+  const { photoUrl, phoneNumber, username, email, isVerified, isBlocked } =
+    profileUser;
+
   const ownProfile = profileUser.username === user.data.username;
   const loggedAdmin = user.data.isAdmin;
-  
+
   return (
     <div>
       <div className="flex justify-center py-5">
-        <div className={`z-10 dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary shadow-lg dark:shadow-black ${ownProfile ? "w-1/2" : "w-1/6"} px-6 py-2 rounded-lg`}>
+        <div
+          className={`z-10 dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary shadow-lg dark:shadow-black ${
+            ownProfile ? "w-1/2" : "w-1/6"
+          } px-6 py-2 rounded-lg`}
+        >
           <div className="flex flex-col gap-px">
             <div className="text-center">
               <h1 className="text-2xl font-semibold">
                 {ownProfile ? `Welcome, ${username}` : `${username}'s profile`}
               </h1>
             </div>
-            <div className={`flex ${ownProfile ? "justify-start" : "justify-center"} my-auto`}>
+            <div
+              className={`flex ${
+                ownProfile ? "justify-start" : "justify-center"
+              } my-auto`}
+            >
               <div className="flex flex-col items-center">
                 <Avatar
                   src={photoUrl}
@@ -43,19 +47,20 @@ const UserProfile = ({ profileUser}) => {
                 />
                 {ownProfile ? <UpdatePictureButton /> : ""}
                 <div className="mt-3 mb-3">
-                  {(!ownProfile && loggedAdmin)
-                    ? <>
-                      {isBlocked
-                        ? <UnblockButton
+                  {!ownProfile && loggedAdmin ? (
+                    <>
+                      {isBlocked ? (
+                        <UnblockButton profileUser={profileUser} />
+                      ) : (
+                        <BlockButton
                           profileUser={profileUser}
+                          onPostComplete={onPostComplete}
                         />
-                        : <BlockButton
-                          profileUser={profileUser}                         
-                        />
-                      }
+                      )}
                     </>
-                    : ""
-                  }
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <span className=" text-xs font-semibold">
                   ACCOUNT PREFERENCES
@@ -90,7 +95,7 @@ const UserProfile = ({ profileUser}) => {
               </div>
               {ownProfile ? <UpdatePhoneNumberButton /> : null}
             </div>
-            {ownProfile ?
+            {ownProfile ? (
               <div>
                 <span className="mt-7 text-xs text-dark-quaternary font-semibold">
                   DANGER ZONE
@@ -114,13 +119,13 @@ const UserProfile = ({ profileUser}) => {
                   {!isVerified ? (
                     <p className="max-w-md">
                       You have not verified your account yet! Please check your
-                      inbox for the verification link sent to you after registering
-                      your account.
+                      inbox for the verification link sent to you after
+                      registering your account.
                     </p>
                   ) : null}
                 </div>
               </div>
-              : null}
+            ) : null}
           </div>
           <Link to="/" className="flex justify-start mt-4">
             <span className="text-sm font-semibold">Back to home</span>

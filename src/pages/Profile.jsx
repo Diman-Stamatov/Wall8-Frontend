@@ -7,6 +7,10 @@ import axios from "axios";
 const Profile = () => {
   const { profileUsername } = useParams();
   const [profileUser, setProfileUser] = useState({ data: {} });
+  const [mainState, setMainState] = useState(null);
+  const handlePostComplete = (result) => {
+    setMainState(result);
+  };
 
   const getProfileData = async () => {
     try {
@@ -21,16 +25,17 @@ const Profile = () => {
       console.error(error);
     }
   };
-  
+
   useEffect(() => {
     getProfileData();
-  }, [profileUsername]);
+  }, [profileUsername, mainState]);
 
   return (
     <div>
       <MainHeader />
-      <UserProfile 
-      profileUser={profileUser}
+      <UserProfile
+        profileUser={profileUser}
+        onPostComplete={handlePostComplete}
       />
     </div>
   );

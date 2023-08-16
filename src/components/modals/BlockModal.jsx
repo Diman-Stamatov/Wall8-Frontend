@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 
-function BlockModal({ showModal, setShowModal, profileUser}) {
+function BlockModal({ showModal, setShowModal, profileUser, onPostComplete}) {
   const [confirmed, setConfirmed] = useState(false);  
+  const [postResult, setPostResult] = useState(null)
 
   const handleConfirm = async () => {
     setConfirmed(true);
@@ -12,7 +13,8 @@ function BlockModal({ showModal, setShowModal, profileUser}) {
         {},
         { withCredentials: true }
       );      
-        
+       setPostResult(response.data.blockedStatus); 
+       onPostComplete(response.data.blockedStatus);
       console.log("block response: ", response);
     } catch (error) {
       console.log("block error: ", error);
