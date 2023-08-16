@@ -10,10 +10,9 @@ function WalletSection({ wallet }) {
   const formattedBalance = new Intl.NumberFormat(userLocale, {
     style: "currency",
     currency: currency,
-
   }).format(balance);
   return (
-    <div className="dark:bg-gradient-to-b dark:from-dark-primary dark:to-light-quaternary border dark:border-light-secondary flex flex-row items-end py-10 rounded-xl shadow-xl ">
+    <div className="dark:bg-gradient-to-b dark:from-dark-primary dark:to-light-quaternary border dark:border-light-secondary flex sm:flex-wrap items-end py-10 rounded-xl shadow-xl ">
       <div className="flex flex-col items-center">
         <img
           style={{ width: "260px", height: "260px" }}
@@ -24,7 +23,7 @@ function WalletSection({ wallet }) {
           <p className="text-sm font-semibold dark:text-light-tertiary">
             Total balance
           </p>
-          <h1 className="font-semibold dark:text-light-secondary text-5xl">
+          <h1 className="font-semibold lg:text-3xl ml-5 dark:text-light-secondary">
             {formattedBalance}
           </h1>
         </div>
