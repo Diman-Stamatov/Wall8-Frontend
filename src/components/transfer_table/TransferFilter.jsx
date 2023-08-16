@@ -9,21 +9,26 @@ function TransferFilter({
 }) {
   const [filterText, setFilterText] = useState("");
 
+  console.log("trasnfers", transfers)
   useEffect(() => {
-    const filteredTransfers = transfers.filter(transfer => {
-      const userNameMatch = transfer.recipientUsername.toLowerCase().includes(filterText.toLowerCase());
-      const amountMatch = transfer.amount.toString().includes(filterText);
-      return userNameMatch || amountMatch;
+    const filteredTransfers = transfers.filter((transfer) => {
+      const userNameMatch = transfer.recipientUsername
+        ?.toLowerCase()
+        .includes(filterText.toLowerCase());
+      const senderUserNameMatch = transfer.senderUsername
+        ?.toLowerCase()
+        .includes(filterText.toLowerCase());
+      const amountMatch = transfer.amount?.toString().includes(filterText);
+      return userNameMatch || senderUserNameMatch || amountMatch;
     });
 
-    const typeFilteredTransfers = filteredTransfers.filter(transfer => {
+    const typeFilteredTransfers = filteredTransfers.filter((transfer) => {
       if (filterType === "All") {
         return transfer;
       } else {
         return transfer.type === filterType.toLowerCase();
       }
     });
-
 
     setFilteredTransfers(typeFilteredTransfers);
   }, [transfers, filterType, filterText]);
@@ -84,7 +89,7 @@ function TransferFilter({
           </svg>
         </span>
         <input
-        onChange={handleFilterChange}
+          onChange={handleFilterChange}
           value={filterText}
           placeholder="Search"
           className="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"

@@ -3,17 +3,17 @@ import React from "react";
 function TableHeader() {
   return (
     <thead className="dark:bg-dark-secondary">
-      <tr className="dark:text-dark-tertiary">
-        <th className=" px-5 py-3  text-left text-xs font-semibold  uppercase tracking-wider rounded-tl-lg">
+      <tr className="dark:text-dark-tertiary ">
+        <th className=" px-5 py-3  text-center text-xs font-semibold  uppercase tracking-wider rounded-tl-lg">
           User
         </th>
-        <th className="px-5 py-3 text-left text-xs font-semibold  uppercase tracking-wider">
+        <th className="px-5 py-3 text-center text-xs font-semibold  uppercase tracking-wider">
           Amount
         </th>
-        <th className="px-5 py-3 text-left text-xs font-semibold  uppercase tracking-wider">
+        <th className="px-5 py-3 text-center text-xs font-semibold  uppercase tracking-wider">
           Date
         </th>
-        <th className="px-5 py-3 text-left text-xs font-semibold  uppercase tracking-wider rounded-tr-lg">
+        <th className="px-5 py-3 text-center text-xs font-semibold  uppercase tracking-wider rounded-tr-lg">
           Type
         </th>
       </tr>

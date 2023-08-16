@@ -1,11 +1,13 @@
 import React from "react";
 import { Avatar } from "@mui/material";
+import { useUserLocale } from "../../context/LocaleContext";
 
 function TableBody({ transfers, currentPage, transfersPerPage }) {
   const startIndex = (currentPage - 1) * transfersPerPage;
   const endIndex = Math.min(startIndex + transfersPerPage, transfers.length);
   const limitedTransfers = transfers.slice(startIndex, endIndex);
-  console.log("BIG TRANSFERS", transfers);
+  console.log("limited tr", limitedTransfers);
+  const { userLocale } = useUserLocale();
   return (
     <tbody>
       {limitedTransfers.map((transfer, index) => (
@@ -20,16 +22,21 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
               </div>
               <div className="ml-3">
                 <p className="dark:text-light-primary whitespace-nowrap">
-                  {transfer.recipientUsername}
+                  {transfer.senderUsername
+                    ? transfer.senderUsername
+                    : transfer.recipientUsername}
+                  {transfer.senderUsername && transfer.recipientUsername
+                    ? ` / ${transfer.recipientUsername}`
+                    : ""}
                 </p>
               </div>
             </div>
           </td>
           <td className="px-5 py-5 text-sm font-semibold">
             <p className="dark:text-dark-tertiary whitespace-no-wrap">
-              {new Intl.NumberFormat("en-UK", {
+              {new Intl.NumberFormat(userLocale, {
                 style: "currency",
-                currency: "EUR",
+                currency: transfer.currency,
               }).format(transfer.amount)}
             </p>
           </td>
