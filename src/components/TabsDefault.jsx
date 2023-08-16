@@ -16,10 +16,14 @@ import { CreditCardIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import UserStatisticsCards from "./users/UserStatisticsCards";
 import TransferInit from "./users/TransferInit";
+import UserSection from "./profile_tab/UserSection";
+import WalletSection from "./profile_tab/WalletSection";
+import TransferSection from "./profile_tab/TransferSection";
+import StatsSection from "./profile_tab/StatsSection";
 
 export function TabsDefault() {
   const authContext = useContext(AuthContext);
-  const [balance, setBalance] = useState(authContext.user.data.balance);
+  const [wallet, setWallet] = useState(authContext.user.data.wallet.balance);
   const [transfers, setTransfers] = useState([]);
   const [cards, setCards] = useState(authContext.user.data.bankCards);
 
@@ -40,7 +44,7 @@ export function TabsDefault() {
 
     const combinedTransfers = [...incomingTransfers, ...outgoingTransfers];
 
-    setBalance(authContext.user.data.balance);
+    setWallet(authContext.user.data.wallet.balance);
     setTransfers(combinedTransfers);
     setCards(authContext.user.data.bankCards);
   }, [
@@ -55,12 +59,15 @@ export function TabsDefault() {
       value: "profile",
       icon: UserCircleIcon,
       component: (
-        <div className="flex flex-row-gap-sm-5">
-          <div className="flex justify-between space-x-5 ">
-            <UserProfileTab balance={balance} />
-            <AddFundsButton balance={balance} setBalance={setBalance} />
+        <div className="flex h-screen justify-between">
+          <div className="w-1/3 flex flex-col ">
+            <UserSection />
+            <WalletSection wallet={wallet} />
           </div>
-          
+          <div className="flex flex-col justify-items-end w-1/2">
+            <TransferSection />
+            <StatsSection />
+          </div>
         </div>
       ),
     },
