@@ -48,7 +48,7 @@ export function TabsDefault() {
     setTransfers(combinedTransfers);
     setCards(authContext.user.data.bankCards);
   }, [
-    authContext.user.data.balance,
+    authContext.user.data.wallet.balance,
     authContext.user.data.sentTransfers,
     authContext.user.data.receivedTransfers,
     authContext.user.data.bankCards,

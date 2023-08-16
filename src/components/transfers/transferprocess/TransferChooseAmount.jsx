@@ -11,12 +11,14 @@ const TransferChooseAmount = ({
   onNext,
 }) => {
   const { userLocale } = useUserLocale();
-  const handleValueChange = (value, name, values) => {
-    if (values.float > wallet.balance) {
-      setAmount(wallet.balance);
-      return;
-    }
-    setAmount(values.float);
+  const [value, setValue] = useState("");
+
+  const handleChange = (e) => {
+    const rawValue = e.target.value.replace(/\D/g, "");
+    const formattedValue = Number(rawValue).toLocaleString();
+    setValue(formattedValue);
+    console.log("value", value)
+    setAmount(value);
   };
 
   return (
@@ -44,16 +46,10 @@ const TransferChooseAmount = ({
           >
             Amount
           </label>
-          <CurrencyInput
-            name="amount"
-            id="amount"
-            onValueChange={handleValueChange}
-            value={amount}
-            intlConfig={{ locale: userLocale, currency: wallet.currency }}
-            placeholder="0.00"
-            allowDecimals={true}
-            decimalScale={2}
-            allowNegativeValue={false}
+          <input
+            type="text"
+            value={value}
+            onChange={handleChange}
             className="mt-1 block w-full p-4 font-semibold border-gray-300 rounded-md shadow-sm dark:bg-dark-secondary dark:border-dark-primary dark:text-light-primary dark:placeholder-light-tertiary dark:focus:ring-light-primary dark:focus:border-light-primary focus:ring-light-tertiary focus:border-light-tertiary sm:text-sm"
           />
         </div>
