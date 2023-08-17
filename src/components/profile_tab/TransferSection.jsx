@@ -1,40 +1,62 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import "./TransferSection.css";
+import { useUserLocale } from "../../context/LocaleContext";
 
-const data = [
-  ["John Doe", "johndoe@example.com", "Developer", "New York"],
-  ["Jane Smith", "janesmith@example.com", "Designer", "Los Angeles"],
-  ["Michael Johnson", "michael@example.com", "Manager", "Chicago"],
-  ["Emily Brown", "emily@example.com", "Writer", "San Francisco"],
-  ["David Lee", "david@example.com", "Analyst", "Seattle"],
-];
+const TransferSection = ({ transfers }) => {
+  transfers.sort((a, b) => {
+    return b.timestamp.localeCompare(a.timestamp);
+  });
+  const slicedTransfers = transfers.slice(0, 4);
+  const userLocale = useUserLocale();
 
-const TransferSection = () => {
   return (
-    <div className="px-5 flex flex-col justify-center ">
-      <h1 className="font-medium text-2xl text-start dark:text-light-primary">Recent Transfers</h1>
-      <table className="table-auto overflow-hidden border-collapse shadow-2xl shadow-light-quaternary dark:shadow-dark-secondary rounded-lg mt-4  mr-2">
-        <thead>
-          <tr className="dark:text-light-primary shadow-sm shadow-light-quaternary dark:bg-gradient-to-r dark:from-dark-secondary dark:to-dark-primary ">
-            <th className="px-4 py-2">Name</th>
-            <th className="px-4 py-2">Email</th>
-            <th className="px-4 py-2">Role</th>
-            <th className="px-4 py-2">Location</th>
-          </tr>
-        </thead>
-        <tbody className=" rounded-xl">
-          {data.map((row, index) => (
-            <tr key={index} className="  hover:text-light-secondary dark:hover:text-dark-tertiary dark:hover:shadow-xl hover:-translate-y-2 hover:scale-y-105 text-center dark:text-light-primary rounded-xl dark:bg-gradient-to-r dark:from-dark-secondary dark:to-dark-primary">
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex} className=" px-4 py-2">
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      
+    <div className="flex flex-col items-center">
+      <h1 className="font-medium text-2xl mb-4 text-gray-800 dark:text-light-primary">
+        Recent Transfers
+      </h1>
+      <div className="w-full drop-shadow-lg">
+        {slicedTransfers.map((transfer, index) => {
+          const scale = 1 - index * 0.05;
+          const scaleStyle = {
+            transform: `scale(${scale})`,
+            transition: "transform 0.3s",
+          };
+          return (
+            <div
+              key={index}
+              className={`p-4 rounded-lg shadow-md ${
+                transfer.type === "incoming"
+                  ? "bg-gradient-to-r from-light-primary to-light-secondary dark:from-dark-primary dark:to-light-secondary"
+                  : "bg-gradient-to-r from-light-primary to-dark-quaternary dark:from-dark-primary dark:to-dark-quaternary"
+              }`}
+              style={index !== 0 ? scaleStyle : {}}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="text-xl font-semibold text-dark-primary dark:text-light-primary">
+                    {transfer.type === "incoming" ? "Incoming" : "Outgoing"}
+                  </div>
+                  <div className="text-base font-semibold drop-shadow-md text-gray-500">
+                    {transfer.senderUsername
+                      ? transfer.senderUsername
+                      : transfer.recipientUsername}
+                    {transfer.senderUsername && transfer.recipientUsername
+                      ? ` / ${transfer.recipientUsername}`
+                      : ""}
+                  </div>
+                </div>
+                <div className="text-xl font-semibold  text-green-800">
+                  {new Intl.NumberFormat(userLocale, {
+                    style: "currency",
+                    currency: transfer.currency,
+                  }).format(transfer.amount)}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+        ;
+      </div>
     </div>
   );
 };

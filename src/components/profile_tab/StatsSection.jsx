@@ -115,18 +115,16 @@ const StatsSection = () => {
           />
           <StatCard header="Sent (last week)" body={sentBody} dates={dates} />
           <StatCard
-            header="Transfers sent (last week)"
-            body={transfersSent}
-            dates={dates}
-          />
-          <StatCard
             header="Transfers received (last week)"
             body={transfersReceived}
             dates={dates}
           />
+          <StatCard
+            header="Transfers sent (last week)"
+            body={transfersSent}
+            dates={dates}
+          />
         </div>
-        {/* Big Button */}
-
         <div className="flex flex-col justify-center items-center p-4 ml-4">
           {!user.data.isBlocked ? (
             <>
@@ -153,7 +151,7 @@ const StatsSection = () => {
             >
               Your account has been{" "}
               <span style={{ color: "red", fontWeight: "bold" }}>blocked </span>
-              and can therefore not send or receive any transfers. Please
+              and can therefore not send nor receive any transfers. Please
               contact our support team for any further questions regarding this
               issue.
             </div>

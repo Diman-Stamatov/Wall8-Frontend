@@ -6,6 +6,8 @@ import { useUsers } from "../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaGitlab } from "react-icons/fa";
+import { Avatar } from "@mui/material";
+import { debounce } from "lodash";
 
 const MainHeader = () => {
   const { user } = useContext(AuthContext);
@@ -37,10 +39,10 @@ const MainHeader = () => {
         });
       });
   }
-  const redirectToGitLab = () =>{
+  const redirectToGitLab = () => {
     window.open(`https://gitlab.com/finalgroup3/virtual-wallet-project`);
     window.open(`https://gitlab.com/finalgroup3/virtual-wallet-react`);
-  }
+  };
   const filteredUsers = users.filter((user) => {
     const filteredMatches =
       user.username.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -49,8 +51,9 @@ const MainHeader = () => {
   });
 
   const handleSearchChange = (event) => {
-    setSearchValue(event.target.value);
-    setShowDropdown(true);
+    const inputValue = event.target.value;
+    setSearchValue(inputValue);
+    setShowDropdown(inputValue !== "");
   };
 
   let handleInputBlurTimeout;
@@ -65,6 +68,7 @@ const MainHeader = () => {
     window.location.assign(`http://localhost:3006/profile/${username}`);
     // navigate(`profile/${username}`, { replace: true });
   };
+
   useEffect(() => {
     getAllUsers();
   }, []);
@@ -94,13 +98,20 @@ const MainHeader = () => {
                   className="p-2 dark:hover:bg-dark-secondary cursor-pointer rounded-lg  hover:bg-light-tertiary"
                   onClick={() => goToUserProfile(user.username)}
                 >
-                  <div className="flex flex-col justify-start">
-                    <p className="font-semibold text-light-primary dark:text-light-primary">
-                      {user.username}
-                    </p>
-                    <p className="text-sm font-light text-light-primary dark:text-dark-tertiary">
-                      {user.email} | {user.phoneNumber}
-                    </p>
+                  <div className="flex items-center">
+                    <Avatar
+                      src={user.photoUrl}
+                      alt="Avatar"
+                      sx={{ height: "36px", width: "36px" }}
+                    />
+                    <div className="flex flex-col justify-start">
+                      <p className="ml-2 font-semibold text-light-primary dark:text-light-primary">
+                        {user.username}
+                      </p>
+                      <p className="ml-2 text-sm font-light text-light-primary dark:text-dark-tertiary">
+                        {user.email} | {user.phoneNumber}
+                      </p>
+                    </div>
                   </div>
                 </li>
               );
@@ -109,7 +120,7 @@ const MainHeader = () => {
         )}
       </div>
       <button className="flex items-center justify-center">
-        <FaGitlab size={30} onClick={redirectToGitLab}/>
+        <FaGitlab size={30} onClick={redirectToGitLab} />
       </button>
     </header>
   );

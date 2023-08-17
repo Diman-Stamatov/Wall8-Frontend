@@ -18,12 +18,23 @@ const TransferChooseAmount = ({
   }).format(0.0);
 
   const handleChange = (e) => {
-    if (e.target.value.length === 0) {
+    const inputValue = e.target.value;
+
+    if (inputValue === "") {
       setAmount(0);
+    } else {
+      const numericValue = parseFloat(inputValue.replace(/,/g, ''));
+      if (!isNaN(numericValue)) {
+        setAmount(Math.min(numericValue, wallet.balance));
+      }
     }
-    setAmount(e.target.value);
   };
 
+const handleBlur = () => {
+  if (amount === "") {
+    setAmount(0);
+  }
+};
   return (
     <div style={{ width: "350px" }}>
       <div style={{ height: "101px" }}>
@@ -50,10 +61,12 @@ const TransferChooseAmount = ({
             Amount
           </label>
           <input
-            type="number"
+            type="text"
             placeholder={formattedPlaceholder}
-            value={amount}
+            value={amount === 0 ? "" : amount.toLocaleString()}
+            
             onChange={handleChange}
+            onBlur={handleBlur}
             className="mt-1 block w-full p-4 font-semibold border-gray-300 rounded-md shadow-sm dark:bg-dark-secondary dark:border-dark-primary dark:text-light-primary dark:placeholder-light-tertiary dark:focus:ring-light-primary dark:focus:border-light-primary focus:ring-light-tertiary focus:border-light-tertiary sm:text-sm"
           />
         </div>
