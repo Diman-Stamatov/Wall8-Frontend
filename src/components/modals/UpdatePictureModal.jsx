@@ -53,7 +53,7 @@ function UpdatePictureModal({
 
   const validationSchema = Yup.object().shape({
     newPictureUrl: Yup.mixed()
-      .required("Please select Image")
+      .required("Please enter a URL...")
       .test("fileFormat", "Please input an image URL", (value) => {
         return SUPPORTED_FORMATS.indexOf(get_url_extension(value)) !== -1;
       }),

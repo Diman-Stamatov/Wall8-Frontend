@@ -11,9 +11,9 @@ function PictureForm({ validationSchema, handleUpdate, handleCancel }) {
     >
       {({ isSubmitting }) => (
         <div className="flex items-center justify-center" style={{marginBottom:20}}>
-          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-dark-primary w-55 px-6 py-2 rounded-md ">
+          <div className="border border-dark-primary dark:border-light-tertiary z-10 bg-light-primary dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary px-6 py-2 rounded-md ">
             <h1 className="text-2xl font-bold mb-6 text-dark-secondary dark:text-dark-tertiary">
-              Please enter the URL of your new avatar
+              Please enter the URL of your avatar
             </h1>
             <Form>
               <div className="mb-5">
@@ -28,20 +28,20 @@ function PictureForm({ validationSchema, handleUpdate, handleCancel }) {
                 <ErrorMessage
                   name="newPictureUrl"
                   component="div"
-                  className="text-red-700"
+                  className="text-red-700 text-xs mt-1"
                 />
               </div>
               <div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="auth-btn-small dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-md" style={{marginRight:5}}
+                  className="left-0 auth-btn-small hover:bg-light-secondary dark:hover:bg-light-secondary dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-full" style={{marginRight:5}}
                 >
                   Apply
                 </button>
                 <button
                 onClick={handleCancel}
-                className="auth-btn-small dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-md"
+                className="right-0 auth-btn-small hover:bg-dark-quaternary dark:hover:bg-dark-quaternary dark:bg-dark-secondary  dark:text-white font-bold py-2 px-4 rounded-full text-xs mt-1"
               >
                 Cancel
               </button>

@@ -96,6 +96,13 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                     ""
                   )}
                 </div>
+                {isBlocked?
+                  <div style={{color:"red", textAlign:"justify"}}>
+                  {ownProfile? "Your" : `${username}'s`} account has been blocked and can therefore not send or receive any transfers.
+                  {ownProfile? " Please contact our support team for any further questions regarding this issue." : ""}
+                  </div>
+                  :""
+                }                
                 <span className=" text-xs font-semibold">
                   ACCOUNT PREFERENCES
                 </span>

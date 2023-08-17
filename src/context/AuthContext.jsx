@@ -93,7 +93,7 @@ export const AuthProvider = ({ children }) => {
       );
       setUser(null);
       document.cookie = "Cookie_JWT=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.log("Logout error:", error);
     }
