@@ -23,10 +23,11 @@ const MONTHS = [
   "December",
 ];
 
-import { Box } from "@mui/system";
+
 
 const StatsSection = () => {
   const { userLocale } = useUserLocale();
+  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [incomeBody, setIncomeBody] = useState(null);
   const [dates, setDates] = useState(null);

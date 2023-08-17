@@ -12,9 +12,9 @@ function UpdateEmailModal({ showModal, setShowModal }) {
         {},
         { withCredentials: true }
       );
-      console.log("change email response: ", response);
+      
     } catch (error) {
-      console.log("change email error: ", error);
+      
     }
   };
 

@@ -11,6 +11,7 @@ import { useError } from "../../context/ErrorContext";
 import ChangeCurrencyModal from "../modals/ChangeCurrencyModal";
 import SuccessModal from "../modals/SuccessModal";
 import { useUserLocale } from "../../context/LocaleContext";
+import DeleteProfileModal from "../modals/DeleteProfileModal";
 
 const UserProfile = ({ profileUser, onPostComplete }) => {
   const {userLocale} = useUserLocale();
@@ -25,6 +26,7 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
     isBlocked,
   } = profileUser;
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const { clearError } = useError();
   const [successData, setSuccessData] = useState(null);
 
@@ -37,7 +39,14 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
   const openModal = () => {
     setIsOpen(true);
   };
-
+  const openDeleteModal = () => {
+    setIsDeleteOpen(true);
+    console.log("WE ARE OPENING THE MODAL");
+  };
+  const closeDeleteModal = () => {
+    setIsDeleteOpen(false);
+    clearError();
+  };
   const closeModal = () => {
     setIsOpen(false);
     clearError();
@@ -146,7 +155,7 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                     onClick={openModal}
                     className="button rounded-full  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
                   >
-                    <span className="text-sm">Update</span>
+                    <span className="text-sm">Change Currency</span>
                   </button>
                   <ChangeCurrencyModal
                     isOpen={isOpen}
@@ -179,9 +188,18 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                 </div>
                 <div className="mt-7 flex justify-between items-center">
                   <div className="text-left dark:text-light-primary text-lg font-bold">
-                    Delete account <p className="text-xs">(WIP)</p>
+                    Delete account 
                   </div>
-                  <UpdateEmailButton />
+                  <button
+                    onClick={openDeleteModal}
+                    className="button rounded-full  bg-red-600  text-white font-bold  px-4 "
+                  >
+                    <span className="text-sm">Delete</span>
+                  </button>
+                  <DeleteProfileModal 
+                    isOpen={isDeleteOpen}
+                    onClose={closeDeleteModal}
+                  />
                 </div>
                 <div className="col-span-3">
                   {!isVerified ? (

@@ -31,7 +31,9 @@ export default function AccountMenu() {
     toggleTheme();
     setSwitchState((prevSwitchState) => !prevSwitchState);
   };
+  const handleOnChange = () =>{
 
+  };
   return (
     <React.Fragment>
       <Tooltip title="Account settings">
@@ -76,7 +78,7 @@ export default function AccountMenu() {
         <MenuItem onClick={handleMenuItemThemeChange}>
           Dark Mode
           <div className="relative left-auto top-auto ml-2">
-            <Switch checked={switchState} />
+            <Switch checked={switchState} onChange={handleOnChange} />
           </div>
         </MenuItem>
         <MenuItem onClick={logoutUser}>

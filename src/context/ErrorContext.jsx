@@ -5,6 +5,7 @@ const ErrorContext = createContext();
 const initialState = null;
 
 const errorReducer = (state, action) => {
+  console.log("ERROR DISPATCHED: ", action);
   switch (action.type) {
     case "SET_ERROR":
       return action.payload;
