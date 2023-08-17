@@ -26,6 +26,7 @@
     "credit-card-type": "^9.1.0",
     "formik": "^2.4.2",
     "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
     "luhn": "^2.4.1",
     "nextjs-toploader": "^1.4.2",
     "payment": "^2.4.6",

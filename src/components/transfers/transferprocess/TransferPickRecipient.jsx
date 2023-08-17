@@ -26,12 +26,10 @@ const TransferPickRecipient = ({
 
   const selectRecipient = (selectedRecipient) => {
     setRecipient(selectedRecipient);
-    console.log(selectedRecipient.username);
   };
 
   const clearRecipient = () => {
     setRecipient("");
-    console.log("Recipient cleared");
   };
 
   const filteredRecipients = recipients.filter((recipient) => {
@@ -74,7 +72,7 @@ const TransferPickRecipient = ({
                 className="flex justify-between items-center"
                 onClick={toggleOpen(index)}
               >
-                {openIndex === index ? "" : <Avatar />}
+                {openIndex === index ? "" : <Avatar src={filtRec.photoUrl}/>}
                 <p className="cursor-pointer text-lg flex  ">
                   {filtRec.username}
                   {recipient.id === filtRec.id && (
@@ -90,7 +88,7 @@ const TransferPickRecipient = ({
               {openIndex === index && (
                 <div className="mt-4">
                   <div className="flex items-center">
-                    <Avatar />
+                    <Avatar src={filtRec.photoUrl}/>
                     <p className="ml-2 font-bold pointer-events-none">
                       {filtRec.username}
                     </p>

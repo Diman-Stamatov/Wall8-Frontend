@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar } from "@mui/material";
 import { useUserLocale } from "../../../context/LocaleContext";
 import { useAuth } from "../../../context/AuthContext";
+import axios from "axios";
 
 function TransferConfirm({
   recipient,
@@ -11,16 +12,33 @@ function TransferConfirm({
   setStep,
   isLoading,
 }) {
-  const [fee, setFee] = React.useState(0.0);
+  const [fee, setFee] = useState(0.0);
   const userLocale = useUserLocale();
   const { user } = useAuth();
   const currency = user.data.wallet.balance.currency;
+  const [avatar, setAvatar] = useState(null);
 
   const calculateFee = (amount) => {
-    return amount * 0.01;
+    return amount * 0.005;
   };
 
-  React.useEffect(() => {
+  const fetchRecipient = async () => {
+    axios
+      .get(
+        `http://localhost:5120/api/virtual-wallet/users/profile/${recipient}`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((response) => {
+        setAvatar(response.data.photoUrl);
+      })
+      .catch((error) => {
+      });
+  };
+
+  useEffect(() => {
+    fetchRecipient();
     const calculatedFee = calculateFee(amount);
     setFee(calculatedFee);
   }, [amount]);
@@ -60,14 +78,14 @@ function TransferConfirm({
               </span>
             </div>
             <div className="mt-1  dark:text-dark-secondary text-xs">
-              1% of total amount
+              0.5% of total amount
             </div>
           </div>
           <div className="pt-2 dark:text-light-primary flex-col justify-between items-start space-y-0">
             <header className=" text-3xl">Recipient</header>
             <div className="flex justify-between items-center w-full">
               <div className="flex items-center">
-                <Avatar />
+                <Avatar src={avatar}/>
                 <label className="dark:text-dark-tertiary ml-2 font-medium">
                   {recipient}
                 </label>

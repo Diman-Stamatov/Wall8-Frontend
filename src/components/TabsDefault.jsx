@@ -65,7 +65,7 @@ export function TabsDefault() {
             <WalletSection wallet={wallet} />
           </div>
           <div className="flex flex-col justify-items-end w-1/2">
-            <TransferSection />
+            <TransferSection transfers={transfers} />
             <StatsSection />
           </div>
         </div>

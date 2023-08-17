@@ -100,17 +100,9 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
               {formatDate(transfer.timestamp, userLocale)}
             </p>
           </td>
-          <td className="px-5 py-5 font-semibold text-sm rounded-br-lg ">
-            <span className="relative inline-block px-3 py-1 font-semibold dark:text-light-primary  leading-tight">
-              <span
-                aria-hidden
-                className={`absolute inset-0 ${
-                  transfer.type === "incoming" ? "bg-green-400" : "bg-red-500"
-                } opacity-50 rounded-full`}
-              ></span>
-              <span className="relative">
-                {transfer.type === "incoming" ? "incoming" : "outgoing"}
-              </span>
+          <td className={`px-5 py-5 font-semibold text-center rounded-br-lg dark:bg-gradient-to-r ${transfer.type === "incoming" ? " dark:from-dark-primary dark:to-light-secondary" : "dark:from-dark-primary dark:to-dark-quaternary"}`}>
+            <span className="text-lg font-semibold dark:text-light-primary text-dark-primary">
+              {transfer.type}
             </span>
           </td>
         </tr>
