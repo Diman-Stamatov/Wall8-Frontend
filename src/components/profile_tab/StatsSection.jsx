@@ -22,7 +22,7 @@ const MONTHS = [
   "November",
   "December",
 ];
-import { useAuth } from "../../context/AuthContext";
+
 import { Box } from "@mui/system";
 
 const StatsSection = () => {
@@ -90,7 +90,7 @@ const StatsSection = () => {
     setIsLoading(false);
   };
 
-  const { user } = useAuth();
+ 
 
   return (
     <div className="px-5 flex flex-col mt-5 ">
@@ -128,7 +128,7 @@ const StatsSection = () => {
         {!user.data.isBlocked?
           <><Link to={`transfer`}>
             <PaperAirplaneIcon
-              className="ml-20 hover:scale-y-150 cursor-pointer hover:-translate-y-2 h-12  w-12 text-blue-500"
+              className="ml-20 hover:scale-y-150 cursor-pointer h-12  w-12 text-blue-500"
               style={{ width: "120px", height: "120px" }}
             />
           </Link>
