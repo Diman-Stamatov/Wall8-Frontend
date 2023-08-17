@@ -35,8 +35,7 @@ export const TransferProvider = ({ children }) => {
           payload: [...state.transfers, transfer],
         });
         loadingDispatch({ type: "SET_LOADING", payload: false });
-        console.log("dispatched success");
-        console.log("Transfer", transfer);
+
       })
       .catch((error) => {
         dispatch({ type: "POST_TRANSFERS_ERROR", payload: error });

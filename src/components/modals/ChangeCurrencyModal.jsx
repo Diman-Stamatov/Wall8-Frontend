@@ -28,7 +28,7 @@ const ChangeCurrencyModal = ({
   onComplete,
   handleSuccess,
 }) => {
-  const { user } = useAuth();
+  const { user, refreshUser } = useAuth();
   const userId = user.data.id;
   const [password, setPassword] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState(ISO_CODES[0]);
@@ -59,6 +59,7 @@ const ChangeCurrencyModal = ({
       .then((response) => {
         handleSuccess(response.data);
         onComplete(response.data);
+       refreshUser(); 
         onClose();
       })
       .catch((reqError) => {

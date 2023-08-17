@@ -9,6 +9,7 @@ import { useLoading } from "../../../context/LoadingContext";
 import { useError } from "../../../context/ErrorContext";
 import { useTransfer } from "../../../context/TransferContext";
 import axios from "axios";
+import { useAuth } from "../../../context/AuthContext";
 
 const TransferForm = ({ user }) => {
   const [step, setStep] = useState(1);
@@ -21,7 +22,7 @@ const TransferForm = ({ user }) => {
   const { users, dispatch } = useUsers();
   const [recPage, setRecPage] = useState(1);
   const [pageInfo, setPageInfo] = useState([]);
-
+const {refreshUser} = useAuth();
   useEffect(() => {
     dispatch({ type: "FETCH_USERS_LOADING" });
     axios
@@ -86,6 +87,7 @@ const TransferForm = ({ user }) => {
 
     await postTransfer(newTransfer);
 
+refreshUser();
     setComplete(true);
     navigate("/confirmed-transfer", { replace: true });
   };
