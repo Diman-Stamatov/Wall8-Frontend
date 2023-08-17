@@ -20,3 +20,24 @@ export function LocaleProvider({ children }) {
 export function useUserLocale() {
   return useContext(LocaleContext);
 }
+
+export function formatDate(dateString, userLocale) {
+  const options = {
+    year: "2-digit",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+
+  if (!dateString || !userLocale) {
+    return ""; 
+  }
+
+  const formattedDate = new Date(dateString).toLocaleString(
+    userLocale,
+    options
+  );
+  return formattedDate;
+}

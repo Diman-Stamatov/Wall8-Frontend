@@ -27,12 +27,10 @@ import { Box } from "@mui/system";
 
 const StatsSection = () => {
   const { userLocale } = useUserLocale();
-  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [incomeBody, setIncomeBody] = useState(null);
   const [dates, setDates] = useState(null);
   const [sentBody, setSentBody] = useState(null);
-  const [sentDates, setSentDates] = useState(null);
   const [transfersSent, setTransfersSent] = useState(null);
   const [transfersReceived, setTransfersReceived] = useState(null);
 
@@ -90,6 +88,12 @@ const StatsSection = () => {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    if (dates === undefined || dates === null) {
+      fetchData();
+    }
+  }, [dates]);
+
  
 
   return (
@@ -123,26 +127,39 @@ const StatsSection = () => {
           />
         </div>
         {/* Big Button */}
-        
+
         <div className="flex flex-col justify-center items-center p-4 ml-4">
-        {!user.data.isBlocked?
-          <><Link to={`transfer`}>
-            <PaperAirplaneIcon
-              className="ml-20 hover:scale-y-150 cursor-pointer h-12  w-12 text-blue-500"
-              style={{ width: "120px", height: "120px" }}
-            />
-          </Link>
-          <p className="mt-2 ml-20 text-center font-extrabold text-3xl dark:text-light-primary">
-            Transfer
-          </p>
-          </> : 
-          <div className="rounded-lg  shadow-2xl shadow-light-quaternary dark:text-light-primary dark:bg-gradient-to-b
+          {!user.data.isBlocked ? (
+            <>
+              <Link to={`transfer`}>
+                <PaperAirplaneIcon
+                  className="ml-20 hover:scale-y-150 cursor-pointer hover:-translate-y-2 h-12  w-12 text-blue-500"
+                  style={{ width: "120px", height: "120px" }}
+                />
+              </Link>
+              <p className="mt-2 ml-20 text-center font-extrabold text-3xl dark:text-light-primary">
+                Transfer
+              </p>
+            </>
+          ) : (
+            <div
+              className="rounded-lg  shadow-2xl shadow-light-quaternary dark:text-light-primary dark:bg-gradient-to-b
            dark:from-dark-secondary dark:to-dark-primary"
-          style={{width: "210px", height: "200px", textAlign:"justify", padding:10}}>
-            Your account has been <span style={{color:"red", fontWeight: 'bold'}}>blocked </span> 
-            and can therefore not send or receive any transfers. 
-            Please contact our support team for any further questions regarding this issue.</div>}
-        </div> 
+              style={{
+                width: "210px",
+                height: "200px",
+                textAlign: "justify",
+                padding: 10,
+              }}
+            >
+              Your account has been{" "}
+              <span style={{ color: "red", fontWeight: "bold" }}>blocked </span>
+              and can therefore not send or receive any transfers. Please
+              contact our support team for any further questions regarding this
+              issue.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
