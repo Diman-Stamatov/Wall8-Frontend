@@ -13,7 +13,7 @@ function WalletSection({ wallet }) {
   }).format(balance);
   return (
     <div className=" shadow-light-quaternary dark:bg-gradient-to-b dark:from-dark-primary dark:to-light-quaternary dark:text-light-primary border  dark:border-light-secondary flex flex-row items-end py-10 rounded-xl shadow-2xl ">
-      <div className="flex flex-col items-center">
+      <div className="ml-4 flex flex-col items-center">
         <img
           style={{ width: "260px", height: "260px" }}
           src={walletLogo}

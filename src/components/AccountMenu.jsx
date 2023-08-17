@@ -41,7 +41,7 @@ export default function AccountMenu() {
           aria-expanded={open ? "true" : undefined}
         >
           <Avatar
-            srcSet="src\assets\money-3722123_640.png"
+            src={user.data.photoUrl}
             sx={{ width: 40, height: 40 }}
           ></Avatar>
         </IconButton>

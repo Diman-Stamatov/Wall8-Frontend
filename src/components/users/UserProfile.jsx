@@ -7,14 +7,41 @@ import UnblockButton from "../UnblockButton";
 import { Link, useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import { useAuth } from "../../context/AuthContext";
+import { useError } from "../../context/ErrorContext";
+import ChangeCurrencyModal from "../modals/ChangeCurrencyModal";
+import SuccessModal from "../modals/SuccessModal";
+import { useUserLocale } from "../../context/LocaleContext";
 
 const UserProfile = ({ profileUser, onPostComplete }) => {
+  const {userLocale} = useUserLocale();
   const { user } = useAuth();
-  const { photoUrl, phoneNumber, username, email, isVerified, isBlocked } =
-    profileUser;
+  const {
+    wallet,
+    photoUrl,
+    phoneNumber,
+    username,
+    email,
+    isVerified,
+    isBlocked,
+  } = profileUser;
+  const [isOpen, setIsOpen] = useState(false);
+  const { clearError } = useError();
+  const [successData, setSuccessData] = useState(null);
 
   const ownProfile = profileUser.username === user.data.username;
   const loggedAdmin = user.data.isAdmin;
+  const handleSuccess = (data) => {
+    setSuccessData(data);
+  };
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    clearError();
+  };
 
   return (
     <div>
@@ -83,7 +110,9 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                     {email}
                   </p>
                 </div>
-                {ownProfile ? <UpdateEmailButton onPostComplete={onPostComplete} /> : null}
+                {ownProfile ? (
+                  <UpdateEmailButton onPostComplete={onPostComplete} />
+                ) : null}
               </div>
             </div>
             <div className="mt-7 flex justify-between items-center">
@@ -93,14 +122,39 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                   {phoneNumber}
                 </p>
               </div>
-              {ownProfile ? <UpdatePhoneNumberButton onPostComplete={onPostComplete}/> : null}
+              {ownProfile ? (
+                <UpdatePhoneNumberButton onPostComplete={onPostComplete} />
+              ) : null}
             </div>
             <div className="mt-7 flex justify-between items-center">
               <div className="dark:text-light-primary text-left text-lg font-bold">
                 Wallet currency{" "}
-                <p className="text-xs dark:text-dark-tertiary">EUR (WIP)</p>
+                <p className="text-xs dark:text-dark-tertiary">
+                  {wallet.balance.currency}
+                </p>
               </div>
-              {ownProfile ? <UpdatePhoneNumberButton /> : null}
+              {ownProfile && (
+                <>
+                  <button
+                    onClick={openModal}
+                    className="button rounded-full  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
+                  >
+                    <span className="text-sm">Update</span>
+                  </button>
+                  <ChangeCurrencyModal
+                    isOpen={isOpen}
+                    onClose={closeModal}
+                    onComplete={onPostComplete}
+                    handleSuccess={handleSuccess}
+                  />
+                  <SuccessModal
+                    isOpen={successData !== null}
+                    onClose={() => setSuccessData(null)}
+                    successData={successData}
+                    locale={userLocale}
+                  />
+                </>
+              )}
             </div>
             {ownProfile ? (
               <div>

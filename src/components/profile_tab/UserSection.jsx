@@ -11,7 +11,7 @@ function UserSection() {
     <div className="relative shadow-light-quaternary dark:bg-gradient-to-t dark:text-light-primary dark:from-dark-primary dark:to-light-quaternary border  dark:border-light-secondary mt-5 flex justify-between rounded-xl shadow-2xl px-2 py-10 mb-2">
       <Avatar
         src={photoUrl}
-        className="shadow-md dark:shadow-light-secondary ml-3"
+        className="shadow-sm dark:shadow-light-secondary ml-3"
         sx={{ width: "180px", height: "180px" }}
       />
       <div className="self-center m-auto">

@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Profile = () => {
   const { profileUsername } = useParams();
-  const [profileUser, setProfileUser] = useState({ data: {} });
+  const [profileUser, setProfileUser] = useState(null);
   const [mainState, setMainState] = useState(null);
   const handlePostComplete = (result) => {
     setMainState(result);
@@ -33,10 +33,12 @@ const Profile = () => {
   return (
     <div>
       <MainHeader />
-      <UserProfile
-        profileUser={profileUser}
-        onPostComplete={handlePostComplete}
-      />
+      {profileUser && (
+        <UserProfile
+          profileUser={profileUser}
+          onPostComplete={handlePostComplete}
+        />
+      )}
     </div>
   );
 };
