@@ -22,6 +22,7 @@ const MONTHS = [
   "November",
   "December",
 ];
+
 import { Box } from "@mui/system";
 
 const StatsSection = () => {
@@ -93,7 +94,7 @@ const StatsSection = () => {
     }
   }, [dates]);
 
-  const { user } = useAuth();
+ 
 
   return (
     <div className="px-5 flex flex-col mt-5 ">
@@ -130,7 +131,7 @@ const StatsSection = () => {
             <>
               <Link to={`transfer`}>
                 <PaperAirplaneIcon
-                  className="ml-20 hover:scale-y-150 cursor-pointer hover:-translate-y-2 h-12  w-12 text-blue-500"
+                  className="ml-20 hover:scale-y-150 cursor-pointer  h-12  w-12 text-blue-500"
                   style={{ width: "120px", height: "120px" }}
                 />
               </Link>
