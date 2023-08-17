@@ -5,8 +5,8 @@ import AccountMenu from "./AccountMenu";
 import { useUsers } from "../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { FaGitlab } from "react-icons/fa";
 
- 
 const MainHeader = () => {
   const { user } = useContext(AuthContext);
   const { toggleTheme } = useContext(ThemeContext);
@@ -37,6 +37,10 @@ const MainHeader = () => {
         });
       });
   }
+  const redirectToGitLab = () =>{
+    window.open(`https://gitlab.com/finalgroup3/virtual-wallet-project`);
+    window.open(`https://gitlab.com/finalgroup3/virtual-wallet-react`);
+  }
   const filteredUsers = users.filter((user) => {
     const filteredMatches =
       user.username.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -58,7 +62,7 @@ const MainHeader = () => {
     }, 500);
   };
   const goToUserProfile = (username) => {
-    window.location.assign (`http://localhost:3006/profile/${username}`);
+    window.location.assign(`http://localhost:3006/profile/${username}`);
     // navigate(`profile/${username}`, { replace: true });
   };
   useEffect(() => {
@@ -84,13 +88,10 @@ const MainHeader = () => {
         {showDropdown && (
           <ul className="bg-light-quaternary dark:bg-dark-primary rounded-xl w-full mt-1 border border-light-quaternary dark:border-dark-secondary shadow-sm shadow-light-quaternary dark:shadow-dark-tertiary absolute">
             {filteredUsers.map((user, index) => {
-              
               return (
                 <li
                   key={index}
-                  
                   className="p-2 dark:hover:bg-dark-secondary cursor-pointer rounded-lg  hover:bg-light-tertiary"
-                  
                   onClick={() => goToUserProfile(user.username)}
                 >
                   <div className="flex flex-col justify-start">
@@ -107,12 +108,9 @@ const MainHeader = () => {
           </ul>
         )}
       </div>
-      <div className="flex items-center justify-center">
-        <button
-          className="w-10 h-10 p-3 rounded-full bg-gray-100 dark:bg-gray-600"
-          onClick={toggleTheme}
-        ></button>
-      </div>
+      <button className="flex items-center justify-center">
+        <FaGitlab size={30} onClick={redirectToGitLab}/>
+      </button>
     </header>
   );
 };

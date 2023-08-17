@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext, useState } from "react";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -8,25 +9,27 @@ import Tooltip from "@mui/material/Tooltip";
 import { useAuth } from "../context/AuthContext";
 import { Avatar } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Switch from "react-switch";
+import { ThemeContext } from "../ThemeProvider";
 
 export default function AccountMenu() {
   const { user, logoutUser } = useAuth();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const { toggleTheme, theme } = useContext(ThemeContext);
+  
+  const [switchState, setSwitchState] = useState(theme === "dark");
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const ThemeSwitch = () => {
-    return (
-      <label className="relative inline-flex items-center mb-5 cursor-pointer">
-        <input type="checkbox" value="" class="sr-only peer" />
-        <div className="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-      </label>
-    );
+  const handleMenuItemThemeChange = () => {
+    toggleTheme();
+    setSwitchState((prevSwitchState) => !prevSwitchState);
   };
 
   return (
@@ -51,14 +54,15 @@ export default function AccountMenu() {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        onClick={handleClose}
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         sx={{
           mt: 1,
           "& .MuiMenu-paper": {
             width: "20ch",
-            backgroundColor: "paleturquoise",
+
+            backgroundColor: theme === "light" ? "#FFFFFF" : "#090030",
+            color: theme === "light" ? "#000000" : "#FFFFFF",
             boxShadow: "0 0 10px 0 rgba(0,0,0,.1)",
           },
           "& .MuiMenu-List": { padding: "0" },
@@ -69,10 +73,10 @@ export default function AccountMenu() {
           <span className="ml-3">My Account</span>
         </MenuItem>
         <Divider />
-        <MenuItem>
-          Theme
-          <div className="relative left-2.5 top-2.5 ml-8">
-            <ThemeSwitch />
+        <MenuItem onClick={handleMenuItemThemeChange}>
+          Dark Mode
+          <div className="relative left-auto top-auto ml-2">
+            <Switch checked={switchState} />
           </div>
         </MenuItem>
         <MenuItem onClick={logoutUser}>
