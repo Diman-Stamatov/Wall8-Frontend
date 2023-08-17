@@ -59,7 +59,7 @@ const ChangeCurrencyModal = ({
       .then((response) => {
         handleSuccess(response.data);
         onComplete(response.data);
-       refreshUser(); 
+        refreshUser();
         onClose();
       })
       .catch((reqError) => {

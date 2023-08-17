@@ -1,5 +1,7 @@
 import React from "react";
 import { Avatar } from "@mui/material";
+import { useUserLocale } from "../../../context/LocaleContext";
+import { useAuth } from "../../../context/AuthContext";
 
 function TransferConfirm({
   recipient,
@@ -10,12 +12,13 @@ function TransferConfirm({
   isLoading,
 }) {
   const [fee, setFee] = React.useState(0.0);
+  const userLocale = useUserLocale();
+  const { user } = useAuth();
+  const currency = user.data.wallet.balance.currency;
 
   const calculateFee = (amount) => {
     return amount * 0.01;
   };
-
-  console.log("Why is the button not working?", isLoading);
 
   React.useEffect(() => {
     const calculatedFee = calculateFee(amount);
@@ -31,8 +34,8 @@ function TransferConfirm({
             <header className=" text-3xl">Amount</header>
             <div className="flex justify-between items-center w-full">
               <label className="mt-1 dark:text-dark-tertiary ml-4 text-sm font-medium">
-                {new Intl.NumberFormat("de-DE", {
-                  currency: "EUR",
+                {new Intl.NumberFormat(userLocale, {
+                  currency: currency,
                   style: "currency",
                 }).format(amount)}
               </label>
@@ -47,8 +50,8 @@ function TransferConfirm({
             <header className=" text-3xl">Fees</header>
             <div className="flex justify-between items-center w-full">
               <label className=" dark:text-dark-tertiary ml-4 text-sm font-medium">
-                {new Intl.NumberFormat("de-DE", {
-                  currency: "EUR",
+                {new Intl.NumberFormat(userLocale, {
+                  currency: currency,
                   style: "currency",
                 }).format(fee)}
               </label>

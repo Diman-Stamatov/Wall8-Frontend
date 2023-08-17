@@ -2,11 +2,13 @@ import React, { createContext, useContext, useState, useReducer } from "react";
 import axios from "axios";
 import { transferReducer } from "../reducers/transfers/TransferReducer";
 import { useLoading } from "./LoadingContext";
+import { useAuth } from "./AuthContext";
 
 const TransferContext = createContext();
 
 export const TransferProvider = ({ children }) => {
   const { dispatch: loadingDispatch } = useLoading();
+  const { refreshUser } = useAuth();
 
   const [state, dispatch] = useReducer(transferReducer, {
     transfers: [],
@@ -17,8 +19,6 @@ export const TransferProvider = ({ children }) => {
   const postTransfer = async (transferData) => {
     loadingDispatch({ type: "SET_LOADING", payload: true });
     dispatch({ type: "POST_TRANSFERS_LOADING", payload: true });
-    console.log("dispatched loading", loadingDispatch);
-    console.log("dispatched loading", dispatch);
 
     axios
       .post(
@@ -36,6 +36,7 @@ export const TransferProvider = ({ children }) => {
         });
         loadingDispatch({ type: "SET_LOADING", payload: false });
 
+        refreshUser();
       })
       .catch((error) => {
         dispatch({ type: "POST_TRANSFERS_ERROR", payload: error });

@@ -26,8 +26,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 function App() {
   return (
     <ThemeProvider>
-      <LocaleProvider>
-        <Router>
+      <Router>
+        <LocaleProvider>
           <NextTopLoader />
           <LoadingProvider>
             <ErrorProvider>
@@ -44,7 +44,10 @@ function App() {
                           element={<RegisterCard />}
                         />
                         <Route path="/transfer" element={<TransferPage />} />
-                        <Route path="/profile/:profileUsername" element={<Profile />} />
+                        <Route
+                          path="/profile/:profileUsername"
+                          element={<Profile />}
+                        />
                         <Route path="/info" element={<InfoPage />} />
                         <Route
                           path="/update-email"
@@ -65,8 +68,8 @@ function App() {
               </AuthProvider>
             </ErrorProvider>
           </LoadingProvider>
-        </Router>
-      </LocaleProvider>
+        </LocaleProvider>
+      </Router>
     </ThemeProvider>
   );
 }

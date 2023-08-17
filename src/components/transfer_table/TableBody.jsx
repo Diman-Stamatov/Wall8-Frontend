@@ -1,15 +1,18 @@
 import React from "react";
 import { Avatar } from "@mui/material";
-import { useUserLocale } from "../../context/LocaleContext";
+import { useUserLocale, formatDate } from "../../context/LocaleContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 function TableBody({ transfers, currentPage, transfersPerPage }) {
   const startIndex = (currentPage - 1) * transfersPerPage;
   const endIndex = Math.min(startIndex + transfersPerPage, transfers.length);
-  const limitedTransfers = transfers.slice(startIndex, endIndex);
-  const { userLocale } = useUserLocale();
+  const  userLocale  = useUserLocale();
 
+  transfers.sort((a, b) => {
+    return b.timestamp.localeCompare(a.timestamp);
+  });
+  const limitedTransfers = transfers.slice(startIndex, endIndex);
   const [avatars, setAvatars] = useState({});
 
   const fetchAvatar = async (username) => {
@@ -69,7 +72,7 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
                 />
               </div>
               <div className="ml-3">
-                <p className="dark:text-light-primary whitespace-nowrap">
+                <p className="dark:text-light-primary font-bold whitespace-nowrap">
                   {transfer.senderUsername
                     ? transfer.senderUsername
                     : transfer.recipientUsername}
@@ -81,7 +84,11 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
             </div>
           </td>
           <td className="px-5 py-5 text-sm font-semibold">
-            <p className="dark:text-dark-tertiary whitespace-no-wrap text-center">
+            <p
+              className={`${
+                transfer.type === "incoming" ? "text-green-600" : "text-red-600"
+              } italic font-bold whitespace-no-wrap text-center`}
+            >
               {new Intl.NumberFormat(userLocale, {
                 style: "currency",
                 currency: transfer.currency,
@@ -89,8 +96,8 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
             </p>
           </td>
           <td className="px-5 py-5 font-semibold  text-sm">
-            <p className="dark:text-dark-tertiary whitespace-no-wrap">
-              {transfer.timestamp}
+            <p className="dark:text-dark-tertiary font-mono whitespace-no-wrap text-center">
+              {formatDate(transfer.timestamp, userLocale)}
             </p>
           </td>
           <td className="px-5 py-5 font-semibold text-sm rounded-br-lg ">

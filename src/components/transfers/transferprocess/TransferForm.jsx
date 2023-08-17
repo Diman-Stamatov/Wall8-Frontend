@@ -22,7 +22,7 @@ const TransferForm = ({ user }) => {
   const { users, dispatch } = useUsers();
   const [recPage, setRecPage] = useState(1);
   const [pageInfo, setPageInfo] = useState([]);
-const {refreshUser} = useAuth();
+  const { refreshUser } = useAuth();
   useEffect(() => {
     dispatch({ type: "FETCH_USERS_LOADING" });
     axios
@@ -87,7 +87,7 @@ const {refreshUser} = useAuth();
 
     await postTransfer(newTransfer);
 
-refreshUser();
+    refreshUser();
     setComplete(true);
     navigate("/confirmed-transfer", { replace: true });
   };
