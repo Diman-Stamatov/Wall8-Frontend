@@ -16,7 +16,7 @@ function SpecialAmountsComponent({amount}) {
     .set(1984, "https://i.imgur.com/yNIcaB6.jpeg")
     .set(1337, "https://i.pinimg.com/564x/82/23/e6/8223e6f2684080d0427d1688d02875a8.jpg")
     .set(360, "https://i.imgur.com/touHkKI.png")
-    .set(9000, "https://i.imgur.com/nly1D9y.jpeg")
+    .set(9001, "https://i.imgur.com/nly1D9y.jpeg")
     
 
     const specialAmounts = Array.from(specialPictures.keys());
