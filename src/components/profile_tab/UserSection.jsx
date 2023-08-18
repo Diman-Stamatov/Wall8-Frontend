@@ -8,7 +8,7 @@ function UserSection() {
   const { username, email, photoUrl } = user.data;
 
   return (
-    <div className="relative dark:bg-gradient-to-r dark:text-light-primary dark:from-dark-primary dark:to-light-quaternary dark:border-light-secondary mt-5 flex justify-between rounded-xl shadow-md px-2 py-10 mb-2">
+    <div className="relative bg-gradient-to-r from-light-quaternary to-light-primary dark:text-light-primary dark:from-dark-primary dark:to-light-quaternary dark:border-light-secondary mt-5 flex justify-between rounded-xl shadow-md px-2 py-10 mb-2">
       <Avatar
         src={photoUrl}
         className="shadow-sm dark:shadow-light-secondary ml-5"

@@ -11,6 +11,7 @@ function UpdatePictureModal({
   onPostComplete,
 }) {
   const [isLoading, setIsLoading] = useState(false);
+  const {refreshUser} = useAuth();
 
   const handleUpdate = async (values, { setSubmitting, resetForm }) => {
     console.log("update phone values:", values);
@@ -26,7 +27,7 @@ function UpdatePictureModal({
       );
       console.log("update picture response: ", response);
       resetForm();
-
+        refreshUser()
       onPostComplete(response);
       setIsLoading(false);
       setSubmitting(false);

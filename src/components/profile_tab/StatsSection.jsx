@@ -23,8 +23,6 @@ const MONTHS = [
   "December",
 ];
 
-
-
 const StatsSection = () => {
   const { userLocale } = useUserLocale();
   const { user } = useAuth();
@@ -48,41 +46,72 @@ const StatsSection = () => {
 
     const start = formatToISO8601(oneWeekAgo);
     const end = formatToISO8601(today);
+
+    if (cachedData[start] && cachedData[start].endDate === end) {
+      const cachedResponse = cachedData[start];
+      setIncomeBody(
+        new Intl.NumberFormat(userLocale, {
+          style: "currency",
+          currency: cachedResponse.currency,
+        }).format(cachedResponse.amountReceived)
+      );
+      setSentBody(
+        new Intl.NumberFormat(userLocale, {
+          style: "currency",
+          currency: cachedResponse.currency,
+        }).format(cachedResponse.amountSent)
+      );
+      setTransfersSent(cachedResponse.transfersSent);
+      setTransfersReceived(cachedResponse.transfersReceived);
+      setDates(cachedResponse.dates);
+      setIsLoading(false);
+      return;
+    }
+
     try {
-      await axios
-        .get(
-          `http://localhost:5120/api/virtual-wallet/users/${user.data.id}/statistics`,
-          {
-            params: {
-              startDate: start,
-              endDate: end,
-            },
-            withCredentials: true,
-          }
-        )
-        .then((response) => {
-          setIncomeBody(
-            new Intl.NumberFormat(userLocale, {
-              style: "currency",
-              currency: response.data.currency,
-            }).format(response.data.amountReceived)
-          );
-          setSentBody(
-            new Intl.NumberFormat(userLocale, {
-              style: "currency",
-              currency: response.data.currency,
-            }).format(response.data.amountSent)
-          );
-          setTransfersSent(response.data.transfersSent);
-          setTransfersReceived(response.data.transfersReceived);
-          const endDate = new Date(response.data.endDate);
-          const startDate = new Date(response.data.startDate);
-          const endDay = endDate.getDate();
-          const startDay = startDate.getDate();
-          const monthIndex = endDate.getMonth();
-          const month = MONTHS[monthIndex];
-          setDates(`${startDay} - ${endDay} ${month}`);
-        });
+      const response = await axios.get(
+        `http://localhost:5120/api/virtual-wallet/users/${user.data.id}/statistics`,
+        {
+          params: {
+            startDate: start,
+            endDate: end,
+          },
+          withCredentials: true,
+        }
+      );
+      const responseData = response.data;
+      const endDate = new Date(responseData.endDate);
+      const startDate = new Date(responseData.startDate);
+      const endDay = endDate.getDate();
+      const startDay = startDate.getDate();
+      const monthIndex = endDate.getMonth();
+      const month = MONTHS[monthIndex];
+
+      cachedData[start] = {
+        currency: responseData.currency,
+        amountReceived: responseData.amountReceived,
+        amountSent: responseData.amountSent,
+        transfersSent: responseData.transfersSent,
+        transfersReceived: responseData.transfersReceived,
+        endDate: end,
+        dates: `${startDay} - ${endDay} ${month}`,
+      };
+
+      setIncomeBody(
+        new Intl.NumberFormat(userLocale, {
+          style: "currency",
+          currency: responseData.currency,
+        }).format(responseData.amountReceived)
+      );
+      setSentBody(
+        new Intl.NumberFormat(userLocale, {
+          style: "currency",
+          currency: responseData.currency,
+        }).format(responseData.amountSent)
+      );
+      setTransfersSent(responseData.transfersSent);
+      setTransfersReceived(responseData.transfersReceived);
+      setDates(`${startDay} - ${endDay} ${month}`);
     } catch (error) {
       console.log("STATS ERROR:", error);
     }
@@ -95,7 +124,7 @@ const StatsSection = () => {
     }
   }, [dates]);
 
- 
+  const cachedData = {};
 
   return (
     <div className="px-5 flex flex-col mt-5 ">
@@ -132,7 +161,7 @@ const StatsSection = () => {
             <>
               <Link to={`transfer`}>
                 <PaperAirplaneIcon
-                  className="ml-20 hover:scale-y-150 cursor-pointer  h-12  w-12 text-blue-500"
+                  className="ml-20 hover:scale-y-150 cursor-pointer  h-12  w-12 dark:text-dark-tertiary text-light-quaternary"
                   style={{ width: "120px", height: "120px" }}
                 />
               </Link>

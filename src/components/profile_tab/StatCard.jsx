@@ -13,8 +13,8 @@ function StatCard({ header, body, dates }) {
         <h5
           className={`mb-2 text-xl font-medium leading-tight text-success ${
             header.toLowerCase().includes("sent")
-              ? "text-red-600"
-              : "text-green-600"
+              ? "text-dark-primary dark:text-light-tertiary"
+              : "text-dark-secondary dark:text-light-primary"
           }`}
         >
           {body}

@@ -29,7 +29,7 @@ function TablePagination({
   const endIndex = Math.min(startIndex + transfersPerPage, transferCount);
 
   return (
-    <div className="px-5 py-5 dark:bg-dark-secondary border-2 border-light-quaternary  dark:border-dark-tertiary flex flex-col xs:flex-row items-center xs:justify-between rounded-b-lg         ">
+    <div className="px-5 py-5 bg-light-quaternary dark:bg-dark-secondary border-2 border-light-quaternary  dark:border-dark-tertiary flex flex-col xs:flex-row items-center xs:justify-between rounded-b-lg         ">
       <span className="text-xs xs:text-sm dark:text-light-secondary">
         Showing {startIndex + 1} to {endIndex} of {transferCount} entries
       </span>

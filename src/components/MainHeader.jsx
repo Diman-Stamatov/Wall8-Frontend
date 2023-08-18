@@ -7,7 +7,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaGitlab } from "react-icons/fa";
 import { Avatar } from "@mui/material";
-import { debounce } from "lodash";
 
 const MainHeader = () => {
   const { user } = useContext(AuthContext);
@@ -89,10 +88,10 @@ const MainHeader = () => {
           onBlur={handleInputBlur}
           className="w-full px-3 py-2 transfer-input rounded-xl shadow-md bg-gradient-to-r from-light-quaternary to-light-primary  dark:from-dark-tertiary dark:to-dark-primary focus:outline-none focus:ring-2 focus:ring-light-quaternary  dark:focus:ring-dark-secondary focus:border-transparent"
         />
-        {showDropdown && (
+       {showDropdown && (
           <ul className="bg-light-quaternary dark:bg-dark-primary rounded-xl w-full mt-1 border border-light-quaternary dark:border-dark-secondary shadow-sm shadow-light-quaternary dark:shadow-dark-tertiary absolute">
             {filteredUsers.map((user, index) => {
-              return (
+              return ( 
                 <li
                   key={index}
                   className="p-2 dark:hover:bg-dark-secondary cursor-pointer rounded-lg  hover:bg-light-tertiary"

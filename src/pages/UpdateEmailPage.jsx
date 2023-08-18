@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import EmailForm from "../components/profile/EmailForm";
 import { useSearchParams } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 import axios from "axios";
 
@@ -38,8 +38,6 @@ const UpdateEmailPage = () => {
       setSubmitting(false);
       console.log("change email error: ", error);
     }
-
-    logoutUser(); 
   };
 
   const validationSchema = Yup.object().shape({

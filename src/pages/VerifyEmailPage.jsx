@@ -11,7 +11,7 @@ const VerifyEmailPage = () => {
 
   const handleConfirm = async (values, { setSubmitting, resetForm }) => {
     console.log("verify values:", values);
-    
+
     try {
       setSubmitting(true);
       setIsLoading(true);
@@ -23,31 +23,29 @@ const VerifyEmailPage = () => {
           },
           withCredentials: true,
         }
-      );      
+      );
       logoutUser();
-      console.log("verify response: ", response);      
-         
+      console.log("verify response: ", response);
     } catch (error) {
       setSubmitting(false);
       console.log("verify error: ", error);
-    }         
-      logoutUser();
+    }
   };
 
   const validationSchema = Yup.object().shape({
-    token: Yup.string().required("Required"),    
+    token: Yup.string().required("Required"),
   });
 
-  const [searchParams, setSearchParams] = useSearchParams()
-  const token = searchParams.get("token")  
-  
+  const [searchParams, setSearchParams] = useSearchParams();
+  const token = searchParams.get("token");
+
   return (
     <div className="dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
       <VerifyForm
         validationSchema={validationSchema}
         handleConfirm={handleConfirm}
         isLoading={isLoading}
-        token = {token}        
+        token={token}
       />
     </div>
   );

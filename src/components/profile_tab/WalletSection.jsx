@@ -45,7 +45,7 @@ function WalletSection({ wallet }) {
   }).format(balance);
 
   return (
-    <div className="  dark:bg-gradient-to-r dark:from-dark-primary dark:to-light-quaternary dark:text-light-primary dark:border-light-secondary flex flex-row items-end py-10 rounded-xl shadow-md ">
+    <div className="  bg-gradient-to-r from-light-quaternary to-light-primary dark:from-dark-primary dark:to-light-quaternary dark:text-light-primary dark:border-light-secondary flex flex-row items-end py-10 rounded-xl shadow-md ">
       <div className="ml-4 flex flex-col items-center">
         <img
           style={{ width: "260px", height: "260px" }}
@@ -53,10 +53,10 @@ function WalletSection({ wallet }) {
           alt="WalletLogo"
         />
         <div className="mt-8 flex flex-col items-center">
-          <p className="text-sm font-semibold dark:text-light-tertiary">
+          <p className="text-sm font-semibold text-dark-primary dark:text-light-tertiary">
             Total balance
           </p>
-          <h1 className="font-semibold lg:text-3xl ml-5 dark:text-light-secondary">
+          <h1 className="font-semibold lg:text-3xl ml-5 text-light-secondary drop-shadow-lg dark:text-light-secondary">
             {formattedBalance}
           </h1>
         </div>

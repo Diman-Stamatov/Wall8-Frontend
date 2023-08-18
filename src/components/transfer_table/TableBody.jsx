@@ -19,9 +19,8 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
 
   const closeModal = () => {
     setShowModal(false);
-  }
+  };
 
-  
   const limitedTransfers = transfers.slice(startIndex, endIndex);
   const [avatars, setAvatars] = useState({});
 
@@ -65,9 +64,9 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
       {limitedTransfers.map((transfer, index) => (
         <tr
           key={index}
-          className="dark:bg-dark-primary border-b dark:border-dark-tertiary"
+          className="dark:bg-dark-primary dark:border-b border-b border-light-quaternary dark:border-dark-tertiary"
         >
-          <td className="px-5 py-5  dark:border-dark-tertiary text-sm font-semibold rounded-bl-lg">
+          <td className="px-5 py-5 border-light-quaternary  dark:border-dark-tertiary text-sm font-semibold rounded-bl-lg">
             <div className="flex items-center">
               <div className="flex-shrink-0 w-10 h-10">
                 <Avatar
@@ -82,7 +81,13 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
               <div className="ml-3">
                 <p className="dark:text-light-primary font-bold whitespace-nowrap">
                   {transfer.senderUsername
-                    ? transfer.senderUsername
+                    ? transfer.senderUsername.toLowerCase().includes("deleted_")
+                      ? "[ANONYMOUS_SENDER]"
+                      : transfer.senderUsername
+                    : transfer.recipientUsername
+                        .toLowerCase()
+                        .includes("deleted_")
+                    ? "[ANONYMOUS_RECIPIENT]"
                     : transfer.recipientUsername}
                   {transfer.senderUsername && transfer.recipientUsername
                     ? ` / ${transfer.recipientUsername}`
@@ -98,10 +103,10 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
             </p>
           </td>
           <td
-            className={`px-5 py-5 font-semibold text-center rounded-br-lg dark:bg-gradient-to-r ${
+            className={`px-5 py-5 font-semibold text-center rounded-br-lg bg-gradient-to-r ${
               transfer.type === "incoming"
-                ? " dark:from-dark-primary dark:to-light-secondary"
-                : "dark:from-dark-primary dark:to-dark-quaternary"
+                ? " dark:from-dark-primary dark:to-light-secondary from-light-primary to-light-secondary"
+                : "dark:from-dark-primary dark:to-dark-quaternary from-light-primary to-dark-quaternary"
             }`}
           >
             <span className="text-lg font-semibold dark:text-light-primary text-dark-primary">

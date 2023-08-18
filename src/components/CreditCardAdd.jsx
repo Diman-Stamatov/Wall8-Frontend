@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { useNavigate } from "react-router";
 
 function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
   const [card, setCard] = useState({
@@ -10,6 +11,7 @@ function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
     cvc: "",
     focused: "",
   });
+  const navigate = useNavigate();
 
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
@@ -21,10 +23,15 @@ function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
       return;
     }
     if (name === "expiry" && value.length > 5) return;
-    
+
     setCard((prevState) => ({ ...prevState, [name]: value }));
-    if (name==="number" && value.replace(/\s/g, '').length%4===0 && value.replace(/\s/g, '').length!=16 && value.replace(/\s/g, '').length!=0){
-      setCard((prevState) =>({...prevState,[name]:value+" "}));
+    if (
+      name === "number" &&
+      value.replace(/\s/g, "").length % 4 === 0 &&
+      value.replace(/\s/g, "").length != 16 &&
+      value.replace(/\s/g, "").length != 0
+    ) {
+      setCard((prevState) => ({ ...prevState, [name]: value + " " }));
     }
   };
 
@@ -36,13 +43,13 @@ function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
     e.preventDefault();
     // console.log("JUST BEFORE SETTING ");
     // setCardValues(card);
-    card.number = card.number.replace(/\s/g, '');
+    card.number = card.number.replace(/\s/g, "");
     console.log("SET CARD ", card);
     handleSubmitRequest(card);
   };
 
   return (
-    <div className="card-container">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-b dark:from-dark-primary dark:to-light-quaternary from-light-primary to-light-quaternary">
       <Cards
         number={card.number}
         name={card.name}
@@ -107,6 +114,7 @@ function CreditCardAdd({ handleSubmitRequest, setCardValues }) {
             Add Card
           </button>
         </div>
+        <p onClick={() => navigate("/")} className="text-dark-primary dark:text-light-primary text-lg cursor-pointer tom-0 right-0">Home</p>
       </form>
     </div>
   );

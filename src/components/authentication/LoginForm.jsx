@@ -2,8 +2,13 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import ForgotPasswordTextButton from "../ForgotPasswordTextButton";
+import { useError } from "../../context/ErrorContext";
+import { useEffect } from "react";
 
 function LoginForm({ validationSchema, handleLogin }) {
+  const { error } = useError();
+
+  useEffect(() => {}, [error]);
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
@@ -46,6 +51,7 @@ function LoginForm({ validationSchema, handleLogin }) {
                   component="div"
                   className="text-red-700"
                 />
+                {error && <p className="text-dark-quaternary">{error.detail}</p>}
               </div>
               <div>
                 <button
@@ -65,8 +71,8 @@ function LoginForm({ validationSchema, handleLogin }) {
                 {" "}
                 |{" "}
               </span>
-              <Link >
-              <ForgotPasswordTextButton/> 
+              <Link>
+                <ForgotPasswordTextButton />
               </Link>
               <span className="text-sm text-gray-500 hover:text-gray-700 pointer-events-none">
                 {" "}

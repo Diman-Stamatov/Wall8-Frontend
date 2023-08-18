@@ -8,6 +8,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import LoadingPage from "../utils/LoadingPage";
+import { useLoading } from "./LoadingContext";
+import { useError } from "./ErrorContext";
 
 const AuthContext = createContext();
 
@@ -16,6 +19,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [balance, setBalance] = useState(0);
   const [mainState, setMainState] = useState(null);
+  const { setError } = useError();
 
   const handleUserUpdate = (update) => {
     setMainState(update);
@@ -50,8 +54,7 @@ export const AuthProvider = ({ children }) => {
       );
 
       setUser(profile);
-    } catch (error) {
-    }
+    } catch (error) {}
     setLoading(false);
   };
 
@@ -75,11 +78,10 @@ export const AuthProvider = ({ children }) => {
           withCredentials: true,
         }
       );
-
       setUser(profileResponse);
       navigate("/");
     } catch (error) {
-      console.error(error);
+      setError({ type: "SET_ERROR", payload: error.response.data });
     }
   };
 
@@ -138,7 +140,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={contextData}>
-      {loading ? <h1>Loading...</h1> : children}
+      {loading ? <LoadingPage /> : children}
     </AuthContext.Provider>
   );
 };

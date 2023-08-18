@@ -8,8 +8,8 @@ import { useAuth } from "../../../context/AuthContext";
 const TransferPickRecipient = ({
   recipient,
   setRecipient,
-  filterText,
-  onFilterTextChange,
+  setSearchTerm,
+  searchTerm,
   recipients,
   onNext,
   onNextPage,
@@ -32,17 +32,10 @@ const TransferPickRecipient = ({
     setRecipient("");
   };
 
-  const filteredRecipients = recipients.filter((recipient) => {
-    const searchTerm = filterText.toLowerCase();
-    const filterMatches =
-      recipient?.username?.toLowerCase()?.includes(searchTerm) ||
-      recipient?.phoneNumber?.toLowerCase()?.includes(searchTerm) ||
-      recipient?.email?.toLowerCase()?.includes(searchTerm);
-
-    const excludeUser = recipient.id !== user.data.id;
-
-    return filterMatches && excludeUser;
-  });
+    const handleInputChange = (event) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+  };
 
   return (
     <div style={{ width: "350px" }}>
@@ -52,14 +45,14 @@ const TransferPickRecipient = ({
           className="transfer-input w-full px-4 py-2 rounded-xl shadow-sm dark:shadow-light-primary dark:bg-inherit focus:outline-none focus:ring-1 focus:ring-inherit focus:border-inherit"
           type="text"
           placeholder="Search..."
-          value={filterText}
-          onChange={(e) => onFilterTextChange(e.target.value)}
+          value={searchTerm}
+          onChange={handleInputChange}
           style={{ transition: "all .15s ease" }}
         />
       </div>
       <div className="border-2 shadow-lg dark:shadow-dark-primary rounded-lg pt-4 pb-4 px-2 py-2 ">
         <ul className="space-y-2">
-          {filteredRecipients.map((filtRec, index) => (
+          {recipients.map((filtRec, index) => (
             <li
               key={index}
               className={` border rounded-lg px-4 py-2 shadow-inner dark:shadow-light-quaternary ${

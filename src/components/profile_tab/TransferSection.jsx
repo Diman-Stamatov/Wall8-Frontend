@@ -45,7 +45,7 @@ const TransferSection = ({ transfers }) => {
                       : ""}
                   </div>
                 </div>
-                <div className="text-xl font-semibold  text-green-800">
+                <div className="text-xl font-semibold text-dark-primary dark:text-light-primary">
                   {new Intl.NumberFormat(userLocale, {
                     style: "currency",
                     currency: transfer.currency,

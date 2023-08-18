@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 function TableHeader({ toggleSort }) {
   return (
-    <thead className="dark:bg-dark-secondary">
-      <tr className="dark:text-dark-tertiary ">
+    <thead className="dark:bg-dark-secondary bg-light-quaternary">
+      <tr className="dark:text-dark-tertiary text-light-secondary ">
         <th
           onClick={toggleSort("user")}
           className=" px-5 py-3 cursor-pointer text-center text-xs font-semibold  uppercase tracking-wider rounded-tl-lg"

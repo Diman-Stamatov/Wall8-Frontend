@@ -66,6 +66,12 @@ function TransferTable({ transfers }) {
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 ">
             <div className="inline-block min-w-full shadow">
               <table className="table-auto min-w-full leading-normal shadow-xl shadow-light-quaternary dark:shadow-dark-primary  border-2 border-separate border-light-quaternary dark:border-dark-primary rounded-t-lg">
+                <colgroup>
+                  <col className="w-1/4" ></col>
+                  <col className="w-1/4"></col>
+                  <col className="w-1/4"></col>
+                  <col className="w-1/4"></col>
+                </colgroup>
                 <TableHeader toggleSort={toggleSort} />
                 <TableBody
                   transfers={filteredTransfers}

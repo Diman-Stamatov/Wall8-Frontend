@@ -4,13 +4,13 @@ import { Avatar } from "@mui/material";
 import { useTransfer } from "../../../context/TransferContext";
 import { useUserLocale } from "../../../context/LocaleContext";
 import axios from "axios";
+import { useError } from "../../../context/ErrorContext";
 
 function TransferConfirmed() {
   const navigate = useNavigate();
   const userLocale = useUserLocale();
   const [recAvatar, setRecAvatar] = useState("");
   const [sendAvatar, setSendAvatar] = useState("");
-
   const transfer = useTransfer();
   const {
     senderUsername,
@@ -20,6 +20,12 @@ function TransferConfirmed() {
     targetAmount,
     targetCurrency,
   } = transfer.transfer;
+  const { error, clearError } = useError();
+
+  const navigateHomeAndClear = () => {
+    clearError();
+    navigate("/");
+  };
 
   const fetchRecipient = async () => {
     await axios
@@ -64,6 +70,19 @@ function TransferConfirmed() {
 
   return (
     <div style={{ width: "400px" }}>
+      {error && (
+        <div className="flex flex-col justify-center">
+          <h1 className="text-center text-red-700 font-semibold">
+            {error.detail}
+          </h1>
+          <button
+            onClick={navigateHomeAndClear}
+            className="rounded-full bg-dark-secondary"
+          >
+            Home
+          </button>
+        </div>
+      )}
       <h1 className="text-4xl text-center mb-4">Transfer Complete</h1>
       <div className="max-w-md mx-auto p-4 border rounded-lg shadow-md">
         <div className="grid grid-cols-1 divide-y space-y-1">

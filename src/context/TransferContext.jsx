@@ -3,15 +3,17 @@ import axios from "axios";
 import { transferReducer } from "../reducers/transfers/TransferReducer";
 import { useLoading } from "./LoadingContext";
 import { useAuth } from "./AuthContext";
+import { useError } from "./ErrorContext";
 
 const TransferContext = createContext();
 
 export const TransferProvider = ({ children }) => {
   const { dispatch: loadingDispatch } = useLoading();
   const { refreshUser } = useAuth();
+  const { setError } = useError();
 
   const [state, dispatch] = useReducer(transferReducer, {
-    transfers: null,
+    transfer: null,
     loading: false,
     error: null,
   });
@@ -41,8 +43,7 @@ export const TransferProvider = ({ children }) => {
 
       return transfer;
     } catch (error) {
-      dispatch({ type: "POST_TRANSFERS_ERROR", payload: error });
-      console.log("Error", error);
+      setError({ type: "SET_ERROR", payload: error.response.detail });
     }
   };
 
@@ -71,8 +72,7 @@ export const TransferProvider = ({ children }) => {
 
       callback(transfer); // Call the callback with the transfer
     } catch (error) {
-      dispatch({ type: "POST_TRANSFERS_ERROR", payload: error });
-      console.log("Error", error);
+      setError({ type: "SET_ERROR", payload: error.response.detail });
     }
   };
 

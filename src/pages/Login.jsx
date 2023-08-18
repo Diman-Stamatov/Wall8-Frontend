@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { useAuth } from "../context/AuthContext";
 import LoginForm from "../components/authentication/LoginForm";
+import { useError } from "../context/ErrorContext";
 
 const Login = () => {
   const { loginUser } = useAuth();
+  const { clearError } = useError();
 
   const handleLogin = async (values, { setSubmitting }) => {
-    console.log("login values:", values);
+    clearError();
     await loginUser(values);
     setSubmitting(false);
   };

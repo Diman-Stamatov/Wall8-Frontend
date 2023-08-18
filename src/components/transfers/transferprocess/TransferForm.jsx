@@ -9,25 +9,37 @@ import { useLoading } from "../../../context/LoadingContext";
 import { useError } from "../../../context/ErrorContext";
 import { useTransfer } from "../../../context/TransferContext";
 import axios from "axios";
+import { debounce } from "lodash";
 import { useAuth } from "../../../context/AuthContext";
+import LoadingPage from "../../../utils/LoadingPage";
 
 const TransferForm = ({ user }) => {
   const [step, setStep] = useState(1);
   const [amount, setAmount] = useState(0);
   const [recipient, setRecipient] = useState("");
-  const [filterText, onFilterTextChange] = useState("");
   const [complete, setComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const { postTransfer, onTransferMade } = useTransfer();
   const { users, dispatch } = useUsers();
   const [recPage, setRecPage] = useState(1);
   const [pageInfo, setPageInfo] = useState([]);
-  const { refreshUser } = useAuth();
-  useEffect(() => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const { loading, dispatch: loadingDispatch } = useLoading();
+
+  const setLoadingTrue = () => {
+    loadingDispatch({ type: "SET_LOADING", payload: true });
+  };
+
+  const setLoadingFalse = () => {
+    loadingDispatch({ type: "SET_LOADING", payload: false });
+  };
+
+  const debouncedApiCall = debounce((searchTerm) => {
+    setLoadingTrue();
     dispatch({ type: "FETCH_USERS_LOADING" });
     axios
       .get(
-        `http://localhost:5120/api/virtual-wallet/users/filter?pageSize=5&page=${recPage}`,
+        `http://localhost:5120/api/virtual-wallet/users/filter?searchTerm=${searchTerm}&pageSize=5&page=${recPage}`,
         {
           withCredentials: true,
         }
@@ -43,12 +55,17 @@ const TransferForm = ({ user }) => {
         dispatch({ type: "FETCH_USERS_ERROR", payload: error });
         console.log("dispatched error");
         console.log("Error", error);
+      })
+      .finally(() => {
+        setLoadingFalse();
       });
-  }, [recPage]);
+  }, 300);
+
+  useEffect(() => {
+    debouncedApiCall(searchTerm);
+  }, [searchTerm, recPage]);
 
   const steps = ["Choose Recipient", "Choose Amount", "Review and Submit"];
-
-  const { loading } = useLoading();
   const { error, clearError } = useError();
 
   const recipients = users ?? [];
@@ -98,49 +115,55 @@ const TransferForm = ({ user }) => {
 
   return (
     <>
-      <TransferProgressBar
-        currentStep={currentStep}
-        setCurrentStep={setCurrentStep}
-        complete={complete}
-        setComplete={setComplete}
-        steps={steps}
-        loading={loading}
-      />
-      <div className="flex justify-center mx-auto p-4">
-        {step === 1 && (
-          <PickRecipient
-            recipient={recipient}
-            setRecipient={setRecipient}
-            recipients={recipients}
-            filterText={filterText}
-            onFilterTextChange={onFilterTextChange}
-            onNext={handleNext}
-            onNextPage={() => setRecPage((prevPage) => prevPage + 1)}
-            onPrevPage={() => setRecPage((prevPage) => prevPage - 1)}
-            hasNextPage={pageInfo.hasNextPage}
-            hasPrevPage={pageInfo.hasPreviousPage}
+      {loading ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <TransferProgressBar
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            complete={complete}
+            setComplete={setComplete}
+            steps={steps}
+            loading={loading}
           />
-        )}
-        {step === 2 && (
-          <ChooseAmount
-            amount={amount}
-            wallet={wallet}
-            setAmount={setAmount}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-          />
-        )}
-        {step === 3 && (
-          <Confirm
-            isLoading={loading}
-            setStep={setStep}
-            recipient={recipient.username}
-            amount={amount}
-            onPrevious={handlePrevious}
-            onSubmit={handleSubmit}
-          />
-        )}
-      </div>
+          <div className="flex justify-center mx-auto p-4">
+            {step === 1 && (
+              <PickRecipient
+                recipient={recipient}
+                setRecipient={setRecipient}
+                recipients={recipients}
+                setSearchTerm={setSearchTerm}
+                searchTerm={searchTerm}
+                onNext={handleNext}
+                onNextPage={() => setRecPage((prevPage) => prevPage + 1)}
+                onPrevPage={() => setRecPage((prevPage) => prevPage - 1)}
+                hasNextPage={pageInfo.hasNextPage}
+                hasPrevPage={pageInfo.hasPreviousPage}
+              />
+            )}
+            {step === 2 && (
+              <ChooseAmount
+                amount={amount}
+                wallet={wallet}
+                setAmount={setAmount}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+              />
+            )}
+            {step === 3 && (
+              <Confirm
+                isLoading={loading}
+                setStep={setStep}
+                recipient={recipient.username}
+                amount={amount}
+                onPrevious={handlePrevious}
+                onSubmit={handleSubmit}
+              />
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 };
