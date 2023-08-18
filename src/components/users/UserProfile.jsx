@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UpdateEmailButton from "../../components/UpdateEmailButton";
+import UpdatePasswordButton from "../UpdatePasswordButton";
 import UpdatePhoneNumberButton from "../../components/UpdatePhoneNumberButton";
 import UpdatePictureButton from "../../components/UpdatePictureButton";
 import BlockButton from "../BlockButton";
@@ -183,7 +184,7 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                     <div className="text-left dark:text-light-primary text-lg font-bold">
                       Password <p className="text-xs">(WIP)</p>
                     </div>
-                    <UpdateEmailButton />
+                    <UpdatePasswordButton />
                   </div>
                 </div>
                 <div className="mt-7 flex justify-between items-center">

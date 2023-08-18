@@ -9,7 +9,7 @@ function VerifyEmail({ email }) {
           Verify your email
         </h1>
         <p className="text-white font-roboto">
-          We have sent an email to <span className="font-bold">{email}</span>
+          We have sent an email to <span className="font-bold">{email} </span>
           Please verify your email to continue.
         </p>
         <Link to="/login">

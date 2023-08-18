@@ -1,28 +1,27 @@
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
-import EmailForm from "../components/profile/EmailForm";
+import PasswordForm from "../components/profile/PasswordForm";
 import { useSearchParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
-const UpdateEmailPage = () => {
+const ChangePasswordPage = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { user, logoutUser } = useAuth();  
+  const { logoutUser } = useAuth();
 
-  
   const handleConfirm = async (values, { setSubmitting, resetForm }) => {
-    console.log("change email values:", values);
+    console.log("change password values:", values);
     
     try {
       setSubmitting(true);
       setIsLoading(true);
-      const response = await axios.put(
-        "http://localhost:5120/api/virtual-wallet/users/change-email",
+      const response = await axios.post(
+        "http://localhost:5120/api/virtual-wallet/auth/reset-password",
         {
-          email: values.email,
-          confirmEmail: values.confirmEmail,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
         },
         {
           params: {
@@ -30,24 +29,23 @@ const UpdateEmailPage = () => {
           },
           withCredentials: true,
         }
-        
-      );
-      console.log("change email response: ", response);
-      logoutUser(); 
+      );      
+      logoutUser();
+      console.log("change password response: ", response);      
+         
     } catch (error) {
       setSubmitting(false);
-      console.log("change email error: ", error);
-    }
-
-    logoutUser(); 
+      console.log("change password error: ", error);
+    }         
+      
   };
 
   const validationSchema = Yup.object().shape({
     token: Yup.string().required("Required"),
-    email: Yup.string().email("Invalid email").required("Required"),
-    confirmEmail: Yup.string()
-      .required("Required")
-      .oneOf([Yup.ref("email"), null], "E-mails must match"),
+    password: Yup.string().min(8).max(20).required("Required"),
+    confirmPassword: Yup.string().oneOf(
+      [Yup.ref("password"), null],
+      "Passwords must match"),
   });
 
   const [searchParams, setSearchParams] = useSearchParams()
@@ -55,7 +53,7 @@ const UpdateEmailPage = () => {
   
   return (
     <div className="dark:bg-dark-primary bg-cover bg-center bg-no-repeat h-full w-full absolute top-0 left-0 z-0">
-      <EmailForm
+      <PasswordForm
         validationSchema={validationSchema}
         handleConfirm={handleConfirm}
         isLoading={isLoading}
@@ -65,4 +63,4 @@ const UpdateEmailPage = () => {
   );
 };
 
-export default UpdateEmailPage;
+export default ChangePasswordPage;
