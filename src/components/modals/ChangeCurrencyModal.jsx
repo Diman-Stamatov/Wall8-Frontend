@@ -72,8 +72,8 @@ const ChangeCurrencyModal = ({
   return isOpen ? (
     <div className="fixed inset-0 flex items-center justify-center z-10">
       <div className="fixed inset-0 bg-gray-900 opacity-70"></div>
-      <div className="dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary shadow-lg rounded-lg p-6 w-96 z-20">
-        <h2 className="text-lg font-semibold mb-4">Change currency</h2>
+      <div className="dark:bg-gradient-to-t  bg-light-tertiary dark:from-dark-primary dark:to-light-quaternary shadow-lg rounded-lg p-6 w-96 z-20">
+        <h2 className="text-lg font-semibold mb-4 ">Change currency</h2>
         <div className="mb-4">
           <label htmlFor="password" className="block font-medium mb-1">
             Password

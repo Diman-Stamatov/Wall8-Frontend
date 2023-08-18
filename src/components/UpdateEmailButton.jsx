@@ -8,7 +8,8 @@ function UpdateEmailButton({onPostComplete}) {
   return (
     <div>
       <button
-        className="button rounded-full  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
+        className="button rounded-full  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 
+        bg-light-tertiary"
         onClick={() => setShowUpdateEmailModal(true)}
       >
         <span className="font-roboto text-sm">Update</span>

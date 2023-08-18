@@ -8,7 +8,7 @@ function BlockButton({profileUser, onPostComplete}) {
   return (
     <div>
       <button
-        className="button rounded-full  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
+        className="button rounded-full  bg-light-tertiary dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
         onClick={() => setShowBlockModal(true)}
       >
         <span className="font-roboto text-sm">Block</span>
