@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UpdateEmailButton from "../../components/UpdateEmailButton";
+import UpdatePasswordButton from "../UpdatePasswordButton";
 import UpdatePhoneNumberButton from "../../components/UpdatePhoneNumberButton";
 import UpdatePictureButton from "../../components/UpdatePictureButton";
 import BlockButton from "../BlockButton";
@@ -39,16 +40,16 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
   const openModal = () => {
     setIsOpen(true);
   };
+  const closeModal = () => {
+    setIsOpen(false);
+    clearError();
+  };
   const openDeleteModal = () => {
     setIsDeleteOpen(true);
-    console.log("WE ARE OPENING THE MODAL");
+    
   };
   const closeDeleteModal = () => {
     setIsDeleteOpen(false);
-    clearError();
-  };
-  const closeModal = () => {
-    setIsOpen(false);
     clearError();
   };
 
@@ -153,7 +154,7 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                 <>
                   <button
                     onClick={openModal}
-                    className="button rounded-full  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
+                    className="button rounded-full  bg-light-tertiary dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 "
                   >
                     <span className="text-sm">Change Currency</span>
                   </button>
@@ -183,7 +184,7 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
                     <div className="text-left dark:text-light-primary text-lg font-bold">
                       Password <p className="text-xs">(WIP)</p>
                     </div>
-                    <UpdateEmailButton />
+                    <UpdatePasswordButton />
                   </div>
                 </div>
                 <div className="mt-7 flex justify-between items-center">

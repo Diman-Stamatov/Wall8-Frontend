@@ -4,10 +4,12 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import UpdateEmailPage from "./pages/UpdateEmailPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import { AuthProvider } from "./context/AuthContext";
 import ThemeProvider from "./ThemeProvider";
 import TransferPage from "./pages/TransferPage";
+import VerifyEmailPage from "./pages/VerifyEmailPage";
 import InfoPage from "./pages/About";
 import ConfirmTransferScreen from "./pages/ConfirmTransferScreen";
 import { UserProvider } from "./context/UserContext";
@@ -49,6 +51,14 @@ function App() {
                           element={<Profile />}
                         />
                         <Route path="/info" element={<InfoPage />} />
+                        <Route
+                          path="/verify-email"
+                          element={<VerifyEmailPage />}
+                        />
+                        <Route
+                          path="/change-password"
+                          element={<ChangePasswordPage />}
+                        />
                         <Route
                           path="/update-email"
                           element={<UpdateEmailPage />}

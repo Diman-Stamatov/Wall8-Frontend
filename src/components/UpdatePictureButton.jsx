@@ -9,7 +9,7 @@ function UpdatePictureButton({onPostComplete}) {
   return (
     <div className="mt-2 ">
       <button
-        className="  dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded-full"
+        className="  bg-light-tertiary dark:bg-dark-secondary dark:hover:bg-dark-tertiary text-white font-bold  px-4 rounded-full"
         onClick={() => setUpdatePictureModal(true)}
       >
         <span className="font-roboto text-l">Change</span>

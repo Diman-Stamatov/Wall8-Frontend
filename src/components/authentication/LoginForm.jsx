@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
+import ForgotPasswordTextButton from "../ForgotPasswordTextButton";
 
 function LoginForm({ validationSchema, handleLogin }) {
   return (
@@ -64,10 +65,8 @@ function LoginForm({ validationSchema, handleLogin }) {
                 {" "}
                 |{" "}
               </span>
-              <Link to="/register">
-                <span className="text-sm dark:text-dark-tertiary hover:text-gray-700">
-                  Forgot Password?
-                </span>
+              <Link >
+              <ForgotPasswordTextButton/> 
               </Link>
               <span className="text-sm text-gray-500 hover:text-gray-700 pointer-events-none">
                 {" "}
