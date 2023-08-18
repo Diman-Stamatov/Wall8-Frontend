@@ -2,37 +2,41 @@ import axios from "axios";
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useError } from "../../context/ErrorContext";
-function AddFundsModal( {balance, isOpen ,onClose, handleSuccess} ) {
+import { number } from "yup";
+
+function SubFundsModal({ balance, isOpen, onClose, handleSuccess }) {
   const [amount, setAmount] = useState(0);
   const { user, refreshUser } = useAuth();
   const { error, setError, clearError } = useError();
   const userId = user.data.id;
 
   const handleConfirm = async () => {
-    const finalAmount =Number(amount) + Number( balance);
-    console.log("FINAL AMOUNT", finalAmount);
-    await axios.put(`http://localhost:5120/api/virtual-wallet/users/${userId}/wallets/balance`,
-    {
-      userId: userId,
-      balance: finalAmount,
-    },{
-      withCredentials: true,
-    }
-    )
-    .then((response) => {
-      handleSuccess(response.data);
-      
-      console.log("Confirming")
-      refreshUser();
+    const finalAmount = Number(balance) - Number(amount);
+    
+    if (Number(finalAmount) > 0) {
+      await axios
+        .put(
+          `http://localhost:5120/api/virtual-wallet/users/${userId}/wallets/balance`,
+          {
+            userId: userId,
+            balance: finalAmount,
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((response) => {
+          handleSuccess(response.data);
+          refreshUser();
+          onClose();
+        })
+        .catch((reqError) => {
+          setError({ type: "SET_ERROR", payload: reqError.response.data });
+        });
+    } else {
       onClose();
-    }).catch((reqError) => {
-      setError({ type: "SET_ERROR", payload: reqError.response.data });
-    });
-
-
+    }
   };
-
-
 
   return isOpen ? (
     <div className="modal">
@@ -42,7 +46,7 @@ function AddFundsModal( {balance, isOpen ,onClose, handleSuccess} ) {
           onClick={(e) => e.stopPropagation()}
         >
           <h2 className="text-zinc-500 font-bold text-lg font-roboto mb-4">
-            Add Funds
+            Withdraw Funds
           </h2>
           <input
             type="number"
@@ -63,4 +67,4 @@ function AddFundsModal( {balance, isOpen ,onClose, handleSuccess} ) {
   ) : null;
 }
 
-export default AddFundsModal;
+export default SubFundsModal;

@@ -40,16 +40,16 @@ const UserProfile = ({ profileUser, onPostComplete }) => {
   const openModal = () => {
     setIsOpen(true);
   };
+  const closeModal = () => {
+    setIsOpen(false);
+    clearError();
+  };
   const openDeleteModal = () => {
     setIsDeleteOpen(true);
-    console.log("WE ARE OPENING THE MODAL");
+    
   };
   const closeDeleteModal = () => {
     setIsDeleteOpen(false);
-    clearError();
-  };
-  const closeModal = () => {
-    setIsOpen(false);
     clearError();
   };
 
