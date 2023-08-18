@@ -11,43 +11,74 @@ export const TransferProvider = ({ children }) => {
   const { refreshUser } = useAuth();
 
   const [state, dispatch] = useReducer(transferReducer, {
-    transfers: [],
+    transfers: null,
     loading: false,
     error: null,
   });
 
   const postTransfer = async (transferData) => {
-    loadingDispatch({ type: "SET_LOADING", payload: true });
-    dispatch({ type: "POST_TRANSFERS_LOADING", payload: true });
+    try {
+      loadingDispatch({ type: "SET_LOADING", payload: true });
+      dispatch({ type: "POST_TRANSFERS_LOADING", payload: true });
 
-    axios
-      .post(
+      const response = await axios.post(
         "http://localhost:5120/api/virtual-wallet/transfers",
         transferData,
         {
           withCredentials: true,
         }
-      )
-      .then((response) => {
-        const transfer = response.data;
-        dispatch({
-          type: "POST_TRANSFERS_SUCCESS",
-          payload: [...state.transfers, transfer],
-        });
-        loadingDispatch({ type: "SET_LOADING", payload: false });
+      );
 
-        refreshUser();
-      })
-      .catch((error) => {
-        dispatch({ type: "POST_TRANSFERS_ERROR", payload: error });
-        console.log("dispatched error");
-        console.log("Error", error);
+      const transfer = response.data;
+      dispatch({
+        type: "POST_TRANSFERS_SUCCESS",
+        payload: transfer,
       });
+
+      loadingDispatch({ type: "SET_LOADING", payload: false });
+      console.log("TRANSFER IS SET", transfer);
+      refreshUser();
+
+      return transfer;
+    } catch (error) {
+      dispatch({ type: "POST_TRANSFERS_ERROR", payload: error });
+      console.log("Error", error);
+    }
+  };
+
+  const onTransferMade = async (transferData, callback) => {
+    try {
+      loadingDispatch({ type: "SET_LOADING", payload: true });
+      dispatch({ type: "POST_TRANSFERS_LOADING", payload: true });
+
+      const response = await axios.post(
+        "http://localhost:5120/api/virtual-wallet/transfers",
+        transferData,
+        {
+          withCredentials: true,
+        }
+      );
+
+      const transfer = response.data;
+      dispatch({
+        type: "POST_TRANSFERS_SUCCESS",
+        payload: transfer,
+      });
+
+      loadingDispatch({ type: "SET_LOADING", payload: false });
+      console.log("TRANSFER IS SET", transfer);
+      refreshUser();
+
+      callback(transfer); // Call the callback with the transfer
+    } catch (error) {
+      dispatch({ type: "POST_TRANSFERS_ERROR", payload: error });
+      console.log("Error", error);
+    }
   };
 
   return (
     <TransferContext.Provider
-      value={{ transfers: state.transfers, postTransfer }}
+      value={{ transfer: state.transfer, postTransfer, onTransferMade }}
     >
       {children}
     </TransferContext.Provider>

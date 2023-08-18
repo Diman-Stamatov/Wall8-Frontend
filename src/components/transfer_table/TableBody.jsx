@@ -3,15 +3,25 @@ import { Avatar } from "@mui/material";
 import { useUserLocale, formatDate } from "../../context/LocaleContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import DetailsModal from "./DetailsModal";
+import TransferRow from "./TransferRow";
 
 function TableBody({ transfers, currentPage, transfersPerPage }) {
   const startIndex = (currentPage - 1) * transfersPerPage;
-  const endIndex = Math.min(startIndex + transfersPerPage, transfers.length);
-  const  userLocale  = useUserLocale();
+  const endIndex = Number(startIndex) + Number(transfersPerPage);
+  const userLocale = useUserLocale();
 
-  transfers.sort((a, b) => {
-    return b.timestamp.localeCompare(a.timestamp);
-  });
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  }
+
+  
   const limitedTransfers = transfers.slice(startIndex, endIndex);
   const [avatars, setAvatars] = useState({});
 
@@ -27,9 +37,7 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
         ...prevAvatars,
         [username]: response.data.photoUrl,
       }));
-    } catch (error) {
-      console.log("AVATAR ERROR", error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -83,24 +91,19 @@ function TableBody({ transfers, currentPage, transfersPerPage }) {
               </div>
             </div>
           </td>
-          <td className="px-5 py-5 text-sm font-semibold">
-            <p
-              className={`${
-                transfer.type === "incoming" ? "text-green-600" : "text-red-600"
-              } italic font-bold whitespace-no-wrap text-center`}
-            >
-              {new Intl.NumberFormat(userLocale, {
-                style: "currency",
-                currency: transfer.currency,
-              }).format(transfer.amount)}
-            </p>
-          </td>
+          <TransferRow transfer={transfer} userLocale={userLocale} />
           <td className="px-5 py-5 font-semibold  text-sm">
             <p className="dark:text-dark-tertiary font-mono whitespace-no-wrap text-center">
               {formatDate(transfer.timestamp, userLocale)}
             </p>
           </td>
-          <td className={`px-5 py-5 font-semibold text-center rounded-br-lg dark:bg-gradient-to-r ${transfer.type === "incoming" ? " dark:from-dark-primary dark:to-light-secondary" : "dark:from-dark-primary dark:to-dark-quaternary"}`}>
+          <td
+            className={`px-5 py-5 font-semibold text-center rounded-br-lg dark:bg-gradient-to-r ${
+              transfer.type === "incoming"
+                ? " dark:from-dark-primary dark:to-light-secondary"
+                : "dark:from-dark-primary dark:to-dark-quaternary"
+            }`}
+          >
             <span className="text-lg font-semibold dark:text-light-primary text-dark-primary">
               {transfer.type}
             </span>

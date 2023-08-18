@@ -18,7 +18,7 @@ const TransferForm = ({ user }) => {
   const [filterText, onFilterTextChange] = useState("");
   const [complete, setComplete] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const { postTransfer } = useTransfer();
+  const { postTransfer, onTransferMade } = useTransfer();
   const { users, dispatch } = useUsers();
   const [recPage, setRecPage] = useState(1);
   const [pageInfo, setPageInfo] = useState([]);
@@ -79,17 +79,21 @@ const TransferForm = ({ user }) => {
     setCurrentStep((prev) => prev - 1);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     const newTransfer = {
       amount: amount,
       recipientId: recipient.id,
     };
 
-    await postTransfer(newTransfer);
+    const callback = (transfer) => {
+      if (transfer) {
+        navigate("/confirmed-transfer", { replace: true });
+      }
 
-    refreshUser();
-    setComplete(true);
-    navigate("/confirmed-transfer", { replace: true });
+      setComplete(true);
+    };
+
+    onTransferMade(newTransfer, callback);
   };
 
   return (

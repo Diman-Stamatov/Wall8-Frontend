@@ -57,7 +57,6 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = async (userInfo) => {
     try {
-      console.log("user info: ", userInfo)
       const response = await axios.post(
         "http://localhost:5120/api/virtual-wallet/auth/login",
         {

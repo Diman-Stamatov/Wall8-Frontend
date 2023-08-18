@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import TablePagination from "./TablePagination";
@@ -9,6 +9,43 @@ function TransferTable({ transfers }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [transfersPerPage, setTransfersPerPage] = useState(5);
   const [filterType, setFilterType] = useState("All");
+  const [desc, setDesc] = useState(true);
+  const [sortKey, setSortKey] = useState("timestamp");
+
+  const sortAndUpdateTransfers = () => {
+    const sortedTransfers = [...filteredTransfers];
+    sortedTransfers.sort((a, b) => {
+      if (sortKey === "date") {
+        return desc
+          ? b.timestamp.localeCompare(a.timestamp)
+          : a.timestamp.localeCompare(b.timestamp);
+      } else if (sortKey === "user") {
+        const userA = a.senderUsername || a.recipientUsername;
+        const userB = b.senderUsername || b.recipientUsername;
+
+        return desc ? userB.localeCompare(userA) : userA.localeCompare(userB);
+      } else if (sortKey === "amount") {
+        return desc ? b.amount - a.amount : a.amount - b.amount;
+      }
+      return 0;
+    });
+    setFilteredTransfers(sortedTransfers);
+  };
+
+  // Sorting logic:
+  useEffect(() => {
+    sortAndUpdateTransfers();
+  }, [desc, sortKey]);
+
+  const toggleSort = (key) => () => {
+    if (sortKey === key) {
+      setDesc(!desc);
+    } else {
+      setSortKey(key);
+      setDesc(true);
+    }
+  };
+
   return (
     <div className="antialiased dark:bg-gradient-to-t dark:from-dark-primary dark:to-light-quaternary rounded-lg">
       <div className="container mx-auto px-4 sm:px-8 ">
@@ -28,8 +65,8 @@ function TransferTable({ transfers }) {
           />
           <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 ">
             <div className="inline-block min-w-full shadow">
-              <table className="table-auto  min-w-full leading-normal shadow-xl shadow-light-quaternary dark:shadow-dark-primary  border-2 border-separate border-light-quaternary dark:border-dark-primary rounded-t-lg">
-                <TableHeader />
+              <table className="table-auto min-w-full leading-normal shadow-xl shadow-light-quaternary dark:shadow-dark-primary  border-2 border-separate border-light-quaternary dark:border-dark-primary rounded-t-lg">
+                <TableHeader toggleSort={toggleSort} />
                 <TableBody
                   transfers={filteredTransfers}
                   currentPage={currentPage}

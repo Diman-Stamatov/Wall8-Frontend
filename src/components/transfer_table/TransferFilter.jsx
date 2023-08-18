@@ -9,7 +9,6 @@ function TransferFilter({
 }) {
   const [filterText, setFilterText] = useState("");
 
-  console.log("trasnfers", transfers)
   useEffect(() => {
     const filteredTransfers = transfers.filter((transfer) => {
       const userNameMatch = transfer.recipientUsername

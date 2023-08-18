@@ -3,7 +3,7 @@ export const transferReducer = (state, action) => {
     case "POST_TRANSFERS_SUCCESS":
       return {
         ...state,
-        transfers: action.payload,
+        transfer: action.payload,
         loading: false,
         error: null,
       };

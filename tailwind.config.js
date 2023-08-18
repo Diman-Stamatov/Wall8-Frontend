@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js,ts,jsx,tsx}", "./index.html"],
+  content: ["./src/**/*.{html,js,ts,jsx,tsx}", "./index.html", "./node_modules/flowbite/**/*.{js, jsx, html}"],
   darkMode: "class",
   theme: {
     extend: {
@@ -48,6 +48,8 @@ export default {
         animation: ["responsive", "motion-safe", "motion-reduce"],
       },
     },
-    plugins: [],
+    plugins: [
+      require('flowbite/plugin')
+    ],
   },
 };
